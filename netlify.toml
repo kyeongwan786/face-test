@@ -1,3 +1,6 @@
+[build.environment]
+NODE_VERSION = "16"  # 👈 Node 버전 낮추기 (중요)
+
 [build]
 command = "npm install --legacy-peer-deps && npm run build"
 publish = "build"
