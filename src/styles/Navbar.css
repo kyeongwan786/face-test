@@ -1,0 +1,49 @@
+/* src/styles/Navbar.css */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    box-shadow: var(--shadow);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar-container {
+    width: 100%;
+    max-width: 1280px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 1.6rem;
+    font-family: var(--ff-head);
+    background: linear-gradient(120deg, var(--accent-pink), var(--accent-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--nc-dark);
+    transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+    color: var(--accent-pink);
+}
+
+.nav-links li .active {
+    border-bottom: 2px solid var(--accent-blue);
+}

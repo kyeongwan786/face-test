@@ -1,0 +1,152 @@
+/* mbti.css — 활기찬 관상 MBTI 결과 화면용 스타일 (Font & 효과 강화) */
+@import url('https://fonts.googleapis.com/css2?family=Fugaz+One&family=Gowun+Dodum&display=swap');
+
+/******************************
+  01. 컬러·폰트 변수
+******************************/
+:root {
+    --ff-head: 'Fugaz One', cursive;
+    --ff-body: 'Gowun Dodum', sans-serif;
+
+    --mbti-nf: #ff7ab2;
+    --mbti-nt: #8e44ff;
+    --mbti-sf: #00c8b4;
+    --mbti-st: #3fa8ff;
+
+    --shadow-s: 0 2px 4px rgba(0,0,0,.08);
+    --shadow-m: 0 6px 18px rgba(0,0,0,.12);
+    --rad-s: 12px;
+    --rad-m: 18px;
+}
+
+/******************************
+  02. 기본 레이아웃
+******************************/
+body {
+    font-family: var(--ff-body);
+    background: radial-gradient(circle at top, #fef6ff 0%, #f7faff 40%, #f0f8ff 100%);
+    min-height: 100vh;
+}
+
+.container header h1 {
+    font-family: var(--ff-head);
+    font-size: 3rem;
+    background: linear-gradient(120deg,var(--mbti-nf),var(--mbti-nt));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: hueShift 8s linear infinite;
+}
+
+.subtitle { color:#5e5e5e; }
+
+/******************************
+  03. 결과 모달 데코
+******************************/
+.result-modal {
+    background: #fff;
+    border-radius: var(--rad-m);
+    padding: 6rem 1.8rem 2rem; /* 상단 여유 공간 확보 */
+    box-shadow: var(--shadow-m);
+    position: relative;
+    overflow: visible; /* 프로필 사진이 밖으로 튀어나오도록 */
+}
+
+.result-modal::before {
+    content:"";
+    position:absolute;inset:0;
+    background: conic-gradient(from var(--angle),var(--mbti-nf),var(--mbti-st),var(--mbti-nt),var(--mbti-sf),var(--mbti-nf));
+    filter:blur(24px);
+    opacity:.25;
+    animation: spinGradient 10s linear infinite;
+}
+
+.result-modal::after {
+    content:"";
+    position:absolute;inset:2px;
+    background:#fff;
+    border-radius:inherit;
+    z-index:-1;
+}
+
+.modal-photo-circle {
+    position:absolute;
+    top:-60px; /* 모달 상단을 살짝 넘기도록 */
+    left:50%;
+    transform:translateX(-50%);
+    width:120px;height:120px;
+    border-radius:50%;
+    object-fit:cover;
+    object-position:center;
+    border:4px solid #fff;
+    box-shadow: var(--shadow-s);
+    background:#fff;
+}
+
+.mbti-type {
+    font-family: var(--ff-head);
+    font-size:2rem;
+    margin-top:0.6rem;
+    background:linear-gradient(120deg,var(--mbti-st),var(--mbti-nt));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.mbti-desc {
+    font-size:1rem;line-height:1.6;
+    margin-top:0.3rem;text-align:center;color:#606060;
+    white-space:pre-line;
+}
+
+/******************************
+  04. 키워드 태그
+******************************/
+.keyword-list {
+    display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:center;margin-top:0.8rem;
+}
+.tag {
+    padding:0.25rem 0.7rem;
+    font-size:0.8rem;font-weight:700;color:#fff;border-radius:999px;
+    background:var(--mbti-color, var(--mbti-nt));
+    box-shadow: var(--shadow-s);
+}
+
+/******************************
+  05. 버튼 세트
+******************************/
+.modal-buttons button {
+    padding:0.6rem 1.1rem;font-weight:700;border:none;border-radius:var(--rad-s);
+    cursor:pointer;color:#fff;transition:transform .18s;
+}
+.btn-retry {background:linear-gradient(135deg,#ff658a,#ff4f81);}
+.btn-save {background:linear-gradient(135deg,#5eb4ff,#349aff);}
+.btn-kakao {background:#ffe812;color:#3b1e1e;}
+.modal-buttons button:hover {transform:translateY(-3px);}
+
+/******************************
+  06. Confetti 애니메이션 (CSS)
+******************************/
+@keyframes confettiFall { to { transform: translateY(600px) rotateZ(360deg); } }
+
+.confetti-wrapper {
+    position:absolute;inset:0;overflow:hidden;pointer-events:none;
+}
+.confetti {
+    position:absolute;width:8px;height:8px;
+    background:var(--mbti-color,var(--mbti-nt));
+    top:-20px;
+    animation: confettiFall 4s linear infinite;
+}
+
+/******************************
+  07. 애니메이션 & 유틸
+******************************/
+@keyframes hueShift {
+    0% { filter:hue-rotate(0deg);} 100% {filter:hue-rotate(360deg);} }
+@keyframes spinGradient { to { --angle:360deg; } }
+
+.fadeIn { animation:fadeIn .6s ease forwards;}
+@keyframes fadeIn { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:none;} }
+
+/******************************
+  END
+******************************/

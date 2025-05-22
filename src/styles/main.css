@@ -1,0 +1,209 @@
+/* main.css — 전체 메인 페이지 스타일 */
+
+/* =============== 기본 세팅 =============== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #fffcf8;
+    --glass: rgba(255, 255, 255, 0.65);
+    --nc-dark: #1e1b18;
+    --nc-gray: #6f6c66;
+    --accent-pink: #ff4f81;
+    --accent-blue: #3fa8ff;
+    --accent-mint: #00c4b4;
+    --shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+    --radius: 18px;
+    --font-head: 'Bebas Neue', sans-serif;
+    --font-body: 'Poppins', sans-serif;
+}
+
+body {
+    background: var(--bg);
+    color: var(--nc-dark);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* =============== 네브바 =============== */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    box-shadow: var(--shadow);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: center;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.navbar-container {
+    width: 100%;
+    max-width: 1280px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 1.6rem;
+    font-family: var(--font-head);
+    background: linear-gradient(120deg, var(--accent-pink), var(--accent-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--nc-dark);
+    transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+    color: var(--accent-pink);
+}
+
+/* =============== 히어로 섹션 =============== */
+.hero {
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+    background: linear-gradient(120deg, #ffd9e2, #e8f4ff);
+    clip-path: ellipse(110% 100% at 50% 0%);
+    animation: slideFadeDown 0.6s ease-out;
+}
+
+.hero h1 {
+    font-family: var(--font-head);
+    font-size: 3.6rem;
+    color: transparent;
+    background: linear-gradient(to right, var(--accent-pink), var(--accent-blue));
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: var(--nc-gray);
+    margin-top: 1rem;
+}
+
+.hero-buttons {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 0.9rem 1.6rem;
+    font-weight: bold;
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+}
+
+.primary {
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-mint));
+    color: #fff;
+}
+
+.secondary {
+    background: white;
+    border: 2px solid var(--accent-pink);
+    color: var(--accent-pink);
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+/* =============== 콘텐츠 카드 =============== */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    animation: fadeIn 0.6s ease-in;
+}
+
+.card {
+    background: var(--glass);
+    border-radius: var(--radius);
+    padding: 2.4rem 1.6rem;
+    backdrop-filter: blur(12px);
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 32px rgba(0, 0, 0, 0.1);
+}
+
+.emoji {
+    font-size: 2.4rem;
+    margin-bottom: 1rem;
+}
+
+.card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.card p {
+    font-size: 0.95rem;
+    color: var(--nc-gray);
+    margin-bottom: 1rem;
+}
+
+.card-btn {
+    display: inline-block;
+    padding: 0.7rem 1.2rem;
+    background: var(--accent-blue);
+    color: white;
+    font-weight: 600;
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.card-btn:hover {
+    background: var(--accent-pink);
+}
+
+.card-btn.disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* =============== 푸터 =============== */
+
+/* =============== 애니메이션 =============== */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes slideFadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: none; }
+}
