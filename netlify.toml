@@ -1,6 +1,13 @@
 [build.environment]
 NODE_VERSION = "16"
+NPM_FLAGS = "--legacy-peer-deps" # 혹시라도 Netlify가 강제로 쓸 경우 대비
 
 [build]
 command = "bash build.sh"
 publish = "build"
+
+[functions]
+node_bundler = "esbuild"
+
+[build.processing]
+skip_install = true
