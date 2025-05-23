@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../styles/common.css";
 import "../styles/main.css";
 
 export default function Main() {
+    // 광고 스크립트 로딩
+    useEffect(() => {
+        const adScript = document.createElement("script");
+        adScript.src = "//t1.daumcdn.net/kas/static/ba.min.js";
+        adScript.async = true;
+        document.body.appendChild(adScript);
+    }, []);
+
     return (
         <div>
             {/* Hero Section */}
@@ -56,6 +64,16 @@ export default function Main() {
                     <Link to="/like" className="card-btn disabled">준비 중</Link>
                 </div>
             </section>
+
+            {/* 광고 삽입 영역 */}
+            <div style={{ textAlign: "center", margin: "2.5rem auto" }}>
+                <ins className="kakao_ad_area"
+                     style={{ display: "none" }}
+                     data-ad-unit="DAN-HnW0xoFCrjMWyDYg"
+                     data-ad-width="250"
+                     data-ad-height="250"
+                ></ins>
+            </div>
         </div>
     );
 }

@@ -1,4 +1,3 @@
-// src/pages/MBTIByFace.jsx
 import React, { useState, useEffect, useRef } from "react";
 import html2canvas from "html2canvas";
 import "../styles/mbti.css";
@@ -6,13 +5,11 @@ import { loadMBTIModelByGender, predictMBTIImage } from "../utils/runMBTIModel";
 import GenderSelector from "../components/GenderSelector";
 import LoadingSpinner from "../components/LoadingSpinner";
 
-/* ─────────────────────────  상수  ───────────────────────── */
-const MAX_UPLOAD_SIZE = 5 * 1024 * 1024;           // 5 MB
+const MAX_UPLOAD_SIZE = 5 * 1024 * 1024;
 const CONFETTI_COUNT = 40;
 
 const MBTI_COLOR = {
-    NF: "#ff7ab2",  NT: "#8e44ff",
-    SF: "#00c8b4",  ST: "#3fa8ff",
+    NF: "#ff7ab2", NT: "#8e44ff", SF: "#00c8b4", ST: "#3fa8ff",
 };
 
 const MBTI_DESC = {
@@ -35,32 +32,23 @@ const MBTI_DESC = {
 };
 
 const MBTI_KEYWORDS = {
-    INFP: ["감성", "이상주의", "창의"],
-    ENFP: ["열정", "창의", "교류"],
-    INFJ: ["통찰", "배려", "깊이"],
-    ENFJ: ["리더", "사교", "조화"],
-    INTP: ["분석", "지식", "논리"],
-    ENTP: ["혁신", "토론", "도전"],
-    INTJ: ["전략", "독립", "예측"],
-    ENTJ: ["결단", "조직", "목표"],
-    ISFP: ["온화", "예술", "감각"],
-    ESFP: ["사교", "활동", "즐거움"],
-    ISTP: ["실용", "유연", "문제해결"],
-    ESTP: ["즉흥", "현실", "적응"],
-    ISFJ: ["헌신", "책임", "지원"],
-    ESFJ: ["조화", "사랑", "배려"],
-    ISTJ: ["성실", "규칙", "계획"],
-    ESTJ: ["조직", "리더", "실행"],
+    INFP: ["감성", "이상주의", "창의"], ENFP: ["열정", "창의", "교류"],
+    INFJ: ["통찰", "배려", "깊이"], ENFJ: ["리더", "사교", "조화"],
+    INTP: ["분석", "지식", "논리"], ENTP: ["혁신", "토론", "도전"],
+    INTJ: ["전략", "독립", "예측"], ENTJ: ["결단", "조직", "목표"],
+    ISFP: ["온화", "예술", "감각"], ESFP: ["사교", "활동", "즐거움"],
+    ISTP: ["실용", "유연", "문제해결"], ESTP: ["즉흥", "현실", "적응"],
+    ISFJ: ["헌신", "책임", "지원"], ESFJ: ["조화", "사랑", "배려"],
+    ISTJ: ["성실", "규칙", "계획"], ESTJ: ["조직", "리더", "실행"],
 };
 
-/* ────────────────────────  유틸 함수  ─────────────────────── */
 const getMBTIColor = (t) => MBTI_COLOR[`${t[1]}${t[2]}`] || "#8e44ff";
 
 const dataURLtoFile = (dataUrl, filename) => {
     const [header, b64] = dataUrl.split(",");
     const mime = header.match(/:(.*?);/)[1];
-    const bin  = atob(b64);
-    const buf  = new Uint8Array(bin.length);
+    const bin = atob(b64);
+    const buf = new Uint8Array(bin.length);
     for (let i = 0; i < bin.length; i++) buf[i] = bin.charCodeAt(i);
     return new File([buf], filename, { type: mime });
 };
@@ -77,28 +65,23 @@ const makeConfetti = (color) =>
         return <div key={i} className="confetti" style={style} />;
     });
 
-/* ─────────────────────  메인 컴포넌트  ───────────────────── */
 export default function MBTIByFace() {
-    /* 상태 값 */
-    const [gender,        setGender]        = useState("male");
-    const [useWebcam,     setUseWebcam]     = useState(false);
-    const [image,         setImage]         = useState(null);
-    const [origFile,      setOrigFile]      = useState(null);
-    const [mbti,          setMBTI]          = useState(null);
-    const [mbtiColor,     setMBTIColor]     = useState(MBTI_COLOR.NT);
-    const [keywords,      setKeywords]      = useState([]);
-    const [confetti,      setConfetti]      = useState([]);
-    const [loading,       setLoading]       = useState(false);
-    const [modalOpen,     setModalOpen]     = useState(false);
-    const [webcamReady,   setWebcamReady]   = useState(false);
-    const [webcamDone,    setWebcamDone]    = useState(false);
-    const [webcamStream,  setWebcamStream]  = useState(null);
-
-    /* ref */
+    const [gender, setGender] = useState("male");
+    const [useWebcam, setUseWebcam] = useState(false);
+    const [image, setImage] = useState(null);
+    const [origFile, setOrigFile] = useState(null);
+    const [mbti, setMBTI] = useState(null);
+    const [mbtiColor, setMBTIColor] = useState(MBTI_COLOR.NT);
+    const [keywords, setKeywords] = useState([]);
+    const [confetti, setConfetti] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
+    const [webcamReady, setWebcamReady] = useState(false);
+    const [webcamDone, setWebcamDone] = useState(false);
+    const [webcamStream, setWebcamStream] = useState(null);
     const videoRef = useRef(null);
     const modalRef = useRef(null);
 
-    /* Kakao SDK 로드 */
     useEffect(() => {
         if (!window.Kakao) {
             const s = document.createElement("script");
@@ -106,32 +89,35 @@ export default function MBTIByFace() {
             s.onload = () => window.Kakao.init("d3f8af96c1e986cbfb2216380f1ea8e7");
             document.head.appendChild(s);
         }
+
+        // 광고 스크립트
+        const adScript = document.createElement("script");
+        adScript.async = true;
+        adScript.type = "text/javascript";
+        adScript.src = "//t1.daumcdn.net/kas/static/ba.min.js";
+        document.head.appendChild(adScript);
     }, []);
 
-    /* 웹캠 초기화 */
     useEffect(() => {
         if (useWebcam) {
             setWebcamReady(false);
             setWebcamDone(false);
-            navigator.mediaDevices.getUserMedia({ video: true })
-                .then((stream) => {
-                    if (videoRef.current) {
-                        videoRef.current.srcObject = stream;
-                        videoRef.current.onloadedmetadata = () => {
-                            videoRef.current.play();
-                            setWebcamReady(true);
-                            setWebcamStream(stream);
-                        };
-                    }
-                })
-                .catch((e) => {
-                    alert("웹캠 접근 실패");
-                    console.error(e);
-                });
+            navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
+                if (videoRef.current) {
+                    videoRef.current.srcObject = stream;
+                    videoRef.current.onloadedmetadata = () => {
+                        videoRef.current.play();
+                        setWebcamReady(true);
+                        setWebcamStream(stream);
+                    };
+                }
+            }).catch((e) => {
+                alert("웹캠 접근 실패");
+                console.error(e);
+            });
         }
     }, [useWebcam]);
 
-    /* 예측 적용 */
     const applyPrediction = (best) => {
         setMBTI(best.className);
         const color = getMBTIColor(best.className);
@@ -141,21 +127,17 @@ export default function MBTIByFace() {
         setModalOpen(true);
     };
 
-    /* 이미지 → 예측 */
     const predictFromImage = async (img) => {
         await loadMBTIModelByGender(gender);
         const preds = await predictMBTIImage(img);
-        const best  = preds.reduce((a, b) => (a.probability > b.probability ? a : b));
+        const best = preds.reduce((a, b) => (a.probability > b.probability ? a : b));
         applyPrediction(best);
     };
 
-    /* ── 핸들러 ───────────────────────────── */
-    /** 업로드 */
     const handleUpload = (e) => {
         const file = e.target.files[0];
         if (!file) return;
         setOrigFile(file);
-
         const reader = new FileReader();
         reader.onload = async () => {
             setImage(reader.result);
@@ -163,29 +145,24 @@ export default function MBTIByFace() {
             const img = new Image();
             img.src = reader.result;
             img.onload = async () => {
-                try { await predictFromImage(img); }
-                catch { alert("분석 오류"); }
+                try { await predictFromImage(img); } catch { alert("분석 오류"); }
                 finally { setLoading(false); }
             };
         };
         reader.readAsDataURL(file);
     };
 
-    /** 웹캠 캡처 */
     const captureFromWebcam = async () => {
         if (!videoRef.current) return;
         const canvas = document.createElement("canvas");
-        canvas.width  = videoRef.current.videoWidth;
+        canvas.width = videoRef.current.videoWidth;
         canvas.height = videoRef.current.videoHeight;
         canvas.getContext("2d").drawImage(videoRef.current, 0, 0);
-
         const img = new Image();
         img.src = canvas.toDataURL("image/jpeg");
         setImage(img.src);
         setLoading(true);
-
         if (webcamStream) webcamStream.getTracks().forEach((t) => t.stop());
-
         try { await predictFromImage(img); }
         catch { alert("분석 오류"); }
         finally {
@@ -194,7 +171,6 @@ export default function MBTIByFace() {
         }
     };
 
-    /** 다시하기 */
     const reset = () => {
         setImage(null); setOrigFile(null); setMBTI(null); setModalOpen(false);
         setKeywords([]); setConfetti([]); setWebcamDone(false);
@@ -202,7 +178,6 @@ export default function MBTIByFace() {
         setWebcamStream(null); setUseWebcam(false);
     };
 
-    /** 결과 저장 */
     const saveShot = () => {
         if (!modalRef.current) return;
         html2canvas(modalRef.current, { scale: 2 }).then((canvas) => {
@@ -213,25 +188,20 @@ export default function MBTIByFace() {
         });
     };
 
-    /** 카카오 공유 */
     const shareKakao = async () => {
         const { Kakao } = window;
         if (!Kakao?.isInitialized()) return alert("카카오 SDK 준비 중!");
-
         try {
             let file = origFile;
             if (!file) {
-                const canvas  = await html2canvas(modalRef.current, { scale: 1 });
+                const canvas = await html2canvas(modalRef.current, { scale: 1 });
                 const dataUrl = canvas.toDataURL("image/jpeg", 0.85);
                 file = dataURLtoFile(dataUrl, "result.jpg");
             }
-            if (file.size > MAX_UPLOAD_SIZE)
-                return alert("이미지 5MB 초과");
-
+            if (file.size > MAX_UPLOAD_SIZE) return alert("이미지 5MB 초과");
             const { infos } = await Kakao.Share.uploadImage({ file: [file] });
-            const imgUrl   = infos.original.url;
-            const pageUrl  = window.location.origin;
-
+            const imgUrl = infos.original.url;
+            const pageUrl = window.location.origin;
             await Kakao.Share.sendDefault({
                 objectType: "feed",
                 content: {
@@ -250,25 +220,21 @@ export default function MBTIByFace() {
         }
     };
 
-    /* ─────────────────────────  렌더링  ───────────────────────── */
     return (
         <div className="page">
+            {/* 광고 영역 */}
+            <ins className="kakao_ad_area" style={{ display: "none" }}
+                 data-ad-unit="DAN-HnW0xoFCrjMWyDYg"
+                 data-ad-width="250"
+                 data-ad-height="250"></ins>
+
             {modalOpen && (
                 <div className="overlay-blur">
                     <div className="result-modal" ref={modalRef} style={{ "--mbti-color": mbtiColor }}>
-                        {/* 컨페티 */}
                         <div className="confetti-wrapper">{confetti}</div>
-
-                        {/* 프로필 */}
                         <img className="modal-photo-circle" src={image} alt="uploaded" />
-
-                        {/* 결과 텍스트 */}
-                        <p className="mbti-type">
-                            예측된 MBTI: <strong>{mbti}</strong>
-                        </p>
+                        <p className="mbti-type">예측된 MBTI: <strong>{mbti}</strong></p>
                         <p className="mbti-desc">{MBTI_DESC[mbti]}</p>
-
-                        {/* 키워드 */}
                         <div className="keyword-list">
                             {keywords.map((k) => (
                                 <span key={k} className="tag" style={{ "--mbti-color": mbtiColor }}>
@@ -276,12 +242,10 @@ export default function MBTIByFace() {
                 </span>
                             ))}
                         </div>
-
-                        {/* 버튼 */}
                         <div className="modal-buttons">
-                            <button className="btn-retry"  onClick={reset}>다시 하기</button>
-                            <button className="btn-save"   onClick={saveShot}>결과 저장</button>
-                            <button className="btn-kakao"  onClick={shareKakao}>카카오톡 공유</button>
+                            <button className="btn-retry" onClick={reset}>다시 하기</button>
+                            <button className="btn-save" onClick={saveShot}>결과 저장</button>
+                            <button className="btn-kakao" onClick={shareKakao}>카카오톡 공유</button>
                         </div>
                     </div>
                 </div>
@@ -293,36 +257,32 @@ export default function MBTIByFace() {
                     <p className="subtitle">성별을 선택하고 아래 방식 중 하나로 측정해보세요</p>
                 </header>
 
-                {/* 성별 선택 */}
                 <GenderSelector gender={gender} setGender={setGender} />
 
-                {/* 모드 전환 */}
                 <div className="mode-toggle-buttons">
-                    <button className={!useWebcam ? "mode-button active" : "mode-button"}
-                            onClick={() => setUseWebcam(false)}>
+                    <button
+                        className={!useWebcam ? "mode-button active" : "mode-button"}
+                        onClick={() => setUseWebcam(false)}>
                         사진 업로드하기
                     </button>
-                    <button className={useWebcam ? "mode-button active" : "mode-button"}
-                            onClick={() => setUseWebcam(true)}>
+                    <button
+                        className={useWebcam ? "mode-button active" : "mode-button"}
+                        onClick={() => setUseWebcam(true)}>
                         실시간으로 분석하기
                     </button>
                 </div>
 
-                {/* 본문 */}
                 {loading ? (
                     <LoadingSpinner />
                 ) : (
                     !image && (
                         <>
-                            {/* 업로드 모드 */}
                             {!useWebcam && (
                                 <label className="upload-box">
                                     📷 <span className="upload-label">사진 올리기</span>
                                     <input type="file" accept="image/*" hidden onChange={handleUpload} />
                                 </label>
                             )}
-
-                            {/* 웹캠 모드 */}
                             {useWebcam && (
                                 <div className="webcam-wrapper active">
                                     <video ref={videoRef} autoPlay muted playsInline width="320" className="video-frame" />
@@ -353,3 +313,4 @@ export default function MBTIByFace() {
         </div>
     );
 }
+
