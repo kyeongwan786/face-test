@@ -125,3 +125,37 @@ footer {
 .container {
     flex: 1;
 }
+.page-content {
+    flex: 1;
+}
+@media (max-width: 768px) {
+    html, body {
+        font-size: 15px;
+        line-height: 1.5;
+    }
+
+    .page-wrapper {
+        padding: 0 1rem;
+    }
+
+    .page-content {
+        padding: 1rem 0;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    .container {
+        padding: 0 1rem;
+    }
+}
+

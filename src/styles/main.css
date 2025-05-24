@@ -207,3 +207,52 @@ body {
     from { opacity: 0; transform: translateY(-20px); }
     to   { opacity: 1; transform: none; }
 }
+@media (max-width: 768px) {
+    .hero {
+        padding: 4rem 1rem 3rem;
+        clip-path: none;
+    }
+
+    .hero h1 {
+        font-size: 2.4rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .btn {
+        width: 100%;
+        font-size: 0.95rem;
+        padding: 0.8rem 1rem;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+        padding: 2rem 1rem;
+        gap: 1.2rem;
+    }
+
+    .card {
+        padding: 1.5rem 1.2rem;
+    }
+
+    .card h3 {
+        font-size: 1.1rem;
+    }
+
+    .card p {
+        font-size: 0.9rem;
+    }
+
+    .card-btn {
+        font-size: 0.85rem;
+        padding: 0.6rem 1rem;
+    }
+}

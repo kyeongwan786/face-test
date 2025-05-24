@@ -550,3 +550,102 @@ header h1 {
     align-items: center;
     margin-top: 1rem;
 }
+@media (max-width: 768px) {
+    .container {
+        padding: 2rem 1rem 4rem;
+        gap: 1rem;
+    }
+
+    header h1 {
+        font-size: 2rem;
+        line-height: 1.3;
+    }
+
+    .subtitle,
+    .loading-text {
+        font-size: 0.95rem;
+        text-align: center;
+    }
+
+    .upload-box {
+        padding: 3rem 1rem;
+        border-width: 2px;
+    }
+
+    .upload-label {
+        font-size: 1.3rem;
+    }
+
+    .upload-tip {
+        font-size: 0.8rem;
+    }
+
+    .result-modal {
+        padding: 3.5rem 1rem 1.2rem;
+    }
+
+    .modal-photo-circle {
+        width: 70px;
+        height: 70px;
+        top: -35px;
+    }
+
+    .tier-badge-wrapper img {
+        width: 110px;
+    }
+
+    .tier-name {
+        font-size: 1.4rem;
+    }
+
+    .modal-percent {
+        font-size: 2.4rem;
+    }
+
+    .modal-buttons {
+        flex-direction: column;
+        gap: 0.6rem;
+        width: 100%;
+    }
+
+    .modal-buttons > button {
+        width: 100%;
+    }
+
+    .gender-buttons {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .gender-button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .mode-toggle-buttons {
+        flex-direction: column;
+        gap: 0.6rem;
+    }
+
+    .mode-button {
+        width: 100%;
+        font-size: 0.9rem;
+    }
+
+    .webcam-wrapper.active {
+        margin-top: 1rem;
+        width: 100%;
+    }
+
+    .webcam-overlay-text {
+        font-size: 0.9rem;
+        padding: 0.6rem 1rem;
+    }
+
+    .webcam-retry,
+    .btn-analyze {
+        width: 100%;
+        font-size: 0.9rem;
+        padding: 0.8rem 1.2rem;
+    }
+}

@@ -1,4 +1,3 @@
-// App.jsx (정상 구조)
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
@@ -16,35 +15,41 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Terms from "./pages/Terms";
 import UglyFAQ from "./pages/UglyFAQ";
 import MBTIFAQ from "./pages/MBTIFAQ";
-
-
-import "./styles/common.css";
-import "./styles/main.css"; // 또는 각 페이지에 개별 import
-import "./styles/Navbar.css";
 import MBTIByFace from "./pages/MBTIByFace"; // ✅ 꼭 필요!
+
+// 스타일
+import "./styles/common.css";
+import "./styles/main.css";
+import "./styles/Navbar.css";
 
 export default function App() {
     return (
         <HelmetProvider>
             <Router>
-                <Navbar />
-                <main>
-                    <Routes>
-                        <Route path="/" element={<Main />} />
-                        <Route path="/ugly" element={<UglyMeter />} />
-                        <Route path="/mbti" element={<MBTIByFace />} />
-                        <Route path="/faceage" element={<Soon />} />
-                        <Route path="/firstface" element={<Soon />} />
-                        <Route path="/like" element={<Soon />} />
-                        <Route path="/contact" element={<Contact />} />
-                        <Route path="/about" element={<About />} />
-                        <Route path="/privacy" element={<PrivacyPolicy />} />
-                        <Route path="/terms" element={<Terms />} />
-                        <Route path="/ugly-faq" element={<UglyFAQ />} />
-                        <Route path="/mbti-faq" element={<MBTIFAQ />} />
-                    </Routes>
-                </main>
-                <Footer />
+                {/* ✅ 전체를 감싸는 flex wrapper */}
+                <div className="page-wrapper">
+                    <Navbar />
+
+                    {/* ✅ 콘텐츠가 공간을 채우도록 설정 */}
+                    <main className="page-content">
+                        <Routes>
+                            <Route path="/" element={<Main />} />
+                            <Route path="/ugly" element={<UglyMeter />} />
+                            <Route path="/mbti" element={<MBTIByFace />} />
+                            <Route path="/faceage" element={<Soon />} />
+                            <Route path="/firstface" element={<Soon />} />
+                            <Route path="/like" element={<Soon />} />
+                            <Route path="/contact" element={<Contact />} />
+                            <Route path="/about" element={<About />} />
+                            <Route path="/privacy" element={<PrivacyPolicy />} />
+                            <Route path="/terms" element={<Terms />} />
+                            <Route path="/ugly-faq" element={<UglyFAQ />} />
+                            <Route path="/mbti-faq" element={<MBTIFAQ />} />
+                        </Routes>
+                    </main>
+
+                    <Footer />
+                </div>
             </Router>
         </HelmetProvider>
     );

@@ -2,6 +2,7 @@ import React from "react";
 
 export default function About() {
     return (
+
         <div className="max-w-2xl mx-auto p-6">
             <h1 className="text-2xl font-bold mb-4">이 사이트는?</h1>
             <p>
