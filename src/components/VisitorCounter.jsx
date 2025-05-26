@@ -1,8 +1,8 @@
-// src/components/VisitorCounter.jsx
 import React, { useEffect, useState } from "react";
 import "../styles/VisitorCounter.css";
 
-const API_URL = "https://face-test-backend-9txf.onrender.com/"; // ✅ 로컬 Spring Boot 주소
+// 슬래시(/) 없이 끝나도록 수정
+const API_URL = "https://face-test-backend-9txf.onrender.com";
 
 export default function VisitorCounter() {
     const [count, setCount] = useState(null);
@@ -10,22 +10,25 @@ export default function VisitorCounter() {
     useEffect(() => {
         const visited = sessionStorage.getItem("hasVisited");
 
-        if (!visited) {
-            fetch(`${API_URL}/api/visitor/increase`, {
-                method: "POST"
-            })
-                .then(res => res.json())
-                .then(data => {
-                    setCount(data);
+        const fetchCount = async () => {
+            try {
+                const url = visited
+                    ? `${API_URL}/api/visitor/count`
+                    : `${API_URL}/api/visitor/increase`;
+                const res = await fetch(url, {
+                    method: visited ? "GET" : "POST"
+                });
+                const data = await res.json();
+                setCount(data.count ?? data); // 숫자만 저장
+                if (!visited) {
                     sessionStorage.setItem("hasVisited", "true");
-                })
-                .catch(err => console.error("방문자 수 증가 실패", err));
-        } else {
-            fetch(`${API_URL}/api/visitor/count`)
-                .then(res => res.json())
-                .then(data => setCount(data))
-                .catch(err => console.error("방문자 수 조회 실패", err));
-        }
+                }
+            } catch (err) {
+                console.error("방문자 수 처리 실패", err);
+            }
+        };
+
+        fetchCount();
     }, []);
 
     if (count === null) return null;
