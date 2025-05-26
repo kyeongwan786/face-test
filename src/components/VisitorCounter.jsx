@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../styles/VisitorCounter.css";
 
-// 슬래시(/) 없이 끝나도록 수정
+// ✅ 슬래시 없이!
 const API_URL = "https://face-test-backend-9txf.onrender.com";
 
 export default function VisitorCounter() {
@@ -12,14 +12,12 @@ export default function VisitorCounter() {
 
         const fetchCount = async () => {
             try {
-                const url = visited
-                    ? `${API_URL}/api/visitor/count`
-                    : `${API_URL}/api/visitor/increase`;
-                const res = await fetch(url, {
+                const path = visited ? "api/visitor/count" : "api/visitor/increase";
+                const res = await fetch(`${API_URL}/${path}`, {
                     method: visited ? "GET" : "POST"
                 });
                 const data = await res.json();
-                setCount(data.count ?? data); // 숫자만 저장
+                setCount(data.count ?? data); // 숫자만 추출
                 if (!visited) {
                     sessionStorage.setItem("hasVisited", "true");
                 }
