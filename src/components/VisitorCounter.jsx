@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import "../styles/VisitorCounter.css";
 
-const API_URL = "https://facealchemy.site/"; // ✅ 로컬 Spring Boot 주소
+const API_URL = "https://face-test-backend-9txf.onrender.com/"; // ✅ 로컬 Spring Boot 주소
 
 export default function VisitorCounter() {
     const [count, setCount] = useState(null);
