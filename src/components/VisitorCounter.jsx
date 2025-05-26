@@ -1,7 +1,8 @@
+// src/components/VisitorCounter.jsx
 import React, { useEffect, useState } from "react";
 import "../styles/VisitorCounter.css";
 
-const API_URL = "https://facealchemy.site/"; // 너의 Spring Boot 서버 도메인 주소
+const API_URL = "https://facealchemy.site/"; // ✅ 로컬 Spring Boot 주소
 
 export default function VisitorCounter() {
     const [count, setCount] = useState(null);
@@ -17,11 +18,13 @@ export default function VisitorCounter() {
                 .then(data => {
                     setCount(data);
                     sessionStorage.setItem("hasVisited", "true");
-                });
+                })
+                .catch(err => console.error("방문자 수 증가 실패", err));
         } else {
             fetch(`${API_URL}/api/visitor/count`)
                 .then(res => res.json())
-                .then(data => setCount(data));
+                .then(data => setCount(data))
+                .catch(err => console.error("방문자 수 조회 실패", err));
         }
     }, []);
 
