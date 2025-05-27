@@ -1,26 +1,63 @@
 .visitor-count-wrapper {
-    margin-top: 4rem;
-    padding: 1.2rem 1.6rem;
-    border-radius: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem 1rem;
     background: var(--bg-300);
-    box-shadow: var(--shadow-s);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin: 3rem auto 2rem;
+    max-width: 800px;
+    flex-wrap: wrap;
+    animation: fadeIn 0.6s ease-out;
+}
+
+.visitor-box {
+    flex: 1 1 260px;
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius);
+    padding: 1.6rem 2rem;
     text-align: center;
-    max-width: 620px;
-    margin-left: auto;
-    margin-right: auto;
-    animation: fadeIn 0.5s ease-in-out;
-    font-family: var(--ff-body);
+    box-shadow: var(--shadow-s);
+    animation: countBounce 0.4s ease;
 }
 
-.visitor-count-wrapper p {
-    font-size: 1rem;
-    color: var(--nc-600);
+.count-label {
+    font-size: 1.1rem;
     font-weight: 600;
-    margin: 0;
+    color: var(--nc-700);
+    margin-bottom: 0.4rem;
 }
 
-.visitor-count-wrapper strong {
-    font-size: 1.4rem;
-    color: var(--accent-blue);
-    margin-left: 0.3rem;
+.count-number {
+    font-size: 2rem;
+    font-weight: bold;
+    background: linear-gradient(to right, var(--accent-pink), var(--accent-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rubber 0.5s ease;
+}
+
+/* 모바일 대응 */
+@media (max-width: 600px) {
+    .visitor-count-wrapper {
+        flex-direction: column;
+        padding: 1.5rem 1rem;
+    }
+
+    .visitor-box {
+        width: 100%;
+        padding: 1.4rem 1.2rem;
+    }
+
+    .count-number {
+        font-size: 1.6rem;
+    }
+
+    .count-label {
+        font-size: 1rem;
+    }
 }
