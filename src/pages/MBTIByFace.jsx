@@ -278,10 +278,20 @@ export default function MBTIByFace() {
                     !image && (
                         <>
                             {!useWebcam && (
-                                <label className="upload-box">
-                                    📷 <span className="upload-label">사진 올리기</span>
-                                    <input type="file" accept="image/*" hidden onChange={handleUpload} />
-                                </label>
+                                // JSX 내부의 업로드 관련 부분만 수정한 예
+                                <div className="upload-wrapper">
+                                    <label className="upload-box" htmlFor="uploadInput">
+                                        📷 <span className="upload-label">사진 올리기</span>
+                                    </label>
+                                    <input
+                                        id="uploadInput"
+                                        type="file"
+                                        accept="image/*"
+                                        hidden
+                                        onChange={handleUpload}
+                                    />
+                                </div>
+
                             )}
                             {useWebcam && (
                                 <div className="webcam-wrapper active">
