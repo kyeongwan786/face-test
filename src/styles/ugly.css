@@ -1,7 +1,18 @@
-/* ugly.css — 못생김 측정 페이지 전용 스타일 */
+/* 최적화된 ugly.css — 못생김 측정 페이지 전용 스타일 */
+
+@import url('https://fonts.googleapis.com/css2?family=Fugaz+One&family=Gowun+Dodum&family=Poppins&family=Bebas+Neue&display=swap');
 
 :root {
-    --nc-000: #fff;
+    --ff-head: 'Fugaz One', cursive;
+    --ff-head-alt: 'Bebas Neue', cursive;
+    --ff-body: 'Gowun Dodum', sans-serif;
+    --accent-pink: #ff4f81;
+    --accent-blue: #3fa8ff;
+    --accent-mint: #00c4b4;
+    --accent-gold: #f5b021;
+    --accent-lime: #b7dd29;
+    --tier-color: var(--accent-gold);
+    --nc-000: #ffffff;
     --nc-050: #fafafa;
     --nc-100: #f9f8f6;
     --nc-200: #f0eeea;
@@ -12,372 +23,185 @@
     --nc-700: #4f4c46;
     --nc-800: #34312d;
     --nc-900: #1e1b18;
-    --accent-pink: #ff4f81;
-    --accent-blue: #3fa8ff;
-    --accent-mint: #00c4b4;
-    --accent-gold: #f5b021;
-    --accent-lime: #b7dd29;
-    --tier-color: var(--accent-gold);
-    --shadow-s: 0 2px 4px rgba(0, 0, 0, 0.06);
-    --shadow-m: 0 6px 16px rgba(0, 0, 0, 0.08);
-    --shadow-l: 0 12px 28px rgba(0, 0, 0, 0.15);
-    --shadow: var(--shadow-m);
     --rad-xs: 6px;
     --rad-s: 12px;
     --rad-m: 18px;
     --rad-l: 26px;
     --rad-full: 999px;
-    --radius: 18px;
-    --ff-head: 'Bebas Neue', cursive;
-    --ff-body: 'Poppins', sans-serif;
+    --shadow-s: 0 2px 4px rgba(0, 0, 0, 0.06);
+    --shadow-m: 0 6px 16px rgba(0, 0, 0, 0.08);
+    --shadow-l: 0 12px 28px rgba(0, 0, 0, 0.15);
+    --bg: #fffcf8;
+    --glass: rgba(255, 255, 255, 0.45);
     --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
     --ease-spring: cubic-bezier(0.25, 1.25, 0.5, 1);
-    --bg: #fffcf8;
-    --bg-100: #fff;
-    --bg-300: #f9f5ef;
-    --glass: rgba(255, 255, 255, 0.45);
 }
 
-*, *::before, *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+* { margin: 0; padding: 0; box-sizing: border-box; }
 html, body {
-    width: 100%;
-    height: 100%;
-    font-family: var(--ff-body);
-    background: var(--bg);
-    color: #303030;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-    line-height: 1.6;
+    width: 100%; height: 100%; font-family: var(--ff-body); background: var(--bg);
+    color: #303030; overflow-x: hidden; line-height: 1.6;
 }
 
+.page {
+    display: flex; flex-direction: column; min-height: 100vh;
+}
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 4rem 1rem 6rem;
-    gap: 1.375rem;
-    animation: slideFadeUp 0.6s var(--ease-out);
-    width: 100%;
-    max-width: 1280px;
-    margin: 0 auto;
-}
-
-header {
-    text-align: center;
+    flex: 1; width: 100%; max-width: 960px; margin: 0 auto;
+    display: flex; flex-direction: column;
+    align-items: center; text-align: center; gap: 1.2rem;
 }
 
 header h1 {
-    font-size: 2.6rem;
-    font-family: var(--ff-head);
+    font-size: 2.6rem; font-family: var(--ff-head-alt);
     background: linear-gradient(120deg, #ffd9e2, #d9ecff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     margin-bottom: 0.5rem;
 }
 
-.subtitle,
-.loading-text {
-    font-size: 1rem;
-    color: #6b6b6b;
-}
+.subtitle { font-size: 1rem; color: var(--nc-600); }
 
-.custom-select {
-    position: relative;
-    width: 240px;
-    margin-top: 0.5rem;
-    font-size: 1rem;
-    font-weight: 600;
-    border-radius: var(--rad-m);
-    border: 2px solid var(--accent-blue);
-    background: white;
-    overflow: hidden;
-    box-shadow: var(--shadow-s);
+.gender-selector {
+    display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+    margin-top: 1rem;
 }
-
-.custom-select select {
-    width: 100%;
-    padding: 0.6rem 1rem;
-    border: none;
-    background: transparent;
-    font-weight: 600;
-    appearance: none;
-    color: var(--nc-700);
-    cursor: pointer;
+.gender-selector label {
+    font-size: 1rem; font-weight: 600; color: var(--nc-700);
 }
-
-.custom-select::after {
-    content: '\25BC';
-    position: absolute;
-    top: 50%;
-    right: 1rem;
-    transform: translateY(-50%);
-    pointer-events: none;
-    color: var(--accent-blue);
-    font-size: 0.9rem;
+.gender-buttons {
+    display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+}
+.gender-button {
+    padding: 0.5rem 1.2rem; font-weight: 600;
+    border: 2px solid var(--nc-300); border-radius: var(--rad-full);
+    background: #fff; cursor: pointer; transition: 0.3s;
+}
+.gender-button:hover { background: var(--nc-100); }
+.gender-button.active-female {
+    background: #ffe0ec; color: #d63384; border-color: #ff85b3;
+}
+.gender-button.active-male {
+    background: #e0f0ff; color: #1e6bd6; border-color: #7bb7ff;
 }
 
 .upload-box {
-    position: relative;
-    width: 100%;
-    max-width: 420px;
-    border: 3px dashed #d8f6e3;
-    border-radius: var(--rad-m);
-    padding: 4rem 2rem;
-    background: var(--bg-100);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-    transition: 0.3s;
+    max-width: 420px; border: 2px dashed var(--accent-mint);
+    border-radius: var(--rad-m); padding: 3.5rem 2rem;
+    background: var(--nc-000); display: flex; flex-direction: column;
+    align-items: center; cursor: pointer; transition: 0.3s;
 }
-
 .upload-box:hover {
     background: rgba(216, 246, 227, 0.35);
-    transform: translateY(-4px);
-    box-shadow: var(--shadow);
+    transform: translateY(-4px); box-shadow: var(--shadow-m);
 }
-
 .upload-label {
-    font-size: 1.5rem;
-    font-weight: 700;
-}
-
-.upload-tip {
-    font-size: 0.875rem;
-    color: #6b6b6b;
+    font-size: 1.4rem; font-weight: 700; color: var(--accent-mint);
 }
 
 .overlay-blur {
-    position: fixed;
-    inset: 0;
-    z-index: 1500;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(14px) brightness(0.9);
-    background: rgba(0, 0, 0, 0.48);
-    animation: slideFadeUp 0.25s var(--ease-out);
+    position: fixed; inset: 0; background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(14px); display: flex; justify-content: center;
+    align-items: center; z-index: 1500;
 }
 
 .result-modal {
-    width: 92%;
-    max-width: 420px;
-    background: var(--nc-000);
-    border-radius: var(--rad-l);
-    box-shadow: var(--shadow-l);
-    padding: 4rem 1.5rem 1.5rem;
-    position: relative;
-    isolation: isolate;
-    animation: slideFadeUp 0.35s var(--ease-out);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.6rem;
+    background: var(--nc-000); border-radius: var(--rad-l);
+    padding: 3rem 1rem 1rem; width: 90%; max-width: 420px;
+    position: relative; text-align: center; box-shadow: var(--shadow-l);
+    overflow: visible; display: flex; flex-direction: column; align-items: center;
+    gap: 0.3rem;
 }
-
 .result-modal::before {
-    content: "";
-    position: absolute;
-    inset: -2px;
-    border-radius: inherit;
-    padding: 2px;
-    background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue), var(--accent-mint));
-    background-size: 300% 300%;
-    filter: blur(2px);
-    -webkit-mask-image: linear-gradient(#fff 0 0), linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    z-index: -1;
-    animation: gradientRotate 14s linear infinite;
+    content: ""; position: absolute; inset: 0;
+    background: conic-gradient(from var(--angle,0deg), var(--accent-pink), var(--accent-blue), var(--accent-mint), var(--accent-pink));
+    filter: blur(24px); opacity: 0.25; animation: gradientRotate 14s linear infinite;
+    z-index: -2;
+}
+.result-modal::after {
+    content: ""; position: absolute; inset: 2px;
+    background: #fff; border-radius: inherit; z-index: -1;
 }
 
 .modal-photo-circle {
-    position: absolute;
-    top: -40px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid white;
-    background: white;
+    width: 100px; height: 100px; top: -45px;
+    position: absolute; left: 50%; transform: translateX(-50%);
+    border-radius: 50%; object-fit: cover; border: 3px solid #fff;
+    background: #fff; box-shadow: var(--shadow-s);
     z-index: 2;
 }
 
 .tier-badge-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-    animation: rubber 0.8s var(--ease-spring);
-    margin-top: 1rem;
+    margin-top: 0.4rem;
 }
-
-.tier-badge-wrapper::before {
-    content: "";
-    position: absolute;
-    inset: -10%;
-    background: var(--glass);
-    backdrop-filter: blur(6px);
-    border-radius: inherit;
-    z-index: -1;
-}
-
 .tier-badge-wrapper img {
-    width: 140px;
+    width: 110px;
 }
 
 .tier-name {
-    font-family: var(--ff-head);
-    font-size: 1.6rem;
-    letter-spacing: 0.3px;
-    font-weight: 800;
+    font-family: var(--ff-head-alt);
+    font-size: 1.4rem;
     background: linear-gradient(120deg, var(--tier-color), var(--accent-blue));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-align: center;
+    margin-top: 0.2rem;
+    animation: fadeIn 0.5s ease-in;
 }
 
 .tier-desc {
-    font-size: 0.85rem;
-    color: var(--nc-600);
-    margin-bottom: 0.4rem;
+    font-size: 0.78rem; color: var(--nc-600); margin-bottom: 0.4rem;
 }
 
 .modal-score {
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    margin: 0.3rem 0 0.8rem;
-}
-
-.score-label {
-    font-size: 0.75rem;
-    font-weight: 700;
-    padding: 0.2rem 0.5rem;
-    background: var(--nc-050);
-    border-radius: var(--rad-xs);
-    color: var(--accent-pink);
-}
-
-.modal-percent {
-    font-size: 2.8rem;
-    font-weight: 800;
+    display: flex; align-items: center; gap: 0.3rem;
+    font-size: 2rem; font-weight: 700;
     background: linear-gradient(120deg, var(--accent-blue), var(--accent-mint));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    animation: countBounce 0.4s ease-out;
+    margin: 0.4rem 0 0.3rem;
+    animation: popIn 0.3s ease-in-out;
 }
 
 .modal-title {
-    font-size: 1rem;
-    font-weight: 700;
-    background: var(--nc-050);
-    padding: 0.3rem 0.6rem;
-    border-radius: var(--rad-s);
-    color: var(--accent-blue);
-    animation: fadeIn 0.5s ease-in 0.4s both;
-    text-align: center;
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--accent-blue); margin-top: 0.3rem;
+    animation: bounceIn 0.4s ease-in-out;
 }
 
 .modal-sub {
-    font-size: 0.85rem;
-    color: var(--nc-600);
-    padding: 0.2rem 0.4rem;
-    margin-top: 0.2rem;
+    font-size: 0.82rem; color: var(--nc-600);
     border-left: 4px solid var(--accent-mint);
-    border-radius: 0 var(--rad-xs) var(--rad-xs) 0;
-    animation: fadeIn 0.5s ease-in 0.6s both;
+    padding-left: 0.5rem;
+    margin-top: 0.2rem;
+    animation: fadeIn 0.4s ease-in;
 }
 
 .modal-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-    justify-content: center;
-    margin-top: 1rem;
+    display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center;
+    margin-top: 0.8rem;
 }
-
 .modal-buttons > button {
-    flex: 1 1 100px;
-    padding: 0.6rem 1rem;
-    font-size: 0.85rem;
-    font-weight: 700;
-    border: none;
-    border-radius: var(--rad-m);
-    cursor: pointer;
-    transition: transform 0.18s var(--ease-out), box-shadow 0.18s var(--ease-out), filter 0.18s var(--ease-out);
-    color: #fff;
+    flex: 1 1 100px; padding: 0.6rem 1rem; font-size: 0.85rem;
+    font-weight: 700; border: none; border-radius: var(--rad-full);
+    cursor: pointer; color: white;
 }
-
 .btn-retry {
-    background: linear-gradient(135deg, #ff658a 0%, #ff4f81 100%);
+    background: linear-gradient(135deg, #ff658a, #ff4f81);
 }
-
 .btn-save {
-    background: linear-gradient(135deg, #5eb4ff 0%, #349aff 100%);
+    background: linear-gradient(135deg, #3fa8ff, #7badff);
 }
-
 .btn-kakao {
-    background: #ffe812;
-    color: #3b1e1e;
-}
-
-.modal-buttons > button:hover {
-    transform: translateY(-3px) scale(1.03);
-    box-shadow: var(--shadow-m);
-}
-
-.modal-buttons > button:active {
-    transform: translateY(0) scale(0.97);
-    filter: brightness(0.92);
+    background: #ffe812; color: #3b1e1e;
 }
 
 @media (max-width: 520px) {
     .modal-photo-circle {
-        width: 70px;
-        height: 70px;
+        width: 80px; height: 80px; top: -35px;
     }
-
-    .tier-badge-wrapper img {
-        width: 120px;
-    }
-
-    .tier-name {
-        font-size: 1.4rem;
-    }
-
-    .modal-percent {
-        font-size: 2.5rem;
-    }
-
-    .modal-buttons {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-}
-
-.text-gradient {
-    background: linear-gradient(120deg, var(--accent-pink), var(--accent-blue));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-@keyframes rubber {
-    0% { transform: scale(0.9); }
-    45% { transform: scale(1.15); }
-    100% { transform: scale(1); }
-}
-
-@keyframes countBounce {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
+    .modal-buttons { flex-direction: column; gap: 0.5rem; }
+    .modal-buttons button { width: 100%; }
+    .gender-buttons { flex-direction: column; gap: 0.5rem; }
+    .gender-button { width: 100%; text-align: center; }
 }
 
 @keyframes gradientRotate {
@@ -385,267 +209,16 @@ header h1 {
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
-
-.gender-selector {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.6rem;
+@keyframes popIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
 }
-
-.gender-selector label {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--nc-700);
+@keyframes bounceIn {
+    0% { transform: translateY(-20px); opacity: 0; }
+    60% { transform: translateY(10px); }
+    100% { transform: translateY(0); opacity: 1; }
 }
-
-.gender-buttons {
-    display: flex;
-    gap: 1rem;
-}
-
-.gender-button {
-    padding: 0.5rem 1.2rem;
-    font-weight: 600;
-    border: 2px solid var(--nc-300);
-    border-radius: var(--rad-full);
-    background: #fff;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.gender-button:hover {
-    background: var(--nc-100);
-}
-
-.gender-button.active-female {
-    background: #ffe0ec;
-    color: #d63384;
-    border-color: #ff85b3;
-}
-
-.gender-button.active-male {
-    background: #e0f0ff;
-    color: #1e6bd6;
-    border-color: #7bb7ff;
-}
-
-.webcam-wrapper.loading::after {
-    content: "웹캠 연결 중...";
-    font-size: 0.9rem;
-    color: #6b6b6b;
-}
-/* 모드 전환 버튼 */
-.mode-toggle-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin: 2rem 0 1rem;
-}
-
-.mode-button {
-    font-size: 0.95rem;
-    font-weight: 600;
-    padding: 0.7rem 1.4rem;
-    border-radius: var(--rad-full);
-    border: 2px solid var(--accent-blue);
-    background: white;
-    color: var(--nc-700);
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-}
-
-.mode-button:hover {
-    background: #f0f8ff;
-}
-
-.mode-button.active {
-    background: var(--accent-blue);
-    color: white;
-    box-shadow: var(--shadow-s);
-}
-/* 분석 상태 표시 텍스트 */
-.webcam-overlay-text {
-    font-size: 1rem;
-    color: var(--accent-blue);
-    font-weight: 600;
-    text-align: center;
-    margin-top: 1rem;
-    animation: fadeIn 0.3s ease-in;
-}
-
-.webcam-wrapper .retry-message {
-    font-size: 0.9rem;
-    color: var(--nc-600);
-    margin-top: 0.5rem;
-    text-align: center;
-    animation: fadeIn 0.4s ease-in;
-}
-
-.webcam-retry {
-    margin-top: 1rem;
-    padding: 0.6rem 1rem;
-    font-size: 0.85rem;
-    font-weight: 700;
-    border: none;
-    border-radius: var(--rad-m);
-    cursor: pointer;
-    background: linear-gradient(135deg, #ff658a 0%, #ff4f81 100%);
-    color: #fff;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.webcam-retry:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-s);
-}
-/* 분석 시작 버튼 (웹캠 모드) */
-.btn-analyze {
-    margin-top: 1rem;
-    padding: 10px 20px;
-    font-size: 1rem;
-    font-weight: 600;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.btn-analyze:hover {
-    background-color: #45a049;
-}
-
-/* 기존 retry 버튼과 통일감 있게 하기 위해 */
-.webcam-retry {
-    background-color: #f44336;
-}
-
-.webcam-retry:hover {
-    background-color: #e53935;
-}
-
-/* overlay 텍스트 보정 */
-.webcam-overlay-text {
-    font-size: 1rem;
-    font-weight: 500;
-    color: #fff;
-    background-color: rgba(0, 0, 0, 0.6);
-    padding: 0.8rem 1.2rem;
-    border-radius: 10px;
-    margin-top: 0.8rem;
-}
-
-/* 분석 완료 안내 메시지 */
-.retry-message {
-    background-color: rgba(255, 87, 34, 0.75);
-    font-weight: 600;
-}
-
-/* 영상 감싸는 wrapper 정렬 보정 */
-.webcam-wrapper.active {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 1rem;
-}
-@media (max-width: 768px) {
-    .container {
-        padding: 2rem 1rem 4rem;
-        gap: 1rem;
-    }
-
-    header h1 {
-        font-size: 2rem;
-        line-height: 1.3;
-    }
-
-    .subtitle,
-    .loading-text {
-        font-size: 0.95rem;
-        text-align: center;
-    }
-
-    .upload-box {
-        padding: 3rem 1rem;
-        border-width: 2px;
-    }
-
-    .upload-label {
-        font-size: 1.3rem;
-    }
-
-    .upload-tip {
-        font-size: 0.8rem;
-    }
-
-    .result-modal {
-        padding: 3.5rem 1rem 1.2rem;
-    }
-
-    .modal-photo-circle {
-        width: 70px;
-        height: 70px;
-        top: -35px;
-    }
-
-    .tier-badge-wrapper img {
-        width: 110px;
-    }
-
-    .tier-name {
-        font-size: 1.4rem;
-    }
-
-    .modal-percent {
-        font-size: 2.4rem;
-    }
-
-    .modal-buttons {
-        flex-direction: column;
-        gap: 0.6rem;
-        width: 100%;
-    }
-
-    .modal-buttons > button {
-        width: 100%;
-    }
-
-    .gender-buttons {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-
-    .gender-button {
-        width: 100%;
-        text-align: center;
-    }
-
-    .mode-toggle-buttons {
-        flex-direction: column;
-        gap: 0.6rem;
-    }
-
-    .mode-button {
-        width: 100%;
-        font-size: 0.9rem;
-    }
-
-    .webcam-wrapper.active {
-        margin-top: 1rem;
-        width: 100%;
-    }
-
-    .webcam-overlay-text {
-        font-size: 0.9rem;
-        padding: 0.6rem 1rem;
-    }
-
-    .webcam-retry,
-    .btn-analyze {
-        width: 100%;
-        font-size: 0.9rem;
-        padding: 0.8rem 1.2rem;
-    }
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }

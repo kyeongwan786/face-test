@@ -1,0 +1,26 @@
+{
+  "language": {
+    "selectPrompt": "Vui lòng chọn ngôn ngữ",
+    "ko": "🇰🇷 Tiếng Hàn",
+    "en": "🇺🇸 Tiếng Anh",
+    "ja": "🇯🇵 Tiếng Nhật",
+    "zh": "🇨🇳 Tiếng Trung",
+    "vi": "🇻🇳 Tiếng Việt"
+  },
+  "site": {
+    "title": "Phòng Thí Nghiệm Khuôn Mặt AI"
+  },
+  "menu": {
+    "home": "Trang chủ",
+    "about": "Giới thiệu",
+    "ugly": "Máy đo độ xấu",
+    "mbti": "MBTI theo khuôn mặt",
+    "age": "Dự đoán tuổi",
+    "vibe": "Ấn tượng đầu tiên",
+    "lookalike": "Giống người nổi tiếng",
+    "faq": "Câu hỏi thường gặp",
+    "contact": "Liên hệ",
+    "terms": "Điều khoản",
+    "privacy": "Chính sách bảo mật"
+  }
+}

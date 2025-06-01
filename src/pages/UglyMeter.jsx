@@ -1,15 +1,18 @@
-// 수정된 UglyMeter.jsx - 수동 분석 버튼 추가 및 웹캠 재사용 가능하게 개선
+// ✅ 최종 수정본: i18n 적용 + 언어 선택기 + key 누락 수정
 import React, { useState, useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import html2canvas from "html2canvas";
 import { loadModelByGender, predictImage } from "../utils/runModel";
 import GenderSelector from "../components/GenderSelector";
 import LoadingSpinner from "../components/LoadingSpinner";
+import LanguageSwitcher from "../components/LanguageSwitcher";
 import "../styles/common.css";
 import "../styles/ugly.css";
 
 const MAX_UPLOAD_SIZE = 5 * 1024 * 1024; // 5MB
 
 export default function UglyMeter() {
+    const { t } = useTranslation("ugly");
     const [gender, setGender] = useState("male");
     const [useWebcam, setUseWebcam] = useState(false);
     const [image, setImage] = useState(null);
@@ -24,6 +27,13 @@ export default function UglyMeter() {
     const [webcamStream, setWebcamStream] = useState(null);
     const videoRef = useRef(null);
     const modalRef = useRef(null);
+    const webcamWrapperRef = useRef(null);
+
+    const scrollToWebcam = () => {
+        if (webcamWrapperRef.current) {
+            webcamWrapperRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+    };
 
     useEffect(() => {
         if (!window.Kakao) {
@@ -48,11 +58,11 @@ export default function UglyMeter() {
                     };
                 }
             }).catch((err) => {
-                alert("웹캠 접근에 실패했습니다.");
+                alert(t("error.webcamAccess"));
                 console.error(err);
             });
         }
-    }, [useWebcam]);
+    }, [useWebcam, t]);
 
     const captureFromWebcam = async () => {
         if (!videoRef.current) return;
@@ -78,13 +88,15 @@ export default function UglyMeter() {
             const ugly = preds.find((p) => p.className.toLowerCase().includes("ugly"));
             const s = Math.round((ugly?.probability ?? 0) * 100);
             setScore(s);
-            setComment(BUCKETS.find((b) => s < b.max));
-            setTier(getTier(s));
+            const matched = BUCKETS.find((b) => s < b.max);
+            setComment({ title: t(`buckets.${matched.key}.title`), sub: t(`buckets.${matched.key}.sub`) });
+            const tTier = getTier(s);
+            setTier({ ...tTier, name: t(`tier.${tTier.key}.name`), desc: t(`tier.${tTier.key}.desc`) });
             setModalOpen(true);
             setWebcamFinished(true);
         } catch (err) {
             console.error("이미지 디코딩 실패:", err);
-            alert("이미지를 분석하는 중 문제가 발생했습니다.");
+            alert(t("error.analysisFailed"));
         } finally {
             setLoading(false);
         }
@@ -109,12 +121,14 @@ export default function UglyMeter() {
                     const ugly = preds.find((p) => p.className.toLowerCase().includes("ugly"));
                     const s = Math.round((ugly?.probability ?? 0) * 100);
                     setScore(s);
-                    setComment(BUCKETS.find((b) => s < b.max));
-                    setTier(getTier(s));
+                    const matched = BUCKETS.find((b) => s < b.max);
+                    setComment({ title: t(`buckets.${matched.key}.title`), sub: t(`buckets.${matched.key}.sub`) });
+                    const tTier = getTier(s);
+                    setTier({ ...tTier, name: t(`tier.${tTier.key}.name`), desc: t(`tier.${tTier.key}.desc`) });
                     setModalOpen(true);
                 };
             } catch (err) {
-                alert("모델을 불러오는데 실패했습니다.");
+                alert(t("error.modelLoad"));
             } finally {
                 setLoading(false);
             }
@@ -147,7 +161,7 @@ export default function UglyMeter() {
     const shareKakao = async () => {
         const { Kakao } = window;
         if (!Kakao?.isInitialized()) {
-            alert("카카오 SDK 준비 중!");
+            alert(t("error.kakaoInit"));
             return;
         }
         try {
@@ -158,7 +172,7 @@ export default function UglyMeter() {
                 file = dataURLtoFile(dataUrl, "result.jpg");
             }
             if (file.size > MAX_UPLOAD_SIZE) {
-                alert("이미지 크기가 5MB를 초과하여 카카오톡에 업로드할 수 없습니다.");
+                alert(t("error.sizeLimit"));
                 return;
             }
             const { infos } = await Kakao.Share.uploadImage({ file: [file] });
@@ -167,26 +181,30 @@ export default function UglyMeter() {
             await Kakao.Share.sendDefault({
                 objectType: "feed",
                 content: {
-                    title: `못생김 ${score}%`,
+                    title: t("share.title", { score }),
                     description: `${comment.title} ${comment.sub}`,
                     imageUrl: imgUrl,
                     link: { mobileWebUrl: pageUrl, webUrl: pageUrl },
                 },
                 buttons: [
                     {
-                        title: "나도 측정하기",
+                        title: t("share.button"),
                         link: { mobileWebUrl: pageUrl, webUrl: pageUrl },
                     },
                 ],
             });
         } catch (err) {
             console.error(err);
-            alert("카카오톡 공유에 실패했습니다.");
+            alert(t("error.kakaoFail"));
         }
     };
 
     return (
         <div className="page">
+            <div className="language-switcher-wrapper">
+                <LanguageSwitcher />
+            </div>
+
             {modalOpen && (
                 <div className="overlay-blur">
                     <div className="result-modal" ref={modalRef} style={{ "--tier-color": tier?.color }}>
@@ -195,17 +213,17 @@ export default function UglyMeter() {
                             <img src={`/rank/${tier?.file}`} alt={tier?.name} />
                         </div>
                         <p className="tier-name">{tier?.name}</p>
-                        <p className="tier-desc">{tierDesc(tier?.name)}</p>
+                        <p className="tier-desc">{tier?.desc}</p>
                         <div className="modal-score">
-                            <span className="score-label">못생김</span>
+                            <span className="score-label">{t("result.label")}</span>
                             <span className="modal-percent">{score}%</span>
                         </div>
                         <p className="modal-title">{comment?.title}</p>
                         <p className="modal-sub">{comment?.sub}</p>
                         <div className="modal-buttons">
-                            <button className="btn-retry" onClick={reset}>다시하기</button>
-                            <button className="btn-save" onClick={saveShot}>결과 저장</button>
-                            <button className="btn-kakao" onClick={shareKakao}>카카오톡 공유</button>
+                            <button className="btn-retry" onClick={reset}>{t("buttons.retry")}</button>
+                            <button className="btn-save" onClick={saveShot}>{t("buttons.save")}</button>
+                            <button className="btn-kakao" onClick={shareKakao}>{t("buttons.kakao")}</button>
                         </div>
                     </div>
                 </div>
@@ -213,18 +231,21 @@ export default function UglyMeter() {
 
             <div className="container">
                 <header>
-                    <h1>못생김 측정기</h1>
-                    <p className="subtitle">성별을 선택하고 아래 방식 중 하나로 측정해보세요</p>
+                    <h1>{t("title")}</h1>
+                    <p className="subtitle">{t("subtitle")}</p>
                 </header>
 
                 <GenderSelector gender={gender} setGender={setGender} />
 
                 <div className="mode-toggle-buttons">
                     <button className={!useWebcam ? "mode-button active" : "mode-button"} onClick={() => setUseWebcam(false)}>
-                        사진 업로드하기
+                        {t("mode.upload")}
                     </button>
-                    <button className={useWebcam ? "mode-button active" : "mode-button"} onClick={() => setUseWebcam(true)}>
-                        실시간으로 분석하기
+                    <button className={useWebcam ? "mode-button active" : "mode-button"} onClick={() => {
+                        setUseWebcam(true);
+                        setTimeout(scrollToWebcam, 100);
+                    }}>
+                        {t("mode.webcam")}
                     </button>
                 </div>
 
@@ -235,30 +256,30 @@ export default function UglyMeter() {
                         <>
                             {!useWebcam && (
                                 <label className="upload-box">
-                                    📷 <span className="upload-label">사진 올리기</span>
+                                    <span className="upload-label">{t("upload.label")}</span>
                                     <input type="file" accept="image/*" hidden onChange={handleUpload} />
                                 </label>
                             )}
                             {useWebcam && (
-                                <div className="webcam-wrapper active">
+                                <div className="webcam-wrapper active" ref={webcamWrapperRef}>
                                     <video ref={videoRef} autoPlay muted playsInline width="300" />
                                     {webcamFinished ? (
                                         <>
                                             <div className="webcam-overlay-text retry-message">
-                                                분석이 완료되었습니다. 다시 시도하려면 버튼을 눌러주세요.
+                                                {t("webcam.done")}
                                             </div>
                                             <button className="btn-retry webcam-retry" onClick={reset}>
-                                                다시 시도하기
+                                                {t("buttons.retry")}
                                             </button>
                                         </>
                                     ) : (
                                         <>
                                             <div className="webcam-overlay-text">
-                                                {webcamReady ? "분석을 시작하세요" : "웹캠 준비 중..."}
+                                                {webcamReady ? t("webcam.ready") : t("webcam.loading")}
                                             </div>
                                             {webcamReady && (
                                                 <button className="btn-analyze webcam-analyze" onClick={captureFromWebcam}>
-                                                    분석 시작
+                                                    {t("buttons.analyze")}
                                                 </button>
                                             )}
                                         </>
@@ -275,40 +296,26 @@ export default function UglyMeter() {
 }
 
 const BUCKETS = [
-    { max: 20, title: "최상위 티어", sub: "훌륭한데요?" },
-    { max: 40, title: "상위 티어", sub: "괜찮은데요?" },
-    { max: 60, title: "평균선 착지", sub: "낫배드~" },
-    { max: 80, title: "카메라가 한숨", sub: "흠........" },
-    { max: Infinity, title: "괜찮아요", sub: "그럴 수 있어요" },
+    { key: "top", max: 20 },
+    { key: "high", max: 40 },
+    { key: "mid", max: 60 },
+    { key: "low", max: 80 },
+    { key: "bottom", max: Infinity },
 ];
 
 const TIER_TABLE = [
-    { max: 10, name: "Challenger", file: "Challenger.png", color: "#ffd700" },
-    { max: 20, name: "Grandmaster", file: "Grandmaster.png", color: "#ff5252" },
-    { max: 30, name: "Master", file: "Master.png", color: "#b56cff" },
-    { max: 45, name: "Diamond", file: "Diamond.png", color: "#29d4f6" },
-    { max: 60, name: "Platinum", file: "Platinum.png", color: "#2db8a8" },
-    { max: 75, name: "Gold", file: "Gold.png", color: "#cfa93e" },
-    { max: 90, name: "Silver", file: "Silver.png", color: "#aeb6bf" },
-    { max: 101, name: "Bronze", file: "Bronze.png", color: "#5d5d5d" },
+    { key: "challenger", max: 10, file: "Challenger.png", color: "#ffd700" },
+    { key: "grandmaster", max: 20, file: "Grandmaster.png", color: "#ff5252" },
+    { key: "master", max: 30, file: "Master.png", color: "#b56cff" },
+    { key: "diamond", max: 45, file: "Diamond.png", color: "#29d4f6" },
+    { key: "platinum", max: 60, file: "Platinum.png", color: "#2db8a8" },
+    { key: "gold", max: 75, file: "Gold.png", color: "#cfa93e" },
+    { key: "silver", max: 90, file: "Silver.png", color: "#aeb6bf" },
+    { key: "bronze", max: 101, file: "Bronze.png", color: "#5d5d5d" },
 ];
 
 function getTier(score) {
     return TIER_TABLE.find((t) => score < t.max);
-}
-
-function tierDesc(name) {
-    const map = {
-        Challenger: "상위 0.01%",
-        Grandmaster: "상위 0.1%",
-        Master: "상위 1%",
-        Diamond: "상위 5%",
-        Platinum: "상위 10%",
-        Gold: "상위 25%",
-        Silver: "상위 50%",
-        Bronze: "남은 인원",
-    };
-    return map[name] + " 티어";
 }
 
 function dataURLtoFile(dataUrl, filename) {

@@ -1,0 +1,62 @@
+{
+  "title": "Máy đo độ xấu",
+  "subtitle": "Hãy chọn giới tính và chọn một trong các phương thức bên dưới để bắt đầu",
+
+  "mode": {
+    "upload": "Tải ảnh lên",
+    "webcam": "Phân tích trực tiếp"
+  },
+  "upload": {
+    "label": "Chọn ảnh"
+  },
+
+  "webcam": {
+    "loading": "Đang chuẩn bị webcam...",
+    "ready": "Sẵn sàng phân tích",
+    "done": "Phân tích đã hoàn tất. Nhấn nút để thử lại."
+  },
+
+  "buttons": {
+    "retry": "Thử lại",
+    "save": "Lưu kết quả",
+    "kakao": "Chia sẻ qua KakaoTalk",
+    "analyze": "Bắt đầu phân tích"
+  },
+
+  "result": {
+    "label": "Mức độ xấu"
+  },
+
+  "buckets": {
+    "top": { "title": "Hạng cao nhất", "sub": "Tuyệt vời!" },
+    "high": { "title": "Hạng cao", "sub": "Trông ổn đấy!" },
+    "mid": { "title": "Mức trung bình", "sub": "Không tệ~" },
+    "low": { "title": "Máy ảnh thở dài", "sub": "Hmm..." },
+    "bottom": { "title": "Không sao đâu", "sub": "Ai cũng có lúc như vậy mà" }
+  },
+
+  "tier": {
+    "challenger": { "name": "Challenger", "desc": "Top 0.01%" },
+    "grandmaster": { "name": "Grandmaster", "desc": "Top 0.1%" },
+    "master": { "name": "Master", "desc": "Top 1%" },
+    "diamond": { "name": "Diamond", "desc": "Top 5%" },
+    "platinum": { "name": "Platinum", "desc": "Top 10%" },
+    "gold": { "name": "Gold", "desc": "Top 25%" },
+    "silver": { "name": "Silver", "desc": "Top 50%" },
+    "bronze": { "name": "Bronze", "desc": "Phần còn lại" }
+  },
+
+  "share": {
+    "title": "Độ xấu của tôi: {{score}}%",
+    "button": "Tôi cũng muốn thử"
+  },
+
+  "error": {
+    "webcamAccess": "Không thể truy cập webcam.",
+    "analysisFailed": "Đã xảy ra lỗi khi phân tích hình ảnh.",
+    "modelLoad": "Không thể tải mô hình.",
+    "kakaoInit": "Đang khởi tạo Kakao SDK!",
+    "kakaoFail": "Chia sẻ qua KakaoTalk thất bại.",
+    "sizeLimit": "Ảnh vượt quá 5MB, không thể chia sẻ qua KakaoTalk."
+  }
+}

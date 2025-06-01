@@ -1,0 +1,43 @@
+{
+  "language": {
+    "selectPrompt": "Vui lòng chọn ngôn ngữ"
+  },
+  "hero": {
+    "title": "Phòng thí nghiệm Phân tích khuôn mặt AI",
+    "subtitle": "AI sẽ phân tích khuôn mặt của bạn!\nTận hưởng các bài test vui như đo độ xấu, đoán MBTI, đoán tuổi, ấn tượng đầu tiên và tìm người nổi tiếng giống bạn.",
+    "uglyBtn": "👀 Kiểm tra độ xấu",
+    "mbtiBtn": "🧠 MBTI theo khuôn mặt"
+  },
+  "cards": {
+    "ugly": {
+      "emoji": "😵",
+      "title": "Kiểm tra độ xấu",
+      "desc": "AI đánh giá mức độ xấu và phân loại theo cấp độ một cách hài hước.",
+      "cta": "Bắt đầu"
+    },
+    "mbti": {
+      "emoji": "🧠",
+      "title": "MBTI qua khuôn mặt",
+      "desc": "AI đoán loại MBTI dựa trên đặc điểm khuôn mặt.",
+      "cta": "Dự đoán ngay"
+    },
+    "age": {
+      "emoji": "📸",
+      "title": "Dự đoán tuổi AI",
+      "desc": "AI ước tính tuổi của bạn qua ảnh khuôn mặt.",
+      "cta": "Thử ngay"
+    },
+    "vibe": {
+      "emoji": "😍",
+      "title": "Phân tích ấn tượng đầu tiên",
+      "desc": "AI đánh giá ấn tượng đầu tiên của bạn!",
+      "cta": "Thử ngay"
+    },
+    "lookalike": {
+      "emoji": "🌟",
+      "title": "Tìm người nổi tiếng giống bạn",
+      "desc": "AI sẽ tìm người nổi tiếng giống bạn nhất!",
+      "cta": "Xem kết quả"
+    }
+  }
+}

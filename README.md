@@ -1,111 +1,158 @@
-# AI 얼굴 실험실
+# 🧠 AI 얼굴 실험실 (AI Face Lab)
 
-AI 얼굴 실험실은 유저의 얼굴 이미지를 분석하여 다양한 재미 요소를 제공하는 웹 기반 인터랙티브 플랫폼입니다.
+**AI 얼굴 실험실**은 사용자의 얼굴 이미지를 업로드하거나 웹캠으로 촬영하여, 다양한 AI 모델을 통해 얼굴을 분석하고 재미 요소 중심의 결과를 제공하는 엔터테인먼트형 웹 플랫폼입니다. 분석 항목으로는 못생김 점수, 관상 MBTI, AI 나이 추측, 첫인상 인식 등이 있으며, 모든 기능은 오락 목적이며 실제 과학적 정확도와는 무관합니다.
 
-못생김 측정기, 관상으로 보는 MBTI, AI 나이 추측, AI 호감도 분석 등 다양한 얼굴 기반 테스트를 제공하며,
-React 기반으로 구축되어 있고 Teachable Machine 모델을 활용해 AI 추론을 수행합니다.
+---
 
-## 🔧 프로젝트 구조 설명
+## ✨ 제공 기능 요약
+
+- 🙃 **못생김 측정기**: 얼굴 이미지를 분석해 못생김 점수와 등급(티어)을 제공하며, 각 결과에 따라 개성 있는 해설을 출력
+- 🔮 **관상 MBTI 분석기**: 얼굴만 보고 Teachable Machine 기반 AI가 예측한 MBTI 결과를 시각적으로 보여줌
+- 📷 **AI 나이 추측기**: 남/여로 분기된 모델을 통해 얼굴의 예상 나이를 출력함
+- 💖 **첫인상 분석기 (Vibe)**: 연예인 이미지 기반으로 학습한 모델을 통해 첫인상 키워드(예: smart, cold, stylish 등)를 반환하고 결과에 대한 설명까지 출력
+- 🧾 **이용약관 / 개인정보처리방침**: 사용자 보호 및 Google AdSense 승인 대비를 위한 법적 고지 페이지 구성
+- 🌐 **다국어 지원**: i18next 기반으로 한글, 영어, 일본어, 중국어, 베트남어 완비 (JSON 분할)
+- 📊 **방문자 수 표시**: Spring Boot + MyBatis + MariaDB를 활용한 일간 / 누적 방문자 수 표시
+- 📱 **모바일 / 태블릿 완전 대응**: 반응형 CSS를 통해 모든 기기에서 보기 좋게 구성
+- 💬 **카카오톡 공유 기능**: 결과 캡처 또는 이미지 추출 후 카카오톡 공유까지 한 번에 지원
+- 🌘 **다크 모드 지원 예정**
+- 📲 **앱화(PWA)**: 장기적으로 React 기반으로 웹앱화하여 iOS/Android 앱 출시 계획
+
+---
+
+## 📁 프로젝트 디렉토리 구조
 
 ```
 facetest/
 ├── public/
-│   ├── models/                # Teachable Machine에서 export한 gender별 모델 파일
-│   │   ├── female/            # 여성 모델 metadata.json, model.json, weights.bin
-│   │   └── male/              # 남성 모델 metadata.json, model.json, weights.bin
-│   ├── rank/                  # 티어 뱃지 이미지 리소스
 │   ├── favicon.ico
-│   └── index.html
+│   ├── index.html
+│   ├── robots.txt
+│   ├── manifest.json
+│   ├── _redirects
+│   ├── models/             # Teachable Machine 모델들 (분기별)
+│   │   ├── age/
+│   │   ├── mbti/
+│   │   ├── ugly/
+│   │   └── vibe/
+│   ├── rank/               # 티어 배지 이미지
+│   └── logo*.png
 │
 ├── src/
-│   ├── components/           # 재사용 가능한 UI 컴포넌트 모듈들
-│   │   ├── GenderSelector.jsx      # 남/여 성별 선택 버튼 UI
-│   │   ├── KakaoShareButton.jsx   # 카카오톡 공유 버튼 컴포넌트
-│   │   ├── Navbar.jsx              # 최상단 고정 네비게이션 바
-│   │   ├── ResultSection.jsx       # 결과 모달 섹션 (이미지, 점수, 티어 등)
-│   │   └── UploadSection.jsx       # 사진 업로드 관련 컴포넌트
+│   ├── components/         # 재사용 가능한 UI 컴포넌트 모듈
+│   │   ├── Footer.jsx
+│   │   ├── GenderSelector.jsx
+│   │   ├── KakaoShareButton.jsx
+│   │   ├── LanguageSwitcher.jsx
+│   │   ├── LoadingSpinner.jsx
+│   │   ├── Navbar.jsx
+│   │   ├── ResultSection.jsx
+│   │   ├── UploadSection.jsx
+│   │   └── VisitorCounter.jsx
+│   │
+│   ├── pages/              # 주요 기능 페이지별 JSX 구성
+│   │   ├── About.jsx
+│   │   ├── AgeDetector.jsx
+│   │   ├── Contact.jsx
+│   │   ├── Main.jsx
+│   │   ├── MBTIByFace.jsx
+│   │   ├── MBTIFAQ.jsx
+│   │   ├── PrivacyPolicy.jsx
+│   │   ├── Terms.jsx
+│   │   ├── UglyFAQ.jsx
+│   │   ├── UglyMeter.jsx
+│   │   └── Vibe.jsx
+│   │
+│   ├── styles/             # 각 페이지 및 컴포넌트 스타일
+│   │   ├── about.css
+│   │   ├── common.css
+│   │   ├── Footer.css
+│   │   ├── LoadingSpinner.css
+│   │   ├── mbti.css
+│   │   ├── Navbar.css
+│   │   ├── neo-common.css
+│   │   ├── main.css
+│   │   ├── ugly.css
+│   │   └── vibe.css
+│   │
+│   ├── locales/            # i18n 다국어 JSON 리소스
+│   │   ├── ko/
+│   │   ├── en/
+│   │   ├── ja/
+│   │   ├── zh/
+│   │   └── vi/
+│   │     ├── shared.json
+│   │     ├── about.json
+│   │     ├── main.json
+│   │     ├── ugly.json
+│   │     ├── terms.json
+│   │     ├── privacy.json
+│   │     └── gender.json
+│   │
+│   ├── utils/              # 모델 로딩 및 처리 로직
+│   │   ├── runAgeModel.js
+│   │   ├── runMBTIModel.js
+│   │   ├── runModel.js
+│   │   ├── runVibeModel.js
+│   │   ├── likePresets.js
+│   │   └── vibePresets.js
+│   │
+│   ├── App.jsx
+│   ├── index.js
+│   ├── index.css
+│   └── i18n.js             # 다국어 초기화
 │
-│   ├── pages/                # 라우팅되는 각 페이지 단위 컴포넌트
-│   │   ├── Main.jsx               # 메인 랜딩 페이지
-│   │   ├── UglyMeter.jsx         # 못생김 측정기
-│   │   ├── MBTIByFace.jsx        # 관상 기반 MBTI 분석
-│   │   ├── AgeDetector.jsx       # AI 나이 분석
-│   │   ├── Contact.jsx           # 문의하기 페이지
-│   │   ├── PrivacyPolicy.jsx     # 개인정보 처리방침
-│   │   ├── Terms.jsx             # 이용약관
-│   │   ├── UglyFAQ.jsx           # 못생김 측정기 FAQ
-│   │   └── MBTIFAQ.jsx           # MBTI 분석 FAQ
-│
-│   ├── styles/              # CSS 스타일 시트 파일 모듈화
-│   │   ├── common.css            # 전역 테마 변수 및 공통 요소 스타일
-│   │   ├── main.css              # 메인 페이지 전용 스타일
-│   │   ├── ugly.css              # 못생김 측정기 전용 스타일
-│   │   └── Navbar.css            # 네비게이션 바 스타일
-│
-│   ├── utils/               # AI 모델 추론 유틸리티
-│   │   └── runModel.js           # 이미지 로딩 및 모델 예측 처리 함수
-│
-│   ├── App.jsx              # React Router 라우팅 설정 및 글로벌 레이아웃
-│   ├── index.js             # React 앱의 진입점
-│   └── index.css            # 초기화용 스타일 시트
+├── .gitignore
+├── README.md
+├── package.json
+├── package-lock.json
 ```
 
 ---
 
-## ✅ 지금까지 작업한 내용
+## ⚙️ 개발 실행
 
-* 전체 디자인 리뉴얼 (메인 랜딩 페이지 / 결과 모달 / 네브바 / 각 테스트 UI)
-* CSS 모듈화 및 구조 분리 (common.css, main.css, ugly.css, Navbar.css)
-* Teachable Machine 모델 분기 처리 (성별별 모델 로딩)
-* 사진 업로드 기능 및 결과 표시 (티어 이미지, 점수, 카카오톡 공유 등)
-* 성별 선택 인터페이스 개선 (기본 `<select>` 제거 → 버튼 UI 적용)
-* 모든 페이지에 일관된 레이아웃 적용 (footer 가로폭 문제 해결)
-* 라우팅 페이지 추가 및 연결 완료
+```bash
+$ git clone https://github.com/your-username/facetest.git
+$ cd facetest
+$ npm install
+$ npm start
+```
 
-    * `About`, `Contact`, `Terms`, `PrivacyPolicy`, `UglyFAQ`, `MBTIFAQ` 등
+---
 
-## 🧭 앞으로 해야 할 일
+## 🔧 현재 진행 중 및 예정 작업
 
-* [ ] 결과 공유 기능 성능 및 예외 처리 강화
-* [ ] 애드센스 심사 준비용 SEO 개선 (meta 태그, Helmet 적용 등)
-* [ ] 애드센스 정책 기반 콘텐츠 강화 (FAQ, 설명, 결과 해설 텍스트 추가)
-* [ ] 사용자 데이터 처리에 대한 안내 보완 (입력한 사진은 서버에 저장되지 않음 등)
+- [ ] 다국어 JSON (main/ugly/terms/privacy/about/gender 등) 누락 및 key 누락 전수검사
+- [ ] MBTI / 나이 / Vibe 페이지 다국어 적용 및 결과 텍스트 분기 처리
+- [ ] Kakao 공유 기능 모든 테스트에 적용
+- [ ] 모바일에서 모달, 레이아웃, 언어 선택 UI 완전 최적화
+- [ ] 다크모드 테마 toggle 및 css 구조화
+- [ ] Teachable Machine 모델 버전 리팩토링 (고정 seed 등)
+- [ ] SEO / 메타태그 정비 (title, og:image 등 포함)
+- [ ] 서비스 워커 / manifest 통한 PWA 기능 강화 및 아이콘 구성
+- [ ] 앱 배포 준비 (Capacitor 또는 React Native로 포팅 검토)
+- [ ] Google AdSense 승인 준비: 법적 고지, 콘텐츠 정책, 사용자 경험 전반 정비
 
-## ℹ️ 콘텐츠 설명
+---
 
-### 🙃 못생김 측정기
+## 🚀 배포 계획
 
-> 사용자가 업로드한 얼굴 이미지를 기반으로 AI가 "못생김 점수"를 추정하며, 티어 뱃지와 함께 결과를 표시합니다.
+- ✅ Netlify 배포 완료 (기본 웹 테스트용)
+- [ ] Vercel 등 멀티 호스팅 고려 + CDN 테스트
+- [ ] 웹앱(PWA) 배포를 기반으로 App Store / Google Play 등록 준비
 
-### 🔮 관상으로 보는 MBTI (추후 공개)
+---
 
-> 얼굴 이미지를 기반으로 관상적 특징을 분석하여 MBTI를 예측하는 기능입니다.
+## 🗓 버전 기록
 
-### 📈 FAQ 형식 콘텐츠 (Google AdSense 대비)
+- `2025-06-01`: 다국어 구조 재정비, LanguageSwitcher 재설계, README 정비
+- `2025-05-29`: Vibe 결과 상세화 및 모달 스타일 개선
+- `2025-05-24`: 반응형 완성 및 Navbar 인터랙션 개선
+- `2025-05-10`: React 19 적용 및 기능 통합
+- `2025-04-20`: AI 모델 기반 얼굴 분석 기능 통합 완료
+- `2025-03-05`: 프로젝트 시작
 
-* `UglyFAQ`, `MBTIFAQ` 페이지는 각각 각 테스트에 대한 자주 묻는 질문을 다룹니다.
-* 추론 방식, 신뢰도, 데이터 처리 방식 등 유저의 궁금증을 해소하기 위한 콘텐츠입니다.
+---
 
-### 🔒 개인정보처리방침 & 이용약관
-
-* 구글 애드센스 승인을 위한 필수 법적 고지 페이지로 구성되어 있습니다.
-* `/privacy` `/terms` 경로에 접근 가능하며, 각종 문의 페이지도 `/contact`로 연결됩니다.
-
-## ✅ 기술 스택
-
-* React 19
-* React Router DOM 6
-* Teachable Machine + @tensorflow/tfjs
-* Tailwind 일부 유틸
-* html2canvas (결과 캡처용)
-* Kakao JavaScript SDK (카카오 공유)
-* CSS Modules로 모듈화된 디자인 시스템 적용
-
-
----------2025.05.23---------
-1. 댓글 / 공유 가능하게끔
-2. 나머지 컨텐츠 보강
-
-
-
-
+**문의 / 제안 / 버그 제보**: GitHub Issue 또는 Contact 페이지를 통해 남겨주세요 🙇

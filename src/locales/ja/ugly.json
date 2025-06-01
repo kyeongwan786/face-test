@@ -1,0 +1,62 @@
+{
+  "title": "ブサイク測定器",
+  "subtitle": "性別を選び、以下の方法から分析を選んでください",
+
+  "mode": {
+    "upload": "写真をアップロードする",
+    "webcam": "リアルタイムで分析する"
+  },
+  "upload": {
+    "label": "写真を選択"
+  },
+
+  "webcam": {
+    "loading": "ウェブカメラを準備中...",
+    "ready": "分析を開始できます",
+    "done": "分析が完了しました。もう一度試すにはボタンをクリックしてください。"
+  },
+
+  "buttons": {
+    "retry": "もう一度試す",
+    "save": "結果を保存",
+    "kakao": "KakaoTalkで共有",
+    "analyze": "分析を開始"
+  },
+
+  "result": {
+    "label": "ブサイク度"
+  },
+
+  "buckets": {
+    "top": { "title": "最上位ティア", "sub": "素晴らしいです！" },
+    "high": { "title": "上位ティア", "sub": "なかなかいいですね！" },
+    "mid": { "title": "平均レベル", "sub": "悪くない〜" },
+    "low": { "title": "カメラがため息", "sub": "うーん……" },
+    "bottom": { "title": "大丈夫です", "sub": "そんな時もあります" }
+  },
+
+  "tier": {
+    "challenger": { "name": "チャレンジャー", "desc": "上位0.01％" },
+    "grandmaster": { "name": "グランドマスター", "desc": "上位0.1％" },
+    "master": { "name": "マスター", "desc": "上位1％" },
+    "diamond": { "name": "ダイヤモンド", "desc": "上位5％" },
+    "platinum": { "name": "プラチナ", "desc": "上位10％" },
+    "gold": { "name": "ゴールド", "desc": "上位25％" },
+    "silver": { "name": "シルバー", "desc": "上位50％" },
+    "bronze": { "name": "ブロンズ", "desc": "残りのユーザー" }
+  },
+
+  "share": {
+    "title": "ブサイク度：{{score}}%",
+    "button": "自分も測定してみる"
+  },
+
+  "error": {
+    "webcamAccess": "ウェブカメラへのアクセスに失敗しました。",
+    "analysisFailed": "画像分析中に問題が発生しました。",
+    "modelLoad": "モデルの読み込みに失敗しました。",
+    "kakaoInit": "Kakao SDKを読み込み中です！",
+    "kakaoFail": "KakaoTalkでの共有に失敗しました。",
+    "sizeLimit": "画像サイズが5MBを超えているため、KakaoTalkで共有できません。"
+  }
+}

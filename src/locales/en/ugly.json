@@ -1,0 +1,62 @@
+{
+  "title": "Ugly Meter",
+  "subtitle": "Choose your gender and select one of the analysis methods below",
+
+  "mode": {
+    "upload": "Upload a photo",
+    "webcam": "Analyze in real-time"
+  },
+  "upload": {
+    "label": "Upload Image"
+  },
+
+  "webcam": {
+    "loading": "Preparing webcam...",
+    "ready": "Ready to start analysis",
+    "done": "Analysis complete. Click the button to retry."
+  },
+
+  "buttons": {
+    "retry": "Try Again",
+    "save": "Save Result",
+    "kakao": "Share on KakaoTalk",
+    "analyze": "Start Analysis"
+  },
+
+  "result": {
+    "label": "Ugly Score"
+  },
+
+  "buckets": {
+    "top": { "title": "Top Tier", "sub": "Impressive!" },
+    "high": { "title": "High Tier", "sub": "Not bad at all!" },
+    "mid": { "title": "Average Zone", "sub": "Not bad~" },
+    "low": { "title": "Camera is sighing", "sub": "Hmm..." },
+    "bottom": { "title": "It's okay", "sub": "It happens!" }
+  },
+
+  "tier": {
+    "challenger": { "name": "Challenger", "desc": "Top 0.01%" },
+    "grandmaster": { "name": "Grandmaster", "desc": "Top 0.1%" },
+    "master": { "name": "Master", "desc": "Top 1%" },
+    "diamond": { "name": "Diamond", "desc": "Top 5%" },
+    "platinum": { "name": "Platinum", "desc": "Top 10%" },
+    "gold": { "name": "Gold", "desc": "Top 25%" },
+    "silver": { "name": "Silver", "desc": "Top 50%" },
+    "bronze": { "name": "Bronze", "desc": "Remaining Users" }
+  },
+
+  "share": {
+    "title": "Ugly Score: {{score}}%",
+    "button": "Check Yours"
+  },
+
+  "error": {
+    "webcamAccess": "Failed to access webcam.",
+    "analysisFailed": "An error occurred during image analysis.",
+    "modelLoad": "Failed to load model.",
+    "kakaoInit": "Kakao SDK is still loading!",
+    "kakaoFail": "Failed to share via KakaoTalk.",
+    "sizeLimit": "Image exceeds 5MB and cannot be shared via KakaoTalk."
+  }
+}

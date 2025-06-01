@@ -1,0 +1,139 @@
+/* ========================================================================
+   neo-common.css – 2025-05-31 (full redesign)
+   ------------------------------------------------------------------------
+   · 현대적인 글꼴 & 가변 폰트 크기
+   · 투명 네온 그라디언트 타이틀
+   · 컴포넌트(버튼·박스) 다크/라이트 모두 어울리도록 설계
+   ====================================================================== */
+
+/* 000 ────────── FONT IMPORTS ───────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap');
+
+/* 010 ────────── RESET ─────────────────────────────────────────────── */
+*,
+*::before,
+*::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+    min-height:100vh;
+    font-family:'Poppins',sans-serif;
+    background:var(--bg-100);
+    color:var(--gray-800);
+    -webkit-font-smoothing:antialiased;
+}
+
+/* 020 ────────── DESIGN TOKENS ─────────────────────────────────────── */
+:root {
+    /* Brand Palette */
+    --pink:#ff4f81;     --blue:#3fa8ff;    --mint:#00c8b4;
+    --violet:#8e44ff;   --lime:#b7dd29;    --gold:#f5b021;
+    /* Neutrals */
+    --gray-50:#fafafa;  --gray-100:#f0f0f0;--gray-200:#e6e6e6;
+    --gray-400:#bdbdbd; --gray-600:#6f6f6f;--gray-800:#2e2e2e;
+    /* UI */
+    --radius-s:12px;  --radius-m:18px;  --radius-l:26px;
+    --shadow-s:0 2px 4px rgba(0,0,0,.07);
+    --shadow-m:0 6px 16px rgba(0,0,0,.08);
+    --shadow-l:0 12px 28px rgba(0,0,0,.15);
+    /* BG */
+    --bg-100:#fff;
+    --bg-300:#fbfbff;
+    --bg-gradient:radial-gradient(circle at top,#fef6ff 0%,#f7fbff 45%,#f0f8ff 100%);
+    /* Text Gradient */
+    --text-gradient:linear-gradient(120deg,var(--pink),var(--blue));
+}
+
+/* 030 ────────── GLOBAL LAYOUT ─────────────────────────────────────── */
+.page{
+    display:flex;flex-direction:column;min-height:100vh;
+    background:var(--bg-gradient);
+}
+.container{
+    flex:1;
+    width:100%;max-width:980px;
+    margin:0 auto;
+    display:flex;flex-direction:column;align-items:center;
+    text-align:center;
+}
+
+/* 040 ────────── HEADER / TITLE ───────────────────────────────────── */
+.page h1{
+    font-family:'Fugaz One',cursive;
+    font-size:clamp(2.2rem,4vw,3rem);
+    line-height:1.15;
+    background:var(--text-gradient);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    filter:drop-shadow(0 2px 4px rgba(0,0,0,.15));
+    animation:hueShift 10s linear infinite;
+}
+.subtitle{
+    font-size:1rem;
+    color:var(--gray-600);
+    margin-top:.4rem;
+}
+
+/* 050 ────────── BUTTONS ─────────────────────────────────────────── */
+.btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    padding:.7rem 1.6rem;
+    font-weight:600;font-size:.95rem;
+    border:none;border-radius:var(--radius-s);
+    cursor:pointer;user-select:none;
+    transition:.18s ease;
+    color:#fff;background:var(--blue);
+    box-shadow:var(--shadow-s);
+}
+.btn:hover{transform:translateY(-3px);box-shadow:var(--shadow-m);}
+.btn--outline{
+    background:#fff;color:var(--blue);
+    border:2px solid var(--blue);
+}
+.btn--pink{background:var(--pink);}
+.btn--mint{background:var(--mint);}
+.btn--gray{background:var(--gray-400);color:#fff;}
+
+.mode-toggle-buttons{display:flex;gap:1rem;margin:2rem 0 1rem;}
+.mode-button{comp:btn--outline}
+.mode-button.active{background:var(--blue);color:#fff;}
+
+/* 060 ────────── UPLOAD BOX (중앙·네온) ──────────────────────────── */
+.upload-wrapper{width:100%;display:flex;justify-content:center;margin-top:2.5rem;}
+.upload-box{
+    width:240px;height:170px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:.8rem;
+    border:3px dashed var(--mint);
+    border-radius:var(--radius-m);
+    background:#fff;
+    font-weight:600;font-size:1.15rem;color:var(--violet);
+    cursor:pointer;
+    transition:.25s ease;
+}
+.upload-box:hover{background:#f2fffd;transform:translateY(-5px);box-shadow:var(--shadow-m);}
+.upload-box::before{content:"📷";font-size:2.6rem;}
+
+/* 070 ────────── WEBCAM FRAME ───────────────────────────────────── */
+.webcam-wrapper{display:flex;flex-direction:column;align-items:center;gap:1rem;margin-top:2rem;}
+.video-frame,
+.webcam-wrapper video{
+    width:100%;max-width:320px;border-radius:var(--radius-s);
+    border:2px solid var(--blue);box-shadow:var(--shadow-s);
+}
+.capture-button{comp:btn--mint}
+.webcam-overlay-text{font-size:.95rem;font-weight:600;color:var(--blue);}
+
+/* 080 ────────── MODAL BUTTON 기본 색상 ─────────────────────────── */
+.modal-buttons{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-top:1.5rem;}
+.btn-retry{comp:btn--pink}
+.btn-save {comp:btn--blue}
+
+/* 090 ────────── UTILS & ANIMATIONS ────────────────────────────── */
+@keyframes hueShift{0%{filter:hue-rotate(0deg);}100%{filter:hue-rotate(360deg);}}
+
+/* 100 ────────── MEDIA QUERY ──────────────────────────────────── */
+@media(max-width:768px){
+    .upload-box{width:180px;height:150px;font-size:1rem;}
+    .mode-toggle-buttons{flex-direction:column;gap:.8rem;}
+    .mode-button{width:100%;}
+}

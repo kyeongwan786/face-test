@@ -1,0 +1,26 @@
+{
+  "language": {
+    "selectPrompt": "Please select a language",
+    "ko": "🇰🇷 Korean",
+    "en": "🇺🇸 English",
+    "ja": "🇯🇵 Japanese",
+    "zh": "🇨🇳 Chinese",
+    "vi": "🇻🇳 Vietnamese"
+  },
+  "site": {
+    "title": "AI Face Lab"
+  },
+  "menu": {
+    "home": "Home",
+    "about": "About",
+    "ugly": "Ugly Meter",
+    "mbti": "MBTI by Face",
+    "age": "Age Estimator",
+    "vibe": "First Impression",
+    "lookalike": "Look-Alike",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "terms": "Terms",
+    "privacy": "Privacy Policy"
+  }
+}

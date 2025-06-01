@@ -1,0 +1,26 @@
+{
+  "language": {
+    "selectPrompt": "언어를 선택해주세요",
+    "ko": "🇰🇷 한국어",
+    "en": "🇺🇸 영어",
+    "ja": "🇯🇵 일본어",
+    "zh": "🇨🇳 중국어",
+    "vi": "🇻🇳 베트남어"
+  },
+  "site": {
+    "title": "AI 얼굴 실험실"
+  },
+  "menu": {
+    "home": "홈",
+    "about": "소개",
+    "ugly": "못생김 측정기",
+    "mbti": "관상 MBTI",
+    "age": "AI 나이 추측",
+    "vibe": "첫인상 테스트",
+    "lookalike": "닮은꼴 분석",
+    "faq": "FAQ",
+    "contact": "문의하기",
+    "terms": "이용약관",
+    "privacy": "개인정보처리방침"
+  }
+}

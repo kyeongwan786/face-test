@@ -1,0 +1,20 @@
+{
+  "title": "AI Face Lab là gì?",
+  "intro": "AI Face Lab là một nền tảng web mang tính thử nghiệm, sử dụng trí tuệ nhân tạo để phân tích khuôn mặt người dùng nhằm mang lại sự hài hước và giải trí. Mục đích không phải đánh giá ngoại hình mà là để tận hưởng văn hóa chơi kỹ thuật số một cách sáng tạo và vui vẻ.",
+  "featuresTitle": "Tính năng chính",
+  "features": {
+    "ugly": "😝 Máy đo độ xấu: Phân tích khuôn mặt và đưa ra huy hiệu thứ hạng vui nhộn từ Đồng đến Thách đấu. Chỉ dành cho giải trí, không phản ánh ngoại hình thực tế.",
+    "mbti": "🧠 MBTI theo khuôn mặt: Dự đoán xu hướng MBTI dựa trên hình dạng khuôn mặt, ánh nhìn và ấn tượng. Chỉ mang tính phỏng đoán sáng tạo, không phải phân tích khoa học.",
+    "age": "📅 Dự đoán tuổi bằng AI: Ước tính tuổi từ ảnh khuôn mặt. Kết quả có thể sai lệch do ánh sáng, biểu cảm hoặc trang điểm.",
+    "vibe": "🎭 Bài kiểm tra ấn tượng đầu tiên: Cung cấp nhận xét về bạn từ góc nhìn của người phỏng vấn, đối tượng hẹn hò, cảnh sát, trẻ em và chó. Tất cả chỉ nhằm mục đích giải trí.",
+    "lookalike": "🌟 Tìm người nổi tiếng giống bạn: AI phân tích khuôn mặt và tìm người nổi tiếng giống bạn nhất. Mô hình hiện tại chủ yếu được huấn luyện từ diễn viên và idol Hàn Quốc."
+  },
+  "techTitle": "Công nghệ sử dụng",
+  "tech": "AI Face Lab là một ứng dụng đơn trang được xây dựng bằng React, sử dụng mô hình phân loại ảnh huấn luyện từ Google Teachable Machine. Toàn bộ quá trình phân tích diễn ra trong trình duyệt thông qua TensorFlow.js, không tải ảnh lên máy chủ. Điều này đảm bảo tính riêng tư và phản hồi nhanh. Các mô hình riêng biệt theo giới tính giúp tăng độ chính xác.",
+  "privacyTitle": "Chính sách quyền riêng tư",
+  "privacy": "Ảnh khuôn mặt không bao giờ được tải lên hoặc lưu trữ. Tất cả dữ liệu chỉ xử lý tạm thời trong trình duyệt và sẽ tự động bị xóa. Chúng tôi không thu thập log, cookie hay thông tin theo dõi. Bạn có thể làm mới trang để xóa toàn bộ dữ liệu.",
+  "disclaimerTitle": "Tuyên bố miễn trừ trách nhiệm",
+  "disclaimer": "Tất cả kết quả từ AI Face Lab chỉ nhằm mục đích giải trí. Không nên sử dụng để đánh giá ngoại hình, tính cách hoặc tuổi thật. Mô hình AI có thể thiên lệch hoặc sai sót do dữ liệu hạn chế. Hãy xem kết quả như một trò chơi vui vẻ. Nếu thấy khó chịu, hãy dừng lại hoặc đóng trang ngay lập tức.",
+  "usageTitle": "Triết lý & Mục đích",
+  "usage": "AI Face Lab được tạo ra nhằm phá vỡ định kiến về ngoại hình và mang đến một góc nhìn mới. Trong xã hội bị áp lực bởi tiêu chuẩn sắc đẹp, chúng tôi mong muốn tạo ra một “không gian giải phóng kỹ thuật số” thông qua sự châm biếm và hài hước. AI ở đây không chỉ là công cụ khoa học mà còn là phương tiện cho sự sáng tạo và văn hóa. Hãy chia sẻ và cười cùng bạn bè nhé!"
+}

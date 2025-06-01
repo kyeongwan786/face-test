@@ -1,0 +1,36 @@
+{
+  "title": "Chính sách quyền riêng tư",
+  "intro": "Chính sách quyền riêng tư này mô tả cách 'Phòng thí nghiệm khuôn mặt AI' (sau đây gọi là 'Dịch vụ') thu thập, sử dụng, lưu trữ, bảo vệ và xóa dữ liệu người dùng trong quá trình cung cấp dịch vụ. Chính sách này tuân thủ Luật Bảo vệ Thông tin Cá nhân Hàn Quốc, Quy định chung về bảo vệ dữ liệu (GDPR) của EU, Đạo luật Quyền riêng tư của Người tiêu dùng California (CCPA) của Hoa Kỳ và chính sách của Google AdSense. Chúng tôi cam kết bảo vệ quyền riêng tư của người dùng ở mức cao nhất.",
+
+  "section1Title": "1. Thông tin được thu thập và phương thức",
+  "section1Content": "Chúng tôi không yêu cầu người dùng cung cấp bất kỳ thông tin nhận dạng cá nhân (PII) nào. Không có đăng ký tài khoản, đăng nhập hay xác thực qua nền tảng thứ ba. Tuy nhiên, để sử dụng chức năng AI, những dữ liệu sau có thể được xử lý tạm thời trên trình duyệt của người dùng:\n\n- **Dữ liệu hình ảnh khuôn mặt**: Được tải lên hoặc chụp qua webcam, xử lý cục bộ trên trình duyệt và không được tải lên hoặc lưu trữ trên máy chủ.\n- **Thông tin trình duyệt (User-Agent)**: Có thể được Google AdSense thu thập để hiển thị quảng cáo. Chúng tôi không truy cập các dữ liệu này.\n- **Dữ liệu tương tác quảng cáo**: Do Google AdSense hoặc đối tác quảng cáo thu thập qua cookie. Chúng tôi không lưu trữ hoặc xử lý các dữ liệu này.",
+
+  "section2Title": "2. Mục đích sử dụng dữ liệu",
+  "section2Content": "Chúng tôi chỉ sử dụng dữ liệu phi cá nhân đã được ẩn danh hóa cho các mục đích sau:\n\n- Cung cấp chức năng phân tích khuôn mặt AI dựa trên Teachable Machine\n- Hiển thị quảng cáo Google AdSense (có thể dùng cookie không cá nhân hóa)\n- Tối ưu trải nghiệm người dùng (ngôn ngữ hiển thị, cấu trúc giao diện, v.v.)",
+
+  "section3Title": "3. Lưu trữ và xóa dữ liệu",
+  "section3Content": "Không có dữ liệu nào được lưu trữ trên máy chủ. Tất cả dữ liệu được xử lý tạm thời trong bộ nhớ trình duyệt và tự động xóa khi:\n\n- Người dùng rời khỏi trang hoặc hoàn tất phân tích\n- Làm mới trang hoặc đóng tab\n\nCookie do Google AdSense tạo ra được quản lý theo chính sách của Google. Người dùng có thể kiểm soát chúng trong cài đặt trình duyệt.",
+
+  "section4Title": "4. Cookie, theo dõi và bên thứ ba",
+  "section4Content": "Chúng tôi không trực tiếp tạo hay sử dụng cookie. Tuy nhiên, các script bên thứ ba sau có thể được tích hợp:\n\n- **Google AdSense**: Có thể thu thập địa chỉ IP, thông tin thiết bị, vị trí địa lý ước tính và lịch sử tương tác quảng cáo thông qua cookie hoặc beacon.\n- **Google Analytics (hiện tại chưa dùng)**: Có thể được sử dụng trong tương lai, và sẽ có thông báo rõ ràng nếu được kích hoạt.\n\nChúng tôi không truy cập hay lưu trữ bất kỳ dữ liệu nào từ các dịch vụ bên thứ ba này.",
+
+  "section5Title": "5. Dữ liệu nhạy cảm và sinh trắc học",
+  "section5Content": "Hình ảnh khuôn mặt chỉ được dùng để phân tích thị giác ở mức khái quát và không dùng để nhận dạng, theo dõi hoặc định vị người dùng. Dữ liệu không được lưu trữ trên máy chủ. Ở một số khu vực pháp lý, hình ảnh khuôn mặt có thể được coi là dữ liệu nhạy cảm — người dùng nên thận trọng khi sử dụng dịch vụ.",
+
+  "section6Title": "6. Quyền và kiểm soát của người dùng",
+  "section6Content": "Trong thời gian sử dụng, người dùng có quyền:\n\n- Từ chối xử lý dữ liệu: Có thể ngừng phân tích AI bất kỳ lúc nào\n- Kiểm soát hoặc xóa cookie: Thông qua cài đặt trình duyệt\n- Xóa hoàn toàn dữ liệu: Làm mới hoặc đóng trang sẽ xóa mọi dữ liệu bộ nhớ\n\nVì dịch vụ không lưu trữ dữ liệu nhận dạng cá nhân nên không hỗ trợ việc truy cập, sửa đổi hoặc yêu cầu xóa dữ liệu sau khi phiên làm việc kết thúc.",
+
+  "section7Title": "7. Quyền riêng tư trẻ em",
+  "section7Content": "Dịch vụ không dành cho người dưới 14 tuổi. Nếu phát hiện người dùng chưa đủ tuổi, dịch vụ có thể hiển thị cảnh báo hoặc chặn quyền truy cập.",
+
+  "section8Title": "8. Biện pháp bảo mật",
+  "section8Content": "Mặc dù không lưu trữ dữ liệu người dùng, chúng tôi vẫn áp dụng các biện pháp bảo mật sau:\n\n- Toàn bộ giao tiếp web được mã hóa qua HTTPS\n- Phân tích AI được thực hiện hoàn toàn trên thiết bị bằng TensorFlow.js\n- Chỉ tải các script từ nguồn đáng tin cậy\n- Script quảng cáo bị giới hạn theo tên miền xác thực",
+
+  "section9Title": "9. Thay đổi chính sách",
+  "section9Content": "Chính sách quyền riêng tư này có thể được cập nhật khi có thay đổi pháp lý hoặc điều chỉnh từ phía chúng tôi. Thông báo sẽ được hiển thị trên trang web và áp dụng kể từ ngày hiệu lực được chỉ định.",
+
+  "section10Title": "10. Liên hệ",
+  "section10Content": "Nếu có thắc mắc về chính sách quyền riêng tư, vui lòng liên hệ với chúng tôi qua:\n\n- Email: contact@yourdomain.com\n- Trang liên hệ: /contact\n\n※ Do không thu thập thông tin cá nhân, mọi thắc mắc sẽ được xử lý theo giới hạn của phiên trình duyệt cá nhân.",
+
+  "footer": "Cập nhật lần cuối: 01/06/2025"
+}

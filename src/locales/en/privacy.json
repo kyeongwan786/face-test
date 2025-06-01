@@ -1,0 +1,36 @@
+{
+  "title": "Privacy Policy",
+  "intro": "This Privacy Policy describes how AI Face Lab (the “Service”) collects, uses, stores, protects, and deletes user data in connection with the website and its features. This policy complies with the Personal Information Protection Act of Korea, the EU General Data Protection Regulation (GDPR), the California Consumer Privacy Act (CCPA), and Google AdSense requirements. We place the highest priority on protecting users’ privacy.",
+
+  "section1Title": "1. Information We Collect and How",
+  "section1Content": "The Service does not collect personally identifiable information (PII) by default. There are no account registration, login, or third-party integrations. However, for providing the AI functionalities, the following data may be temporarily processed within your browser:\n\n- **Facial image data**: Uploaded or webcam-captured images are processed only within the browser and are never sent to or stored on a server.\n- **Browser information (User-Agent)**: May be collected by Google AdSense for ad purposes; the Service has no access to this data.\n- **Ad impression/click data**: Collected by Google AdSense and third-party advertisers via cookies; the Service does not store or analyze this data directly.",
+
+  "section2Title": "2. Purpose of Data Use",
+  "section2Content": "We only process anonymized, non-personal data for the following purposes:\n\n- Providing AI-based facial analysis (powered by Teachable Machine)\n- Optimizing ad delivery via Google AdSense (non-personal cookies)\n- Improving user experience (language settings, layout adaptation, etc.)",
+
+  "section3Title": "3. Retention and Deletion",
+  "section3Content": "The Service does not store any data on a server. All data exists **temporarily in the browser's memory** and is deleted as follows:\n\n- Immediately after analysis or upon page exit\n- Automatically upon refresh or browser tab closure\n\nCookies created by Google AdSense are subject to their own retention policies. Users may manage or delete these through browser settings.",
+
+  "section4Title": "4. Cookies, Tracking, and Third-Party Sharing",
+  "section4Content": "We do not create or store cookies ourselves. However, the following third-party scripts may be embedded:\n\n- **Google AdSense**: May collect IP address, browser/device info, location approximation, and ad interaction history via cookies or web beacons.\n- **Google Analytics (currently disabled)**: No analytics tools are used at present, but may be enabled in the future with prior notice.\n\nThese services operate under their own privacy policies. We do not access or retain any of their collected data.",
+
+  "section5Title": "5. Sensitive and Biometric Data",
+  "section5Content": "While facial images are processed, they are not treated as biometric identifiers and are only used as anonymized visual input. No facial recognition, tracking, or identity-based classification occurs. Images are never transmitted to a server. However, in some jurisdictions, facial data may be classified as sensitive, so users should use the service accordingly based on local laws.",
+
+  "section6Title": "6. User Rights and Control",
+  "section6Content": "Users may exercise the following rights at any time while using the Service:\n\n- Refuse data processing: Stop AI analysis at will\n- Block/delete cookies: Via browser preferences\n- Clear all data: Refresh or exit the page\n\nSince we do not store any identifiable information, we cannot provide access, correction, or deletion of specific user data post-session.",
+
+  "section7Title": "7. Children’s Privacy",
+  "section7Content": "The Service is not intended for children under 14 and does not knowingly collect data from them. If a child is found to be using the Service without guardian consent, we may display a warning or restrict access.",
+
+  "section8Title": "8. Security Measures",
+  "section8Content": "Even though we do not collect data, we implement the following safeguards to protect user privacy:\n\n- HTTPS-secured connections\n- On-device inference using TensorFlow.js\n- Minimal external script usage, strictly vetted\n- Limited advertising scripts with domain restrictions",
+
+  "section9Title": "9. Changes to This Policy",
+  "section9Content": "This policy may be updated in accordance with changes in law or service operation. Users will be notified via on-site announcements or footer updates. All changes take effect from the announced date or as otherwise stated.",
+
+  "section10Title": "10. Contact",
+  "section10Content": "For privacy-related inquiries, contact us via email or the Contact page. We aim to respond promptly.\n\n- Email: contact@yourdomain.com\n- Contact page: /contact\n\n※ Since we do not collect PII, any legal dispute will be based solely on data present in the user’s local browser session.",
+
+  "footer": "Last updated: June 1, 2025"
+}

@@ -1,0 +1,62 @@
+{
+  "title": "못생김 측정기",
+  "subtitle": "성별을 선택하고 아래 방식 중 하나로 측정해보세요",
+
+  "mode": {
+    "upload": "사진 업로드하기",
+    "webcam": "실시간으로 분석하기"
+  },
+  "upload": {
+    "label": "사진 올리기"
+  },
+
+  "webcam": {
+    "loading": "웹캠 준비 중...",
+    "ready": "분석을 시작하세요",
+    "done": "분석이 완료되었습니다. 다시 시도하려면 버튼을 눌러주세요."
+  },
+
+  "buttons": {
+    "retry": "다시하기",
+    "save": "결과 저장",
+    "kakao": "카카오톡 공유",
+    "analyze": "분석 시작"
+  },
+
+  "result": {
+    "label": "못생김"
+  },
+
+  "buckets": {
+    "top": { "title": "최상위 티어", "sub": "훌륭한데요?" },
+    "high": { "title": "상위 티어", "sub": "괜찮은데요?" },
+    "mid": { "title": "평균선 착지", "sub": "낫배드~" },
+    "low": { "title": "카메라가 한숨", "sub": "흠........" },
+    "bottom": { "title": "괜찮아요", "sub": "그럴 수 있어요" }
+  },
+
+  "tier": {
+    "challenger": { "name": "Challenger", "desc": "상위 0.01%" },
+    "grandmaster": { "name": "Grandmaster", "desc": "상위 0.1%" },
+    "master": { "name": "Master", "desc": "상위 1%" },
+    "diamond": { "name": "Diamond", "desc": "상위 5%" },
+    "platinum": { "name": "Platinum", "desc": "상위 10%" },
+    "gold": { "name": "Gold", "desc": "상위 25%" },
+    "silver": { "name": "Silver", "desc": "상위 50%" },
+    "bronze": { "name": "Bronze", "desc": "남은 인원" }
+  },
+
+  "share": {
+    "title": "못생김 {{score}}%",
+    "button": "나도 측정하기"
+  },
+
+  "error": {
+    "webcamAccess": "웹캠 접근에 실패했습니다.",
+    "analysisFailed": "이미지를 분석하는 중 문제가 발생했습니다.",
+    "modelLoad": "모델을 불러오는데 실패했습니다.",
+    "kakaoInit": "카카오 SDK 준비 중!",
+    "kakaoFail": "카카오톡 공유에 실패했습니다.",
+    "sizeLimit": "이미지 크기가 5MB를 초과하여 카카오톡에 업로드할 수 없습니다."
+  }
+}

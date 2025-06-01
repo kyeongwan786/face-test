@@ -1,0 +1,43 @@
+{
+  "language": {
+    "selectPrompt": "请选择语言"
+  },
+  "hero": {
+    "title": "AI面部分析实验室",
+    "subtitle": "AI分析你的脸！\n丑脸测试、MBTI预测、年龄估算、第一印象分析、明星相似度测试，样样都有。",
+    "uglyBtn": "👀 丑脸测试",
+    "mbtiBtn": "🧠 面容MBTI"
+  },
+  "cards": {
+    "ugly": {
+      "emoji": "😵",
+      "title": "丑脸等级测试",
+      "desc": "AI对你的颜值进行评分，并显示幽默的等级。",
+      "cta": "开始测试"
+    },
+    "mbti": {
+      "emoji": "🧠",
+      "title": "脸部MBTI测试",
+      "desc": "AI根据你的面部特征预测MBTI类型。",
+      "cta": "开始预测"
+    },
+    "age": {
+      "emoji": "📸",
+      "title": "AI年龄预测",
+      "desc": "AI根据照片预测你的年龄。",
+      "cta": "试试看"
+    },
+    "vibe": {
+      "emoji": "😍",
+      "title": "第一印象分析",
+      "desc": "AI评估你的第一印象！",
+      "cta": "试试看"
+    },
+    "lookalike": {
+      "emoji": "🌟",
+      "title": "明星相似度测试",
+      "desc": "AI寻找与你最相似的明星！",
+      "cta": "开始匹配"
+    }
+  }
+}

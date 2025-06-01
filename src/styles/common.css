@@ -1,4 +1,14 @@
-/* Reset & Global Variables */
+/* ========================================================================
+   common.css  –  AI 얼굴 실험실 공통 스타일 (v2025-05-31)
+   ------------------------------------------------------------------------
+   ▸ Reset, 변수, 폰트, 애니메이션, 유틸, 재사용 컴포넌트 일괄 정의
+   ▸ mbti / age / ugly(못생김) 등 모든 페이지에서 import
+   ====================================================================== */
+
+/* 000 ────────────────── IMPORT GOOGLE FONTS ─────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Fugaz+One&family=Gowun+Dodum&family=Poppins&family=Bebas+Neue&display=swap');
+
+/* 010 ────────────────── RESET & BASE TYPOGRAPHY ─────────────────────── */
 *,
 *::before,
 *::after {
@@ -7,8 +17,41 @@
     box-sizing: border-box;
 }
 
+html,
+body {
+    width: 100%;
+    height: 100%;
+    font-family: var(--ff-body, 'Poppins', sans-serif);
+    background: var(--bg, #fffcf8);
+    color: #303030;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* 020 ────────────────── ROOT VARIABLES (통합 팔레트) ─────────────────── */
 :root {
-    --nc-000: #fff;
+    /* 폰트 */
+    --ff-head: 'Fugaz One', cursive;
+    --ff-head-alt: 'Bebas Neue', cursive;
+    --ff-body: 'Gowun Dodum', sans-serif;
+
+    /* MBTI·AGE 공통 컬러 */
+    --mbti-nf: #ff7ab2;
+    --mbti-nt: #8e44ff;
+    --mbti-sf: #00c8b4;
+    --mbti-st: #3fa8ff;
+
+    /* General Accent 팔레트 */
+    --accent-pink: #ff4f81;
+    --accent-blue: #3fa8ff;
+    --accent-mint: #00c4b4;
+    --accent-gold: #f5b021;
+    --accent-lime: #b7dd29;
+    --tier-color: var(--accent-gold);
+
+    /* Neutral Colors (nc-000 ~ 900) */
+    --nc-000: #ffffff;
     --nc-050: #fafafa;
     --nc-100: #f9f8f6;
     --nc-200: #f0eeea;
@@ -19,48 +62,34 @@
     --nc-700: #4f4c46;
     --nc-800: #34312d;
     --nc-900: #1e1b18;
-    --accent-pink: #ff4f81;
-    --accent-blue: #3fa8ff;
-    --accent-mint: #00c4b4;
-    --accent-gold: #f5b021;
-    --accent-lime: #b7dd29;
-    --tier-color: var(--accent-gold);
-    --shadow-s: 0 2px 4px rgba(0, 0, 0, 0.06);
-    --shadow-m: 0 6px 16px rgba(0, 0, 0, 0.08);
-    --shadow-l: 0 12px 28px rgba(0, 0, 0, 0.15);
-    --shadow: var(--shadow-m);
+
+    /* AGE 바 차트 색 */
+    --age-bar-bg: #e0e0e7;
+    --age-label: #6f6c66;
+    --age-bar-fill: linear-gradient(90deg, #76a9ff 0%, #8ec5fc 100%);
+
+    /* Radius & Shadow */
     --rad-xs: 6px;
     --rad-s: 12px;
     --rad-m: 18px;
     --rad-l: 26px;
-    --radius: 18px;
-    --ff-head: 'Bebas Neue', cursive;
-    --ff-body: 'Poppins', sans-serif;
+    --rad-full: 999px;
+
+    --shadow-s: 0 2px 4px rgba(0, 0, 0, 0.06);
+    --shadow-m: 0 6px 16px rgba(0, 0, 0, 0.08);
+    --shadow-l: 0 12px 28px rgba(0, 0, 0, 0.15);
+
+    /* 기타 */
+    --bg: #fffcf8;
+    --glass: rgba(255, 255, 255, 0.45);
+
+    /* Easing */
     --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
     --ease-spring: cubic-bezier(0.25, 1.25, 0.5, 1);
-    --bg: #fffcf8;
-    --bg-100: #fff;
-    --bg-300: #f9f5ef;
-    --glass: rgba(255, 255, 255, 0.45);
+    --ease: cubic-bezier(.25,.8,.25,1);
 }
 
-html,
-body {
-    width: 100%;
-    height: 100%;
-    font-family: var(--ff-body);
-    background: var(--bg);
-    color: #303030;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-    line-height: 1.6;
-}
-
-/* Scroll offset for sticky navbar */
-h1, h2, h3, section, header, [id] {
-    scroll-margin-top: 100px;
-}
-
+/* 030 ────────────────── GLOBAL UTILITIES ─────────────────────────────── */
 .visually-hidden {
     position: absolute;
     width: 1px;
@@ -72,90 +101,134 @@ h1, h2, h3, section, header, [id] {
     white-space: nowrap;
     border: 0;
 }
+.text-center { text-align: center; }
+.mt-1 { margin-top: .25rem; } .mt-2 { margin-top: .5rem; }
+.mb-1 { margin-bottom: .25rem; } .mb-2 { margin-bottom: .5rem; }
 
-/* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+/* 040 ────────────────── CORE ANIMATIONS (공통) ───────────────────────── */
+@keyframes fadeIn        { from { opacity:0; transform:translateY(20px);} to { opacity:1; transform:none; } }
+@keyframes slideFadeUp   { from { opacity:0; transform:translateY(14px);} to { opacity:1; transform:none; } }
+@keyframes slideFadeDown { from { opacity:0; transform:translateY(-20px);} to { opacity:1; transform:none; } }
+@keyframes rubber        { 0%{transform:scale(.9);} 45%{transform:scale(1.15);} 100%{transform:scale(1);} }
+@keyframes countBounce   { 0%{transform:scale(1);} 50%{transform:scale(1.1);} 100%{transform:scale(1);} }
+@keyframes gradientRotate{ 0%{background-position:0% 50%;} 50%{background-position:100% 50%;} 100%{background-position:0% 50%;} }
+@keyframes hueShift      { 0%{filter:hue-rotate(0deg);} 100%{filter:hue-rotate(360deg);} }
+@keyframes spinGradient  { to { --angle:360deg; } }
+@keyframes confettiFall  { to { transform: translateY(600px) rotateZ(360deg);} }
+
+/* 050 ────────────────── GLOBAL COMPONENTS ───────────────────────────── */
+
+/* 051 ─ Overlay(Blur) */
+.overlay-blur {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(12px) brightness(0.9);
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 1500;
+    animation: fadeIn 0.25s var(--ease);
 }
 
-@keyframes slideFadeDown {
-    from { opacity: 0; transform: translateY(-20px); }
-    to   { opacity: 1; transform: none; }
-}
-
-@keyframes slideFadeUp {
-    from { opacity: 0; transform: translateY(14px); }
-    to   { opacity: 1; transform: none; }
-}
-
-@keyframes rubber {
-    0% { transform: scale(0.9); }
-    45% { transform: scale(1.15); }
-    100% { transform: scale(1); }
-}
-
-@keyframes countBounce {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
-}
-
-@keyframes gradientRotate {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-footer {
-    width: 100%;
-    padding: 2rem 0;
-    font-size: 0.85rem;
-    color: var(--nc-gray);
+/* 052 ─ Upload Box (공통) */
+.upload-wrapper { display: flex; justify-content: center; }
+.upload-box {
+    width: 220px; height: 160px;
+    display: inline-flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 2rem;
+    border: 2px dashed var(--mbti-nt);
+    border-radius: var(--rad-s);
+    background: #fff;
+    font-size: 1.25rem; font-weight: 600; color: var(--mbti-nt);
+    cursor: pointer;
+    box-shadow: var(--shadow-s);
+    transition: all .25s var(--ease);
     text-align: center;
-    background: #f7f5f0;
-    border-top: 1px solid #e0ddd9;
-    margin-top: auto;
 }
-.page-wrapper {
+.upload-box:hover { background:#f9f5ff; transform: translateY(-4px); box-shadow: var(--shadow-m); }
+.upload-box::before { content:"📷"; font-size:2.4rem; margin-bottom:.6rem; }
+
+/* 053 ─ Mode Toggle 버튼 (사진 업로드 / 실시간 분석) */
+.mode-toggle-buttons { display:flex; justify-content:center; gap:1rem; margin:2rem 0 1rem; }
+.mode-button {
+    font-size:.95rem; font-weight:600; padding:.7rem 1.4rem;
+    border-radius: var(--rad-full); border:2px solid var(--accent-blue);
+    background:#fff; color: var(--nc-700); cursor:pointer;
+    transition: background .2s, color .2s, box-shadow .2s;
+}
+.mode-button:hover { background:#f0f8ff; }
+.mode-button.active {
+    background: var(--accent-blue); color:#fff; box-shadow: var(--shadow-s);
+}
+
+/* 054 ─ Webcam Frame & Buttons */
+.webcam-wrapper { display:flex; flex-direction:column; align-items:center; gap:1rem; margin-top:2rem; }
+.video-frame,
+.webcam-wrapper video {
+    width:100%; max-width:320px; border-radius: var(--rad-s);
+    border:2px solid var(--mbti-st); background:#fff; box-shadow: var(--shadow-s);
+}
+.capture-button,
+.btn-analyze, /* alias */
+.webcam-retry {
+    padding: 0.65rem 1.4rem; font-weight:700; font-size:1rem;
+    border:none; border-radius: var(--rad-s); color:#fff;
+    background: linear-gradient(135deg, var(--mbti-st), var(--mbti-nt));
+    cursor:pointer; transition: transform .18s ease, opacity .18s ease;
+    box-shadow: var(--shadow-s);
+}
+.capture-button:hover,
+.btn-analyze:hover,
+.webcam-retry:hover { transform: translateY(-3px); opacity:.95; }
+
+.webcam-overlay-text {
+    font-size:1rem; font-weight:600; color: var(--accent-blue);
+    text-align:center; margin-top:.5rem; animation: fadeIn .3s ease;
+}
+
+/* 055 ─ Generic Modal Buttons */
+.modal-buttons {
+    display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; margin-top:1.5rem;
+}
+.modal-buttons button {
+    flex:1 1 120px; padding:.65rem 1.2rem; font-weight:700; font-size:.9rem;
+    border:none; border-radius: var(--rad-s); color:#fff; cursor:pointer;
+    transition: transform .18s var(--ease), opacity .18s var(--ease);
+}
+.modal-buttons button:hover { transform: translateY(-3px); opacity:.92; }
+/* 025 ────────────── GLOBAL LAYOUT HELPER (NEW) ───────────────── */
+.page {               /* → 모든 페이지 최외곽 래퍼 */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-.container {
+.container {          /* → 각 페이지 컨텐츠 래퍼 */
     flex: 1;
-}
-.page-content {
-    flex: 1;
-}
-@media (max-width: 768px) {
-    html, body {
-        font-size: 15px;
-        line-height: 1.5;
-    }
-
-    .page-wrapper {
-        padding: 0 1rem;
-    }
-
-    .page-content {
-        padding: 1rem 0;
-    }
-
-    h1 {
-        font-size: 1.8rem;
-    }
-
-    h2 {
-        font-size: 1.5rem;
-    }
-
-    h3 {
-        font-size: 1.2rem;
-    }
-
-    .container {
-        padding: 0 1rem;
-    }
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;   /* ⬅︎ 중앙 정렬 핵심 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;        /* ⬅︎ 모든 자식 중앙정렬 */
+    text-align: center;         /* h1, p 전부 가운데 */
 }
 
+
+
+/* 060 ────────────────── RESPONSIVE UTILITIES ─────────────────────────── */
+@media (max-width:768px) {
+    .upload-box          { width:160px; height:140px; font-size:1.1rem; padding:1.8rem; }
+    .mode-toggle-buttons { flex-direction:column; gap:.6rem; }
+    .mode-button         { width:100%; }
+    .video-frame,
+    .webcam-wrapper video{ max-width:280px; }
+    .webcam-overlay-text { font-size:.9rem; }
+}
+
+@media (min-width:1600px) {
+    .container { max-width:1140px; }
+}
+
+/* ===================================================================== */

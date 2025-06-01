@@ -81,6 +81,13 @@ export default function MBTIByFace() {
     const [webcamStream, setWebcamStream] = useState(null);
     const videoRef = useRef(null);
     const modalRef = useRef(null);
+    const videoWrapperRef = useRef(null);
+
+    const scrollToWebcam = () => {
+        if (videoWrapperRef.current) {
+            videoWrapperRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+    };
 
     useEffect(() => {
         if (!window.Kakao) {
@@ -89,13 +96,6 @@ export default function MBTIByFace() {
             s.onload = () => window.Kakao.init("d3f8af96c1e986cbfb2216380f1ea8e7");
             document.head.appendChild(s);
         }
-
-        // 광고 스크립트
-        const adScript = document.createElement("script");
-        adScript.async = true;
-        adScript.type = "text/javascript";
-        adScript.src = "//t1.daumcdn.net/kas/static/ba.min.js";
-        document.head.appendChild(adScript);
     }, []);
 
     useEffect(() => {
@@ -222,12 +222,6 @@ export default function MBTIByFace() {
 
     return (
         <div className="page">
-            {/* 광고 영역 */}
-            <ins className="kakao_ad_area" style={{ display: "none" }}
-                 data-ad-unit="DAN-HnW0xoFCrjMWyDYg"
-                 data-ad-width="250"
-                 data-ad-height="250"></ins>
-
             {modalOpen && (
                 <div className="overlay-blur">
                     <div className="result-modal" ref={modalRef} style={{ "--mbti-color": mbtiColor }}>
@@ -237,9 +231,7 @@ export default function MBTIByFace() {
                         <p className="mbti-desc">{MBTI_DESC[mbti]}</p>
                         <div className="keyword-list">
                             {keywords.map((k) => (
-                                <span key={k} className="tag" style={{ "--mbti-color": mbtiColor }}>
-                  {k}
-                </span>
+                                <span key={k} className="tag" style={{ "--mbti-color": mbtiColor }}>{k}</span>
                             ))}
                         </div>
                         <div className="modal-buttons">
@@ -260,14 +252,16 @@ export default function MBTIByFace() {
                 <GenderSelector gender={gender} setGender={setGender} />
 
                 <div className="mode-toggle-buttons">
-                    <button
-                        className={!useWebcam ? "mode-button active" : "mode-button"}
-                        onClick={() => setUseWebcam(false)}>
+                    <button className={!useWebcam ? "mode-button active" : "mode-button"} onClick={() => setUseWebcam(false)}>
                         사진 업로드하기
                     </button>
                     <button
                         className={useWebcam ? "mode-button active" : "mode-button"}
-                        onClick={() => setUseWebcam(true)}>
+                        onClick={() => {
+                            setUseWebcam(true);
+                            setTimeout(scrollToWebcam, 100);
+                        }}
+                    >
                         실시간으로 분석하기
                     </button>
                 </div>
@@ -278,23 +272,15 @@ export default function MBTIByFace() {
                     !image && (
                         <>
                             {!useWebcam && (
-                                // JSX 내부의 업로드 관련 부분만 수정한 예
                                 <div className="upload-wrapper">
                                     <label className="upload-box" htmlFor="uploadInput">
-                                        📷 <span className="upload-label">사진 올리기</span>
+                                        <span className="upload-label">사진 업로드</span>
                                     </label>
-                                    <input
-                                        id="uploadInput"
-                                        type="file"
-                                        accept="image/*"
-                                        hidden
-                                        onChange={handleUpload}
-                                    />
+                                    <input id="uploadInput" type="file" accept="image/*" hidden onChange={handleUpload} />
                                 </div>
-
                             )}
                             {useWebcam && (
-                                <div className="webcam-wrapper active">
+                                <div className="webcam-wrapper active" ref={videoWrapperRef}>
                                     <video ref={videoRef} autoPlay muted playsInline width="320" className="video-frame" />
                                     {webcamDone ? (
                                         <>
@@ -313,7 +299,6 @@ export default function MBTIByFace() {
                                             )}
                                         </>
                                     )}
-                                    {!webcamReady && <LoadingSpinner />}
                                 </div>
                             )}
                         </>
@@ -323,4 +308,3 @@ export default function MBTIByFace() {
         </div>
     );
 }
-

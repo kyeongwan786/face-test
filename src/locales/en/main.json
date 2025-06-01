@@ -1,0 +1,43 @@
+{
+  "language": {
+    "selectPrompt": "Please select a language"
+  },
+  "hero": {
+    "title": "AI Face Analysis Lab",
+    "subtitle": "AI analyzes your face!\nEnjoy fun tests like Ugly Meter, MBTI, Age Estimator, First Impression, and Celebrity Look-Alike.",
+    "uglyBtn": "👀 Ugly Test",
+    "mbtiBtn": "🧠 MBTI by Face"
+  },
+  "cards": {
+    "ugly": {
+      "emoji": "😵",
+      "title": "Ugly Meter",
+      "desc": "AI scores your ugliness level and shows your tier humorously.",
+      "cta": "Start Test"
+    },
+    "mbti": {
+      "emoji": "🧠",
+      "title": "MBTI by Face",
+      "desc": "AI predicts your MBTI type from your facial features.",
+      "cta": "Try It"
+    },
+    "age": {
+      "emoji": "📸",
+      "title": "AI Age Estimator",
+      "desc": "AI estimates the age of your face in the photo.",
+      "cta": "Try It"
+    },
+    "vibe": {
+      "emoji": "😍",
+      "title": "First Impression Test",
+      "desc": "AI gives you a first impression analysis!",
+      "cta": "Try It"
+    },
+    "lookalike": {
+      "emoji": "🌟",
+      "title": "Celebrity Look-Alike",
+      "desc": "AI finds a celebrity who looks like you!",
+      "cta": "Try It"
+    }
+  }
+}

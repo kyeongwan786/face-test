@@ -1,0 +1,20 @@
+{
+  "title": "What is AI Face Lab?",
+  "intro": "AI Face Lab is a web-based experimental platform that analyzes your facial image using AI to deliver fun and laughter. It is not intended to judge your appearance, but to let you enjoy digital play culture in a witty and creative way.",
+  "featuresTitle": "Key Features",
+  "features": {
+    "ugly": "😝 Ugly Meter: Analyzes your face and assigns a humorous tier from Bronze to Challenger. Purely for self-deprecating fun and not an actual appearance evaluation.",
+    "mbti": "🧠 MBTI by Face: Predicts MBTI tendencies based on face shape, impression, and gaze using Teachable Machine. This is a creative guess, not a scientific personality test.",
+    "age": "📅 AI Age Estimator: Predicts your age from an uploaded face image. The result may vary depending on lighting, facial expression, and makeup, and may not reflect your real age.",
+    "vibe": "🎭 First Impression Test: Provides your impression from perspectives like interviewers, blind dates, police officers, children, and dogs with labels and explanations. All results are for entertainment.",
+    "lookalike": "🌟 Celebrity Look-Alike: Analyzes your facial features and finds the most similar celebrity. Currently trained mainly on Korean actors and idols."
+  },
+  "techTitle": "Technology",
+  "tech": "AI Face Lab is a React-based single-page application using image classification models trained on Google Teachable Machine. Inference runs in real time in your browser using Tensorflow.js, and images are never uploaded to a server. This ensures high privacy and fast response time. Separate models are loaded for each gender to improve accuracy.",
+  "privacyTitle": "Privacy and Data Handling",
+  "privacy": "Your face image is never uploaded or saved anywhere. All data is processed temporarily in the browser and deleted immediately. No logs, cookies, or tracking information are collected. You can refresh the page at any time to clear all data.",
+  "disclaimerTitle": "Disclaimer",
+  "disclaimer": "All results from AI Face Lab are for humorous and entertainment purposes only. They should not be used to judge real appearance, personality, or age. Results are based on limited training data and may include bias or distortion. Please take results lightly as part of a fun experience. If you feel uncomfortable, you may stop or leave at any time.",
+  "usageTitle": "Purpose and Philosophy",
+  "usage": "AI Face Lab aims to dismantle stereotypes and offer a new perspective on appearance. In a society full of stress over looks, it provides a 'digital liberation space' through satire and humor. We use AI not only as a scientific tool, but also as a creative and cultural experiment. Share the fun with your friends!"
+}

@@ -1,0 +1,151 @@
+:root {
+    --like-yellow: #ffe082;
+    --like-orange: #ffca28;
+    --like-deep: #ff8f00;
+    --like-bg: #fffde7;
+    --like-text: #4e342e;
+}
+
+/* 📦 모달 외부 백그라운드 블러 */
+.overlay-blur {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(6px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
+}
+
+/* 💬 결과 모달 */
+.like-result-modal {
+    background: var(--like-bg);
+    border-radius: 2rem;
+    padding: 6.5rem 1.5rem 2rem; /* 사진 들어갈 공간 확보 */
+    width: 100%;
+    max-width: 440px;
+    position: relative;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.2);
+    border: 3px dashed var(--like-orange);
+    animation: modalPopIn 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+@keyframes modalPopIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* 🖼 내 사진 */
+.like-photo {
+    position: absolute;
+    top: -75px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #fff;
+    border: 5px solid #fff;
+    box-shadow: 0 0 0 5px var(--like-orange), 0 4px 10px rgba(0, 0, 0, 0.15);
+    animation: floatDown 0.7s ease-out;
+}
+
+@keyframes floatDown {
+    from { transform: translate(-50%, -30px); opacity: 0; }
+    to { transform: translate(-50%, 0); opacity: 1; }
+}
+
+/* ✨ 이름 강조 */
+.like-label {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-top: 0.5rem;
+    margin-bottom: 1.2rem;
+    color: var(--like-text);
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+    position: relative;
+}
+
+.like-label::before,
+.like-label::after {
+    content: '✨';
+    position: absolute;
+    font-size: 1.5rem;
+    top: -8px;
+    animation: sparkle 1.5s infinite;
+}
+
+.like-label::before {
+    left: -30px;
+}
+
+.like-label::after {
+    right: -30px;
+}
+
+@keyframes sparkle {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.6; }
+}
+
+/* 🧾 코멘트 */
+.like-comment {
+    background: #fff8e1;
+    border-left: 4px solid var(--like-deep);
+    color: var(--like-text);
+    font-size: 1rem;
+    padding: 0.9rem 1rem;
+    border-radius: 0.6rem;
+    line-height: 1.5;
+    white-space: pre-line;
+    margin-bottom: 1.2rem;
+    width: 100%;
+}
+
+/* 💬 왜 닮았는지 설명 */
+.like-description {
+    font-size: 0.95rem;
+    color: #5d4037;
+    background: #fff;
+    padding: 0.85rem 1rem;
+    border-radius: 0.6rem;
+    border: 1px solid #f3e5ab;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    width: 100%;
+    line-height: 1.5;
+    margin-bottom: 1.4rem;
+}
+
+/* 🎯 버튼들 */
+.like-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem;
+}
+
+.like-buttons button {
+    background: var(--like-orange);
+    color: #000;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.like-buttons button:hover {
+    background: var(--like-deep);
+    color: #fff;
+    transform: translateY(-2px);
+}

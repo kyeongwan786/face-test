@@ -1,0 +1,36 @@
+{
+  "title": "Terms of Use",
+  "intro": "These Terms of Use govern the rights, obligations, and responsibilities between users and the operator in relation to the use of AI Face Lab (hereinafter referred to as \"this service\"). By accessing or using this service, users agree to these terms. If you do not agree to the terms, you may not use this service.",
+
+  "section1Title": "Article 1 (Purpose)",
+  "section1Content": "The purpose of these terms is to define the conditions and procedures for using the service, the rights and obligations between users and the operator, and responsibilities, to ensure stability and reliability of the service and protect users.",
+
+  "section2Title": "Article 2 (Definitions)",
+  "section2Content": "1. 'User' refers to anyone who uses the content provided by this service under these terms.\n2. 'Operator' refers to the entity that manages and operates the AI Face Lab website and its related services.\n3. 'Content' refers to all materials such as text, images, videos, sounds, and data provided or generated within this service.",
+
+  "section3Title": "Article 3 (Conclusion of Service Agreement)",
+  "section3Content": "1. A person who wants to use the service forms a service agreement by agreeing to these terms.\n2. Users may only use the service for non-commercial purposes. Any use for profit is strictly prohibited.",
+
+  "section4Title": "Article 4 (Service Contents and Provision)",
+  "section4Content": "1. This service analyzes face images uploaded or taken by users using AI models and provides various test results (e.g., ugly meter, MBTI prediction, age estimation, first impression analysis, etc.).\n2. All analysis is performed within the user's browser, and no image data is sent to external servers.\n3. Test results are for entertainment purposes only and cannot be used as official standards to judge personality, appearance, or social image.\n4. The operator may change or suspend all or part of the service without prior notice due to technical or policy reasons.",
+
+  "section5Title": "Article 5 (Privacy and Data Processing)",
+  "section5Content": "1. This service does not collect personal information. User images are processed temporarily in the browser and are not stored on the server.\n2. This service does not use cookies, logs, tracking pixels, or any user-identifying technologies.\n3. All data is automatically deleted when the browser session ends, and no information is transmitted to the operator.",
+
+  "section6Title": "Article 6 (Intellectual Property Rights)",
+  "section6Content": "1. The copyrights and other intellectual property rights for the content and results provided by this service belong to the operator or rightful rights holders.\n2. Users may not reproduce, distribute, transmit, modify, display, or commercially use the content without permission.",
+
+  "section7Title": "Article 7 (Disclaimer)",
+  "section7Content": "1. The operator does not guarantee the accuracy, reliability, or validity of the results provided by this service, which are offered solely for entertainment purposes.\n2. The operator is not responsible for any actions taken by the user based on the results.\n3. Users must use the service at their own discretion and should not take results too seriously.",
+
+  "section8Title": "Article 8 (Advertisements and External Links)",
+  "section8Content": "1. This service may display advertisements through Google AdSense and other ad services.\n2. Advertisements serve as a source of revenue for operating the service. The operator may earn income through ad impressions or clicks.\n3. The service may contain links to external websites. The operator is not responsible for any privacy breaches or damages caused by visiting those links.",
+
+  "section9Title": "Article 9 (Amendment of Terms)",
+  "section9Content": "1. These terms may be revised due to changes in relevant laws or service policies.\n2. If the terms are amended, the operator will provide prior notice, and the revised terms take effect from the time of notification.\n3. Users who do not agree to the amended terms may stop using the service and withdraw.",
+
+  "section10Title": "Article 10 (Governing Law and Jurisdiction)",
+  "section10Content": "1. These terms are governed by the laws of the Republic of Korea.\n2. Any disputes related to the service shall be subject to the exclusive jurisdiction of the court where the operator is located.",
+
+  "footer": "Last updated: June 1, 2025"
+}

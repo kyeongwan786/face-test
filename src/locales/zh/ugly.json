@@ -1,0 +1,62 @@
+{
+  "title": "丑陋度测量器",
+  "subtitle": "请选择性别，并从以下方式中选择一种开始分析",
+
+  "mode": {
+    "upload": "上传照片",
+    "webcam": "实时分析"
+  },
+  "upload": {
+    "label": "选择照片"
+  },
+
+  "webcam": {
+    "loading": "正在准备摄像头...",
+    "ready": "可以开始分析了",
+    "done": "分析已完成。如需重新尝试，请点击按钮。"
+  },
+
+  "buttons": {
+    "retry": "重新尝试",
+    "save": "保存结果",
+    "kakao": "通过KakaoTalk分享",
+    "analyze": "开始分析"
+  },
+
+  "result": {
+    "label": "丑陋度"
+  },
+
+  "buckets": {
+    "top": { "title": "顶级档位", "sub": "太优秀了！" },
+    "high": { "title": "高级档位", "sub": "看起来不错！" },
+    "mid": { "title": "中间水平", "sub": "还行啦～" },
+    "low": { "title": "相机叹了口气", "sub": "嗯……" },
+    "bottom": { "title": "没关系", "sub": "每个人都有这样的时刻" }
+  },
+
+  "tier": {
+    "challenger": { "name": "最强王者", "desc": "前0.01%" },
+    "grandmaster": { "name": "宗师", "desc": "前0.1%" },
+    "master": { "name": "大师", "desc": "前1%" },
+    "diamond": { "name": "钻石", "desc": "前5%" },
+    "platinum": { "name": "白金", "desc": "前10%" },
+    "gold": { "name": "黄金", "desc": "前25%" },
+    "silver": { "name": "白银", "desc": "前50%" },
+    "bronze": { "name": "青铜", "desc": "剩余人群" }
+  },
+
+  "share": {
+    "title": "我的丑陋度：{{score}}%",
+    "button": "我也要测一测"
+  },
+
+  "error": {
+    "webcamAccess": "无法访问摄像头。",
+    "analysisFailed": "分析图像时发生错误。",
+    "modelLoad": "模型加载失败。",
+    "kakaoInit": "正在初始化 Kakao SDK！",
+    "kakaoFail": "KakaoTalk 分享失败。",
+    "sizeLimit": "图片大于5MB，无法通过KakaoTalk分享。"
+  }
+}
