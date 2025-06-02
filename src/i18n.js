@@ -1,4 +1,3 @@
-// src/i18n.js
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
@@ -13,6 +12,7 @@ import koGender from "./locales/ko/gender.json";
 import koMbti from "./locales/ko/mbti.json";
 import koAge from "./locales/ko/age.json";
 import koContact from "./locales/ko/contact.json";
+import koVibe from "./locales/ko/vibe.json";
 
 // 📁 영어
 import enShared from "./locales/en/shared.json";
@@ -25,6 +25,7 @@ import enGender from "./locales/en/gender.json";
 import enMbti from "./locales/en/mbti.json";
 import enAge from "./locales/en/age.json";
 import enContact from "./locales/en/contact.json";
+import enVibe from "./locales/en/vibe.json";
 
 // 📁 일본어
 import jaShared from "./locales/ja/shared.json";
@@ -37,6 +38,7 @@ import jaGender from "./locales/ja/gender.json";
 import jaMbti from "./locales/ja/mbti.json";
 import jaAge from "./locales/ja/age.json";
 import jaContact from "./locales/ja/contact.json";
+import jaVibe from "./locales/ja/vibe.json";
 
 // 📁 중국어
 import zhShared from "./locales/zh/shared.json";
@@ -49,6 +51,7 @@ import zhGender from "./locales/zh/gender.json";
 import zhMbti from "./locales/zh/mbti.json";
 import zhAge from "./locales/zh/age.json";
 import zhContact from "./locales/zh/contact.json";
+import zhVibe from "./locales/zh/vibe.json";
 
 // 📁 베트남어
 import viShared from "./locales/vi/shared.json";
@@ -61,80 +64,84 @@ import viGender from "./locales/vi/gender.json";
 import viMbti from "./locales/vi/mbti.json";
 import viAge from "./locales/vi/age.json";
 import viContact from "./locales/vi/contact.json";
+import viVibe from "./locales/vi/vibe.json";
 
-i18n
-    .use(initReactI18next)
-    .init({
-        resources: {
-            ko: {
-                shared: koShared,
-                about: koAbout,
-                main: koMain,
-                ugly: koUgly,
-                terms: koTerms,
-                privacy: koPrivacy,
-                gender: koGender,
-                mbti: koMbti,
-                age: koAge,
-                contact: koContact,
-            },
-            en: {
-                shared: enShared,
-                about: enAbout,
-                main: enMain,
-                ugly: enUgly,
-                terms: enTerms,
-                privacy: enPrivacy,
-                gender: enGender,
-                mbti: enMbti,
-                age: enAge,
-                contact: enContact,
-            },
-            ja: {
-                shared: jaShared,
-                about: jaAbout,
-                main: jaMain,
-                ugly: jaUgly,
-                terms: jaTerms,
-                privacy: jaPrivacy,
-                gender: jaGender,
-                mbti: jaMbti,
-                age: jaAge,
-                contact: jaContact,
-            },
-            zh: {
-                shared: zhShared,
-                about: zhAbout,
-                main: zhMain,
-                ugly: zhUgly,
-                terms: zhTerms,
-                privacy: zhPrivacy,
-                gender: zhGender,
-                mbti: zhMbti,
-                age: zhAge,
-                contact: zhContact,
-            },
-            vi: {
-                shared: viShared,
-                about: viAbout,
-                main: viMain,
-                ugly: viUgly,
-                terms: viTerms,
-                privacy: viPrivacy,
-                gender: viGender,
-                mbti: viMbti,
-                age: viAge,
-                contact: viContact,
-            },
+i18n.use(initReactI18next).init({
+    resources: {
+        ko: {
+            shared: koShared,
+            about: koAbout,
+            main: koMain,
+            ugly: koUgly,
+            terms: koTerms,
+            privacy: koPrivacy,
+            gender: koGender,
+            mbti: koMbti,
+            age: koAge,
+            contact: koContact,
+            vibe: koVibe,
         },
-        fallbackLng: "ko",
-        lng: "ko",
-        ns: ["shared", "about", "main", "ugly", "terms", "privacy", "gender", "mbti", "age", "contact"],
-        defaultNS: "shared",
-        interpolation: {
-            escapeValue: false,
+        en: {
+            shared: enShared,
+            about: enAbout,
+            main: enMain,
+            ugly: enUgly,
+            terms: enTerms,
+            privacy: enPrivacy,
+            gender: enGender,
+            mbti: enMbti,
+            age: enAge,
+            contact: enContact,
+            vibe: enVibe,
         },
-        returnObjects: true,
-    });
+        ja: {
+            shared: jaShared,
+            about: jaAbout,
+            main: jaMain,
+            ugly: jaUgly,
+            terms: jaTerms,
+            privacy: jaPrivacy,
+            gender: jaGender,
+            mbti: jaMbti,
+            age: jaAge,
+            contact: jaContact,
+            vibe: jaVibe,
+        },
+        zh: {
+            shared: zhShared,
+            about: zhAbout,
+            main: zhMain,
+            ugly: zhUgly,
+            terms: zhTerms,
+            privacy: zhPrivacy,
+            gender: zhGender,
+            mbti: zhMbti,
+            age: zhAge,
+            contact: zhContact,
+            vibe: zhVibe,
+        },
+        vi: {
+            shared: viShared,
+            about: viAbout,
+            main: viMain,
+            ugly: viUgly,
+            terms: viTerms,
+            privacy: viPrivacy,
+            gender: viGender,
+            mbti: viMbti,
+            age: viAge,
+            contact: viContact,
+            vibe: viVibe,
+        },
+    },
+    fallbackLng: "ko",
+    lng: "ko",
+    ns: ["shared", "about", "main", "ugly", "terms", "privacy", "gender", "mbti", "age", "contact", "vibe"],
+    defaultNS: "shared",
+    interpolation: {
+        escapeValue: false,
+    },
+    returnObjects: true,
+});
 
 export default i18n;

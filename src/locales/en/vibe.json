@@ -1,0 +1,125 @@
+{
+  "title": "First Impression Test",
+  "subtitle": "Upload a photo or use live video to analyze your first impression",
+  "uploadButton": "Upload Photo",
+  "webcamButton": "Analyze in Real Time",
+  "uploadLabel": "Upload Photo",
+  "startAnalysis": "Start Analysis",
+  "webcamOverlay": "Preparing webcam...",
+  "analyzeNow": "🔍 Start Analysis",
+  "resultLabel": "\"{{label}}\"",
+  "retry": "Retry",
+  "shareKakao": "Share on Kakao",
+  "contextTitle": "👁️ From which perspective should we analyze?",
+  "contextDesc": "Choose a situation or perspective that may affect your first impression!",
+  "altContextLabel": "👀 Try analyzing from other perspectives too!",
+  "contexts": {
+    "default": "Default",
+    "interviewer": "Interviewer",
+    "date": "Date",
+    "police": "Police",
+    "dog": "Neighborhood Dog",
+    "kid": "Elementary Student"
+  },
+  "fail": "Image analysis failed",
+
+  "smart": {
+    "label": "Smart Vibe",
+    "keywords": ["Intelligent", "Calm", "Logical", "Intellectual"],
+    "defaultComment": "Even without talking much, you seem thoughtful. You give off an organized and observant vibe.",
+    "interviewerComment": "You seem like someone who would submit a well-organized and logical resume.",
+    "dateComment": "Conversations might lean toward books or psychology. You’d even respond seriously to a joke.",
+    "policeComment": "You seem well-informed and civic-minded, possibly someone who argues clearly and reasonably.",
+    "dogComment": "A dog might hesitate at first, then feel at ease and approach you calmly.",
+    "kidComment": "A child might ask, ‘Are you a teacher?’ You give off a serious and respectful aura.",
+    "description": "You give off the charm of a quiet library.  \nYou don’t have to be loud to earn trust, and your calm voice draws people in.  \nSome might think you're too serious, but that's proof of your depth."
+  },
+  "cold": {
+    "label": "Chilly Charm",
+    "keywords": ["Elegant", "Aloof", "Chic", "Mysterious"],
+    "defaultComment": "You seem distant at first glance—but that's what makes you stand out even more.",
+    "interviewerComment": "You appear to be someone who communicates your ideas clearly and firmly.",
+    "dateComment": "You're hard to read, which makes people curious. That mysterious aura is your charm.",
+    "policeComment": "Calm and composed eyes—like someone who’d write a perfect statement.",
+    "dogComment": "Dogs might not approach first, but they'd stare curiously from a distance.",
+    "kidComment": "Kids might hesitate to approach, but get startled (in a good way) if they do.",
+    "description": "Behind your icy impression lies a fiery charisma.  \nYour unreadable nature may seem cold, but it draws people in with mystery.  \nYou’re the type who can say everything with just a look."
+  },
+  "warm": {
+    "label": "Warm Vibe",
+    "keywords": ["Friendly", "Gentle", "Considerate", "Communicative"],
+    "defaultComment": "You look like someone who listens well and continues conversations smoothly.",
+    "interviewerComment": "You seem like a team player who can create a warm atmosphere.",
+    "dateComment": "With you, even awkward silences would feel safe. You radiate warmth.",
+    "policeComment": "You look cautious and polite—someone who would say ‘Sorry’ even for small mistakes.",
+    "dogComment": "A dog would probably stick close to your leg and feel comfortable.",
+    "kidComment": "Kids would shout ‘Let’s play!’ You give off cozy and comforting vibes.",
+    "description": "You carry a warmth that can be felt without words.  \nYour soft expression and calm eyes ease the tension of those around you.  \nYou're the kind of person who brings peace just by being there."
+  },
+  "funny": {
+    "label": "Playful Energy",
+    "keywords": ["Witty", "Energetic", "Mood Maker", "Laughter Bringer"],
+    "defaultComment": "You give off an impression of someone surrounded by laughter—mischievous even without speaking.",
+    "interviewerComment": "It feels like an audition for a comedy show. Such vivid energy!",
+    "dateComment": "You're likely to break the ice right away. No room for awkwardness!",
+    "policeComment": "Even in serious situations, you can keep the mood light. Impressive!",
+    "dogComment": "A dog would wag its tail and run toward you. A perfect walking buddy!",
+    "kidComment": "Kids would come running and want to play with you right away!",
+    "description": "You’re someone who brings sparkle to the air like soda bubbles.  \nYour presence ensures there’s always laughter and conversation.  \nYour playfulness is both your charm and shield. Sometimes, sprinkle in a little seriousness too!"
+  },
+  "confident": {
+    "label": "Confidence Overload",
+    "keywords": ["Assertive", "Charismatic", "Leader", "Initiative"],
+    "defaultComment": "Your posture and gaze show drive. You lead with energy.",
+    "interviewerComment": "You seem more prepared than the interviewer. A natural leader.",
+    "dateComment": "You steal the initiative even when others try to lead. That’s your charm.",
+    "policeComment": "You speak firmly but not emotionally—decisive and clear.",
+    "dogComment": "Even dogs would follow you with respect. You give off leadership.",
+    "kidComment": "Kids would guess you were class president. That aura!",
+    "description": "You’re the rare type with charisma and composure.  \nPeople want to rely on you, and your presence holds the room.  \nToo strong at times? Add a bit of humor and empathy to become unstoppable."
+  },
+  "soft": {
+    "label": "Gentle Aura",
+    "keywords": ["Mild", "Sweet", "Simple", "Comforting"],
+    "defaultComment": "Even without words, you seem to say ‘It’s okay~’. Just looking at you is soothing.",
+    "interviewerComment": "You seem like someone who mediates conflict well. Soft but strong.",
+    "dateComment": "Calm and cozy vibes make you irresistibly charming.",
+    "policeComment": "You look polite and diligent. Likely to say ‘You must be busy’ first.",
+    "dogComment": "A dog would come up to you with no hesitation. You look kind-hearted.",
+    "kidComment": "Kids would grab your sleeve without fear. You radiate kindness.",
+    "description": "You often hear ‘You look easygoing’.  \nYou open people’s hearts naturally without needing to push.  \nBut remember—it’s okay to be sharp when needed for your own sake."
+  },
+  "sharp": {
+    "label": "Sharp Presence",
+    "keywords": ["Focused", "Organized", "Logical", "Critical Thinker"],
+    "defaultComment": "Your eyes shoot lasers. You look fast and precise.",
+    "interviewerComment": "You're the type to ask sharp questions and give perfect answers.",
+    "dateComment": "One slip-up in words and you’d probably catch it. Tense but exciting!",
+    "policeComment": "Quick judgment and analytical skills. You keep others alert.",
+    "dogComment": "A dog would approach with caution. You look swift and sharp.",
+    "kidComment": "Kids might be a bit nervous but secretly admire you.",
+    "description": "You give off the image of someone with great focus and leadership.  \nYou instantly grasp the situation and persuade others with your gaze.  \nToo sharp? Add a bit of humor for perfect balance."
+  },
+  "stylish": {
+    "label": "Stylish Look",
+    "keywords": ["Trendy", "Sensible", "Aesthetic", "Well-Groomed"],
+    "defaultComment": "From your look and expression, you seem fashion-savvy.",
+    "interviewerComment": "You give off the vibe of someone who’d give a polished presentation.",
+    "dateComment": "Your fashion catches the eye before your words do. Instagram-worthy!",
+    "policeComment": "Maybe not a suspect—but definitely main character energy.",
+    "dogComment": "Even dogs would double-take. You’ve got that hip vibe.",
+    "kidComment": "Kids would ask, ‘Are you a celebrity?’ That’s your presence.",
+    "description": "You’re stylish not only in looks but in your entire vibe.  \nEvery detail reflects care and personality, inspiring others.  \nAdd inner depth, and you’re the complete package."
+  },
+  "hardy": {
+    "label": "Tough Impression",
+    "keywords": ["Determined", "Persistent", "Solid", "Resilient"],
+    "defaultComment": "Your gaze is steady. You seem grounded and unshakable.",
+    "interviewerComment": "You give the impression of someone who perseveres even in hard times.",
+    "dateComment": "More strength than vulnerability. Respect over protectiveness.",
+    "policeComment": "Clearly dependable and responsible. Someone to count on.",
+    "dogComment": "Cautious dogs would approach slowly—but once they trust you, fully loyal.",
+    "kidComment": "Kids might say ‘You look scary’ but grow to like you quickly.",
+    "description": "You earn trust through actions more than words.  \nLike a deep-rooted tree, you give people a sense of security.  \nYour strength becomes a safe shelter for others."
+  }
+}

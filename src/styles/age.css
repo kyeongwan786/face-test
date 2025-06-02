@@ -360,3 +360,21 @@ html, body {
 .u-hidden {
     display: none !important;
 }
+/* 모달 닫기 버튼 */
+.modal-close-button {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    background: transparent;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 10;
+    line-height: 1;
+    color: #888;
+    transition: color 0.2s ease-in-out;
+}
+
+.modal-close-button:hover {
+    color: #111;
+}

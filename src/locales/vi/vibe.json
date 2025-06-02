@@ -1,0 +1,126 @@
+
+{
+  "title": "Bài kiểm tra ấn tượng đầu tiên",
+  "subtitle": "Tải ảnh lên hoặc sử dụng webcam để phân tích ấn tượng đầu tiên của bạn",
+  "uploadButton": "Tải ảnh lên",
+  "webcamButton": "Phân tích trực tiếp",
+  "uploadLabel": "Chọn ảnh",
+  "startAnalysis": "Bắt đầu phân tích",
+  "webcamOverlay": "Đang chuẩn bị webcam...",
+  "analyzeNow": "🔍 Phân tích ngay",
+  "resultLabel": "\"{{label}}\"",
+  "retry": "Thử lại",
+  "shareKakao": "Chia sẻ qua Kakao",
+  "contextTitle": "👁️ Bạn muốn xem kết quả theo góc nhìn nào?",
+  "contextDesc": "Chọn tình huống hoặc góc nhìn khác nhau để xem ấn tượng đầu tiên thay đổi ra sao!",
+  "altContextLabel": "👀 Hãy thử xem ấn tượng của bạn trong các hoàn cảnh khác nhau!",
+  "contexts": {
+    "default": "Mặc định",
+    "interviewer": "Người phỏng vấn",
+    "date": "Buổi hẹn hò",
+    "police": "Cảnh sát",
+    "dog": "Chó hàng xóm",
+    "kid": "Trẻ nhỏ"
+  },
+  "fail": "Phân tích hình ảnh thất bại",
+
+  "smart": {
+    "label": "Ấn tượng thông minh",
+    "keywords": ["thông minh", "bình tĩnh", "logic", "trí tuệ"],
+    "defaultComment": "Dù không nói nhiều nhưng trông bạn rất sâu sắc và tinh tế.",
+    "interviewerComment": "Có vẻ bạn sẽ viết một bản CV rất logic và chỉnh chu.",
+    "dateComment": "Có thể sẽ nói về sách hoặc tâm lý học trong buổi hẹn.",
+    "policeComment": "Có vẻ bạn hiểu luật và cư xử công dân rất tốt.",
+    "dogComment": "Chó ban đầu hơi do dự nhưng sau sẽ đến gần bạn.",
+    "kidComment": "Trẻ con có thể hỏi bạn có phải là thầy/cô giáo không!",
+    "description": "Bạn mang đến cảm giác giống như một thư viện yên tĩnh.\nKhông cần nói to cũng khiến người khác tin tưởng.\nSự nghiêm túc của bạn chính là minh chứng cho chiều sâu của bạn."
+  },
+  "cold": {
+    "label": "Ấn tượng lạnh lùng",
+    "keywords": ["lạnh lùng", "xa cách", "bí ẩn", "sang trọng"],
+    "defaultComment": "Bạn tạo cảm giác khó tiếp cận nhưng điều đó lại rất thu hút.",
+    "interviewerComment": "Bạn có vẻ rất rõ ràng và dứt khoát trong câu trả lời.",
+    "dateComment": "Không dễ cười khiến người khác càng tò mò và bị cuốn hút.",
+    "policeComment": "Ánh mắt sắc bén, có thể viết bản tường trình không sai chữ nào.",
+    "dogComment": "Chó sẽ nhìn bạn từ xa trước khi dám lại gần.",
+    "kidComment": "Trẻ nhỏ có thể hơi sợ nhưng cũng tò mò về bạn.",
+    "description": "Bạn giống như một viên băng ẩn chứa ngọn lửa bên trong.\nThái độ xa cách khiến bạn trở nên bí ẩn và cuốn hút.\nBạn có thể nói nhiều điều chỉ bằng ánh mắt."
+  },
+  "warm": {
+    "label": "Ấn tượng ấm áp",
+    "keywords": ["thân thiện", "dịu dàng", "quan tâm", "giao tiếp tốt"],
+    "defaultComment": "Trông bạn là người dễ tiếp cận, dễ trò chuyện.",
+    "interviewerComment": "Bạn có vẻ là người chăm lo cho đồng đội và tạo không khí tích cực.",
+    "dateComment": "Ở bên bạn khiến người ta cảm thấy an tâm và nhẹ nhàng.",
+    "policeComment": "Cẩn thận và lịch sự, có vẻ sẽ chủ động xin lỗi trước khi bị hỏi.",
+    "dogComment": "Chó sẽ lại gần và nằm bên chân bạn một cách tự nhiên.",
+    "kidComment": "Trẻ con sẽ chạy lại và rủ bạn chơi cùng!",
+    "description": "Bạn có một nguồn năng lượng ấm áp không cần nói ra.\nChỉ cần biểu cảm và ánh mắt cũng khiến người khác thấy nhẹ lòng.\nBạn là người khiến người ta thấy yên tâm khi ở cạnh."
+  },
+  "funny": {
+    "label": "Ấn tượng vui nhộn",
+    "keywords": ["hài hước", "năng động", "tạo không khí", "khiến người khác cười"],
+    "defaultComment": "Trông bạn rất vui tính và mang đến tiếng cười cho mọi người.",
+    "interviewerComment": "Trông như bạn đang tham gia một buổi ghi hình show hơn là phỏng vấn!",
+    "dateComment": "Ngay từ đầu đã biết cách khiến đối phương bật cười.",
+    "policeComment": "Ngay cả trong tình huống nghiêm túc bạn vẫn khiến không khí nhẹ đi.",
+    "dogComment": "Chó sẽ chạy đến vẫy đuôi với bạn ngay!",
+    "kidComment": "Trẻ nhỏ sẽ kéo bạn chơi cùng mà không cần ngần ngại!",
+    "description": "Bạn là người mang lại năng lượng như nước ngọt có ga.\nBầu không khí luôn sôi động khi có bạn.\nHài hước là thế mạnh nhưng đôi khi hãy cho thấy mặt nghiêm túc của bạn nữa nhé."
+  },
+  "confident": {
+    "label": "Ấn tượng tự tin",
+    "keywords": ["tự tin", "lãnh đạo", "quyết đoán", "chủ động"],
+    "defaultComment": "Chỉ cần nhìn là thấy bạn có phong thái người dẫn đầu.",
+    "interviewerComment": "Bạn có vẻ như đã chuẩn bị rất kỹ càng, hơn cả người phỏng vấn.",
+    "dateComment": "Bạn dễ dàng nắm quyền chủ động trong cuộc trò chuyện.",
+    "policeComment": "Bạn nói rõ ràng, không cảm xúc nhưng rất dứt khoát.",
+    "dogComment": "Chó cũng sẽ đi theo bạn như thể bạn là thủ lĩnh.",
+    "kidComment": "Trẻ con sẽ nói: 'Người này chắc là lớp trưởng ấy'.",
+    "description": "Bạn là sự kết hợp giữa khí chất và sự vững vàng.\nBạn tạo ra sự tin tưởng mạnh mẽ ở bất cứ nơi đâu.\nThêm chút hài hước và thấu cảm nữa là bạn hoàn hảo."
+  },
+  "soft": {
+    "label": "Ấn tượng dịu dàng",
+    "keywords": ["ôn hòa", "hiền hậu", "mộc mạc", "thoải mái"],
+    "defaultComment": "Chỉ nhìn thôi cũng thấy bạn rất dễ gần và an toàn.",
+    "interviewerComment": "Bạn phù hợp để làm người hòa giải trong các tình huống căng thẳng.",
+    "dateComment": "Bạn tạo ra sự yên tĩnh dễ chịu khiến người khác bị thu hút.",
+    "policeComment": "Bạn nhìn rất ngoan hiền, chắc chắn sẽ nói 'cảm ơn' trước cả khi hỏi.",
+    "dogComment": "Chó sẽ đến gần bạn không chút sợ hãi.",
+    "kidComment": "Trẻ con sẽ nắm tay bạn hoặc kéo áo bạn chơi cùng.",
+    "description": "Bạn là người khiến người khác thấy yên bình khi ở cạnh.\nBạn có thể khiến người khác mở lòng một cách tự nhiên.\nNhưng đôi khi hãy nói thẳng để bảo vệ bản thân nữa nhé."
+  },
+  "sharp": {
+    "label": "Ấn tượng sắc sảo",
+    "keywords": ["tập trung", "rõ ràng", "tư duy logic", "phân tích tốt"],
+    "defaultComment": "Ánh mắt bạn như có tia laser, rất nhanh nhạy và chính xác.",
+    "interviewerComment": "Bạn chắc chắn là người hỏi và trả lời không để sót chi tiết nào.",
+    "dateComment": "Một câu nói sai cũng có thể bị bạn phát hiện ngay, khá hồi hộp.",
+    "policeComment": "Khả năng phân tích và phán đoán rất tốt, khiến người khác lo lắng.",
+    "dogComment": "Chó sẽ quan sát kỹ trước khi đến gần bạn.",
+    "kidComment": "Trẻ con hơi sợ bạn nhưng lại có phần kính trọng.",
+    "description": "Bạn nổi bật với tư duy phân tích và độ tập trung cao.\nBạn nắm bắt điểm chính cực nhanh và thuyết phục người khác chỉ bằng ánh nhìn.\nThêm chút hài hước sẽ làm bạn càng thêm hoàn hảo."
+  },
+  "stylish": {
+    "label": "Ấn tượng thời thượng",
+    "keywords": ["có gu", "theo kịp xu hướng", "tinh tế", "biết chăm sóc bản thân"],
+    "defaultComment": "Từ phong cách đến biểu cảm, bạn toát lên sự sành điệu.",
+    "interviewerComment": "Mong chờ một bài giới thiệu cực kỳ chỉn chu từ bạn.",
+    "dateComment": "Thay vì nội dung trò chuyện, gu thời trang của bạn gây chú ý trước.",
+    "policeComment": "Không phải nghi phạm nhưng lại rất nổi bật như diễn viên chính.",
+    "dogComment": "Chó sẽ nhìn bạn một lúc rồi ngoảnh lại nhìn thêm lần nữa.",
+    "kidComment": "Trẻ con sẽ hỏi: 'Người này là người nổi tiếng à?'",
+    "description": "Bạn không chỉ thời trang ở vẻ ngoài mà còn toát ra từ khí chất.\nTừng chi tiết bạn thể hiện đều khiến người khác muốn học hỏi.\nHãy kết hợp cả vẻ đẹp nội tâm, bạn sẽ là hình mẫu lý tưởng."
+  },
+  "hardy": {
+    "label": "Ấn tượng mạnh mẽ",
+    "keywords": ["ý chí", "kiên trì", "trầm ổn", "bền bỉ"],
+    "defaultComment": "Ánh mắt cứng rắn, cảm giác không dễ bị khuất phục.",
+    "interviewerComment": "Bạn là kiểu người sẽ bền bỉ vượt qua khó khăn.",
+    "dateComment": "Thể hiện sự mạnh mẽ hơn là yếu đuối, gây cảm giác nể phục.",
+    "policeComment": "Chỉ nhìn là biết bạn có trách nhiệm và đáng tin cậy.",
+    "dogComment": "Chó sẽ cẩn thận tiếp cận bạn nhưng nếu thân rồi sẽ cực kỳ trung thành.",
+    "kidComment": "Ban đầu trẻ nhỏ có thể nói 'Chú ấy trông đáng sợ', nhưng sẽ sớm quý mến bạn.",
+    "description": "Bạn là người tạo được niềm tin bằng hành động và thái độ hơn là lời nói.\nBạn vững chắc như một cái cây có rễ sâu.\nSự kiên cường của bạn là chỗ dựa cho những người xung quanh."
+  }
+}

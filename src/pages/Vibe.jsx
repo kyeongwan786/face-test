@@ -1,23 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
 import html2canvas from "html2canvas";
+import { useTranslation } from "react-i18next";
 import { loadVibeModel, runVibeEstimation } from "../utils/runVibeModel";
-import { vibePresets } from "../utils/vibePresets";
 import GenderSelector from "../components/GenderSelector";
 import LoadingSpinner from "../components/LoadingSpinner";
+import LanguageSwitcher from "../components/LanguageSwitcher";
 import "../styles/common.css";
 import "../styles/vibe.css";
 
 const CONTEXTS = ["default", "interviewer", "date", "police", "dog", "kid"];
-const CONTEXT_LABELS = {
-    default: "기본",
-    interviewer: "면접관",
-    date: "소개팅",
-    police: "경찰관",
-    dog: "동네 강아지",
-    kid: "초등학생"
-};
 
 export default function Vibe() {
+    const { t } = useTranslation("vibe");
     const [gender, setGender] = useState("male");
     const [useWebcam, setUseWebcam] = useState(false);
     const [image, setImage] = useState(null);
@@ -30,7 +24,6 @@ export default function Vibe() {
     const [showScrollButton, setShowScrollButton] = useState(false);
 
     const videoRef = useRef(null);
-    const modalRef = useRef(null);
     const webcamWrapperRef = useRef(null);
     const inputBoxRef = useRef(null);
 
@@ -40,11 +33,17 @@ export default function Vibe() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    const scrollToInput = () => inputBoxRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    const scrollToInput = () => {
+        inputBoxRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    };
 
     const handleModeClick = (webcam) => {
         setUseWebcam(webcam);
-        setTimeout(() => webcam ? webcamWrapperRef.current?.scrollIntoView({ behavior: "smooth", block: "center" }) : scrollToInput(), 100);
+        setTimeout(() => {
+            webcam
+                ? webcamWrapperRef.current?.scrollIntoView({ behavior: "smooth", block: "center" })
+                : scrollToInput();
+        }, 100);
     };
 
     useEffect(() => {
@@ -62,11 +61,11 @@ export default function Vibe() {
                     }
                 })
                 .catch((err) => {
-                    alert("웹캠 접근에 실패했습니다.");
+                    alert(t("fail"));
                     console.error(err);
                 });
         }
-    }, [useWebcam]);
+    }, [useWebcam, t]);
 
     const captureFromWebcam = async () => {
         if (!videoRef.current) return;
@@ -86,12 +85,10 @@ export default function Vibe() {
             await img.decode();
             const result = await runVibeEstimation(img, gender);
             const label = result.toLowerCase().trim();
-            const preset = vibePresets[label];
-            if (!preset) throw new Error("Unknown label: " + result);
-            setVibe({ label: preset.label, ...preset });
+            setVibe({ label });
             setModalOpen(true);
         } catch (err) {
-            alert("이미지 분석 실패");
+            alert(t("fail"));
             console.error(err);
         } finally {
             setLoading(false);
@@ -113,13 +110,11 @@ export default function Vibe() {
                 img.onload = async () => {
                     const result = await runVibeEstimation(img, gender);
                     const label = result.toLowerCase().trim();
-                    const preset = vibePresets[label];
-                    if (!preset) throw new Error("Unknown label: " + result);
-                    setVibe({ label: preset.label, ...preset });
+                    setVibe({ label });
                     setModalOpen(true);
                 };
             } catch (err) {
-                alert("모델 로딩 실패");
+                alert(t("fail"));
                 console.error(err);
             } finally {
                 setLoading(false);
@@ -139,47 +134,51 @@ export default function Vibe() {
 
     const getContextualComment = () => {
         if (!vibe) return "";
-        switch (context) {
-            case "interviewer": return `👔 면접관 시선\n${vibe.interviewerComment}`;
-            case "date": return `💘 소개팅 첫마디\n${vibe.dateComment}`;
-            case "police": return `👮 경찰관의 판단\n${vibe.policeComment}`;
-            case "dog": return `🐶 동네 강아지 반응\n${vibe.dogComment}`;
-            case "kid": return `🎒 초등학생 눈높이\n${vibe.kidComment}`;
-            default: return `👁️ 첫인상\n${vibe.defaultComment}`;
-        }
+        return t(`${vibe.label}.${context}Comment`);
     };
 
     return (
         <div className="page">
             <div className="container">
+                <LanguageSwitcher />
                 <header>
-                    <h1 className="section-title">첫인상 테스트</h1>
-                    <p className="section-sub">사진이나 실시간 영상으로 나의 첫인상을 분석해보세요</p>
+                    <h1 className="section-title">{t("title")}</h1>
+                    <p className="section-sub">{t("subtitle")}</p>
                 </header>
 
                 <GenderSelector gender={gender} setGender={setGender} />
 
                 <div className="context-section">
-                    <p className="context-title">👁️ 결과를 어떤 시선으로 볼까요?</p>
-                    <p className="context-desc">상황·관점에 따라 달라지는 첫인상을 선택하세요!</p>
-
+                    <p className="context-title">{t("contextTitle")}</p>
+                    <p className="context-desc">{t("contextDesc")}</p>
                     <div className="context-switcher">
                         {CONTEXTS.map((key) => (
-                            <button key={key} className={context === key ? "context-button active" : "context-button"} onClick={() => { setContext(key); scrollToInput(); }}>
-                                {CONTEXT_LABELS[key]}
+                            <button
+                                key={key}
+                                className={context === key ? "context-button active" : "context-button"}
+                                onClick={() => {
+                                    setContext(key);
+                                    scrollToInput();
+                                }}
+                            >
+                                {t(`contexts.${key}`)}
                             </button>
                         ))}
                     </div>
                 </div>
 
                 <div className="mode-toggle-buttons">
-                    <button className={!useWebcam ? "mode-button active" : "mode-button"} onClick={() => handleModeClick(false)}>사진 업로드하기</button>
-                    <button className={useWebcam ? "mode-button active" : "mode-button"} onClick={() => handleModeClick(true)}>실시간으로 분석하기</button>
+                    <button className={!useWebcam ? "mode-button active" : "mode-button"} onClick={() => handleModeClick(false)}>
+                        {t("uploadButton")}
+                    </button>
+                    <button className={useWebcam ? "mode-button active" : "mode-button"} onClick={() => handleModeClick(true)}>
+                        {t("webcamButton")}
+                    </button>
                 </div>
 
                 {!useWebcam && (
                     <label className="upload-box" ref={inputBoxRef}>
-                        <span className="upload-label">사진 올리기</span>
+                        <span className="upload-label">{t("uploadLabel")}</span>
                         <input type="file" accept="image/*" hidden onChange={handleUpload} />
                     </label>
                 )}
@@ -187,34 +186,51 @@ export default function Vibe() {
                 {useWebcam && (
                     <div className="webcam-wrapper" ref={webcamWrapperRef}>
                         <video ref={videoRef} autoPlay muted playsInline className="video-frame" />
-                        <div className="webcam-overlay-text">{webcamReady ? "분석을 시작하세요" : "웹캠 준비 중..."}</div>
-                        {webcamReady && <button className="capture-button" onClick={captureFromWebcam}>분석 시작</button>}
+                        <div className="webcam-overlay-text">
+                            {webcamReady ? t("startAnalysis") : t("webcamOverlay")}
+                        </div>
+                        {webcamReady && (
+                            <button className="capture-button" onClick={captureFromWebcam}>
+                                {t("startAnalysis")}
+                            </button>
+                        )}
                     </div>
                 )}
 
                 {loading && <LoadingSpinner />}
             </div>
 
-            {showScrollButton && <button className="go-analyze-button" onClick={scrollToInput}>🔍 분석하러 가기</button>}
+            {showScrollButton && (
+                <button className="go-analyze-button" onClick={scrollToInput}>
+                    {t("analyzeNow")}
+                </button>
+            )}
 
             {modalOpen && vibe && (
-                <div className="overlay-blur">
-                    <div className="result-modal" ref={modalRef}>
+                <div className="overlay-blur" onClick={(e) => e.target.classList.contains("overlay-blur") && reset()}>
+                    <div className="result-modal">
+                        <button className="modal-close-button" onClick={reset}>×</button>
                         <img src={image} alt="user" className="modal-photo-circle" />
-                        <h2 className="vibe-label">“{vibe.label}”</h2>
+                        <h2 className="vibe-label">{t("resultLabel", { label: t(`${vibe.label}.label`) })}</h2>
                         <p className="vibe-comment">{getContextualComment()}</p>
-                        {vibe.description && <p className="vibe-description short-text">{vibe.description}</p>}
-                        {vibe.keywords && <div className="keyword-list">{vibe.keywords.map((k, i) => <span key={i} className="tag">#{k}</span>)}</div>}
+                        <p className="vibe-description short-text">{t(`${vibe.label}.description`)}</p>
+                        <div className="keyword-list">
+                            {[0, 1, 2, 3].map((i) => (
+                                <span key={i} className="tag">#{t(`${vibe.label}.keywords.${i}`)}</span>
+                            ))}
+                        </div>
                         <div className="modal-buttons">
-                            <button onClick={reset}>다시하기</button>
-                            <button onClick={() => alert("카카오 공유 기능은 아직 구현되지 않았습니다.")}>카카오 공유</button>
+                            <button onClick={reset}>{t("retry")}</button>
+                            <button onClick={() => alert("카카오 공유 기능은 아직 구현되지 않았습니다.")}>
+                                {t("shareKakao")}
+                            </button>
                         </div>
                         <div className="alt-context-button">
-                            <p className="alt-context-label">👀 다른 시선에서도 첫인상 테스트해보세요!</p>
+                            <p className="alt-context-label">{t("altContextLabel")}</p>
                             <div className="context-switcher">
                                 {CONTEXTS.filter((k) => k !== "default").map((key) => (
                                     <button key={key} className={context === key ? "context-button active" : "context-button"} onClick={() => setContext(key)}>
-                                        {CONTEXT_LABELS[key]}
+                                        {t(`contexts.${key}`)}
                                     </button>
                                 ))}
                             </div>

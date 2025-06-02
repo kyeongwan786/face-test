@@ -122,8 +122,11 @@ export default function AgeDetector() {
             <LanguageSwitcher />
 
             {modal && (
-                <div className="overlay-blur">
+                <div className="overlay-blur" onClick={(e) => {
+                    if (e.target.classList.contains("overlay-blur")) reset();
+                }}>
                     <div className="result-modal age-modal" ref={modalRef}>
+                        <button className="modal-close-button" onClick={reset}>x</button>
                         <img className="modal-photo-circle" src={image} alt="face" />
                         <h2 className="age-head">
                             <span className="ai-gradient">{t("ageLabel")}</span><br />
