@@ -12,6 +12,7 @@ export default function Main() {
     const { t } = useTranslation("main");
 
     useEffect(() => {
+        // 카카오 애드핏 스크립트 삽입 (한 번만)
         const adScript = document.createElement("script");
         adScript.src = "//t1.daumcdn.net/kas/static/ba.min.js";
         adScript.async = true;
@@ -20,9 +21,6 @@ export default function Main() {
 
     return (
         <div>
-
-
-
             {/* Hero Section */}
             <header className="hero">
                 <h1>{t("hero.title")}</h1>
@@ -57,13 +55,19 @@ export default function Main() {
                 ))}
             </section>
 
+            {/* 방문자 수 카운터 */}
             <VisitorCounter />
 
-            {/* 광고 */}
+            {/* 카카오 애드핏 광고 삽입 */}
             <div style={{ textAlign: "center", margin: "2.5rem auto" }}>
                 <ins
                     className="kakao_ad_area"
-                    style={{ display: "none" }}
+                    style={{
+                        display: "block",
+                        width: "100%",
+                        maxWidth: "300px",
+                        margin: "0 auto"
+                    }}
                     data-ad-unit="DAN-HnW0xoFCrjMWyDYg"
                     data-ad-width="250"
                     data-ad-height="250"

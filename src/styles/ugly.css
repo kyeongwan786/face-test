@@ -222,3 +222,35 @@ header h1 {
     0% { opacity: 0; }
     100% { opacity: 1; }
 }
+/* 광고 영역 */
+.ad-pc-banner {
+    display: none;
+    text-align: center;
+    margin: 1.5rem 0;
+}
+.ad-mobile-fixed {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background: #fff;
+    z-index: 999;
+    padding: 0.5rem 0;
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* PC용 광고 보이기 */
+@media (min-width: 768px) {
+    .ad-pc-banner {
+        display: block;
+    }
+}
+
+/* 모바일용 광고 보이기 */
+@media (max-width: 767px) {
+    .ad-mobile-fixed {
+        display: block;
+    }
+}
+

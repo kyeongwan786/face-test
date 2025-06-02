@@ -1,4 +1,4 @@
-// ✅ 최종 수정본: 저장 기능 제거, 다시하기 & 카카오 공유만 유지
+// ✅ 최종 수정본: 저장 기능 제거, 다시하기 & 카카오 공유만 유지 + 광고 삽입 위치 수정
 import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import html2canvas from "html2canvas";
@@ -42,6 +42,11 @@ export default function UglyMeter() {
             s.onload = () => window.Kakao.init("d3f8af96c1e986cbfb2216380f1ea8e7");
             document.head.appendChild(s);
         }
+
+        const adScript = document.createElement("script");
+        adScript.src = "//t1.daumcdn.net/kas/static/ba.min.js";
+        adScript.async = true;
+        document.body.appendChild(adScript);
     }, []);
 
     useEffect(() => {
@@ -195,34 +200,15 @@ export default function UglyMeter() {
                 <LanguageSwitcher />
             </div>
 
-            {modalOpen && (
-                <div className="overlay-blur">
-                    <div className="result-modal" ref={modalRef} style={{ "--tier-color": tier?.color }}>
-                        <img src={image} alt="uploaded" className="modal-photo-circle" />
-                        <div className="tier-badge-wrapper">
-                            <img src={`/rank/${tier?.file}`} alt={tier?.name} />
-                        </div>
-                        <p className="tier-name">{tier?.name}</p>
-                        <p className="tier-desc">{tier?.desc}</p>
-                        <div className="modal-score">
-                            <span className="score-label">{t("result.label")}</span>
-                            <span className="modal-percent">{score}%</span>
-                        </div>
-                        <p className="modal-title">{comment?.title}</p>
-                        <p className="modal-sub">{comment?.sub}</p>
-                        <div className="modal-buttons">
-                            <button className="btn-retry" onClick={reset}>{t("buttons.retry")}</button>
-                            <button className="btn-kakao" onClick={shareKakao}>{t("buttons.kakao")}</button>
-                        </div>
-                    </div>
-                </div>
-            )}
-
             <div className="container">
                 <header>
                     <h1>{t("title")}</h1>
                     <p className="subtitle">{t("subtitle")}</p>
                 </header>
+
+                <div className="ad-pc-banner">
+                    <ins className="kakao_ad_area" style={{ display: "block", width: "100%", maxWidth: "300px", margin: "1rem auto" }} data-ad-unit="DAN-2VAMRfWJcabygl9x" data-ad-width="300" data-ad-height="250"></ins>
+                </div>
 
                 <GenderSelector gender={gender} setGender={setGender} />
 
@@ -280,6 +266,33 @@ export default function UglyMeter() {
                     )
                 )}
             </div>
+
+            <div className="ad-mobile-fixed">
+                <ins className="kakao_ad_area" style={{ display: "block", width: "320px", height: "50px" }} data-ad-unit="DAN-vq03WNxmpMBMVvd5" data-ad-width="320" data-ad-height="50"></ins>
+            </div>
+
+            {modalOpen && (
+                <div className="overlay-blur">
+                    <div className="result-modal" ref={modalRef} style={{ "--tier-color": tier?.color }}>
+                        <img src={image} alt="uploaded" className="modal-photo-circle" />
+                        <div className="tier-badge-wrapper">
+                            <img src={`/rank/${tier?.file}`} alt={tier?.name} />
+                        </div>
+                        <p className="tier-name">{tier?.name}</p>
+                        <p className="tier-desc">{tier?.desc}</p>
+                        <div className="modal-score">
+                            <span className="score-label">{t("result.label")}</span>
+                            <span className="modal-percent">{score}%</span>
+                        </div>
+                        <p className="modal-title">{comment?.title}</p>
+                        <p className="modal-sub">{comment?.sub}</p>
+                        <div className="modal-buttons">
+                            <button className="btn-retry" onClick={reset}>{t("buttons.retry")}</button>
+                            <button className="btn-kakao" onClick={shareKakao}>{t("buttons.kakao")}</button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
