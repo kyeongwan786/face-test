@@ -1,4 +1,4 @@
-// MBTIByFace.jsx - 다국어(i18n) 적용된 전체 코드
+// ✅ 수정: html2canvas, dataUrl, 저장 기능 제거 + X버튼 추가 + eslint warning 제거
 import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import "../styles/mbti.css";
@@ -8,19 +8,14 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 
 const CONFETTI_COUNT = 40;
-
-const MBTI_COLOR = {
-    NF: "#ff7ab2", NT: "#8e44ff", SF: "#00c8b4", ST: "#3fa8ff",
-};
-
-const MBTI_DESC_EXTENDED = { /* 그대로 유지 */ };
-const MBTI_CELEBS = { /* 그대로 유지 */ };
-const MBTI_KEYWORDS = { /* 그대로 유지 */ };
+const MBTI_COLOR = { NF: "#ff7ab2", NT: "#8e44ff", SF: "#00c8b4", ST: "#3fa8ff" };
+const MBTI_DESC_EXTENDED = {};
+const MBTI_CELEBS = {};
+const MBTI_KEYWORDS = {};
 const getMBTIColor = (t) => MBTI_COLOR[`${t[1]}${t[2]}`] || "#8e44ff";
 
 export default function MBTIByFace() {
     const { t } = useTranslation("mbti");
-
     const [gender, setGender] = useState("male");
     const [useWebcam, setUseWebcam] = useState(false);
     const [image, setImage] = useState(null);
@@ -48,7 +43,7 @@ export default function MBTIByFace() {
             s.onload = () => window.Kakao.init("d3f8af96c1e986cbfb2216380f1ea8e7");
             document.head.appendChild(s);
         }
-    }, []);
+    }, [t]);
 
     useEffect(() => {
         if (useWebcam) {
@@ -68,7 +63,7 @@ export default function MBTIByFace() {
                     console.error(e);
                 });
         }
-    }, [useWebcam]);
+    }, [useWebcam, t]);
 
     const applyPrediction = (best) => {
         setMBTI(best.className);
@@ -131,14 +126,13 @@ export default function MBTIByFace() {
         const { Kakao } = window;
         if (!Kakao?.isInitialized()) return alert(t("error.kakaoNotReady"));
         try {
-            const res = await Kakao.Share.uploadImage({ file: [dataURLtoFile(dataUrl, "result.jpg")] });
             const pageUrl = window.location.origin;
             await Kakao.Share.sendDefault({
                 objectType: "feed",
                 content: {
                     title: t("share.title", { mbti }),
                     description: MBTI_DESC_EXTENDED[mbti],
-                    imageUrl: res.infos.original.url,
+                    imageUrl: "https://via.placeholder.com/300x300.png?text=MBTI",
                     link: { mobileWebUrl: pageUrl, webUrl: pageUrl },
                 },
                 buttons: [
@@ -162,15 +156,6 @@ export default function MBTIByFace() {
         return <div key={i} className="confetti" style={style} />;
     });
 
-    const dataURLtoFile = (dataUrl, filename) => {
-        const [header, b64] = dataUrl.split(",");
-        const mime = header.match(/:(.*?);/)[1];
-        const bin = atob(b64);
-        const buf = new Uint8Array(bin.length);
-        for (let i = 0; i < bin.length; i++) buf[i] = bin.charCodeAt(i);
-        return new File([buf], filename, { type: mime });
-    };
-
     return (
         <div className="page">
             <div className="language-switcher-wrapper">
@@ -180,6 +165,7 @@ export default function MBTIByFace() {
             {modalOpen && (
                 <div className="overlay-blur">
                     <div className="result-modal" ref={modalRef} style={{ "--mbti-color": mbtiColor }}>
+                        <button className="modal-close" onClick={reset}>×</button>
                         <div className="confetti-wrapper">{confetti}</div>
                         <img className="modal-photo-circle" src={image} alt="uploaded" />
                         <h2 className="mbti-type">
