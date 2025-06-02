@@ -1,0 +1,23 @@
+{
+  "title": "MBTI by Your Face",
+  "subtitle": "Choose your gender and try one of the analysis methods below.",
+  "uploadMode": "Upload Photo",
+  "webcamMode": "Live Analysis",
+  "uploadLabel": "Upload Image",
+  "webcamReady": "Ready to analyze",
+  "webcamNotReady": "Preparing webcam...",
+  "webcamRetry": "Try Again",
+  "webcamDoneMessage": "Analysis completed. Press the button to try again.",
+  "analyzeButton": "Start Analysis",
+  "retryButton": "Retry",
+  "shareKakao": "Share on KakaoTalk",
+  "resultPrefix": "Your face looks like",
+  "resultSuffix": "type!",
+  "celebrityLabel": "🎬 Celebrities",
+  "error.upload": "Prediction error",
+  "error.webcam": "Webcam access failed",
+  "error.kakao": "Kakao share failed",
+  "error.kakaoNotReady": "Kakao SDK is not ready!",
+  "share.title": "My MBTI by face is {{mbti}}!",
+  "share.button": "Try it yourself"
+}

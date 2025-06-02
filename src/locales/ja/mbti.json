@@ -1,0 +1,23 @@
+{
+  "title": "顔から分かるMBTI診断",
+  "subtitle": "性別を選び、以下の方法で分析してみましょう。",
+  "uploadMode": "写真をアップロード",
+  "webcamMode": "リアルタイム分析",
+  "uploadLabel": "写真をアップロード",
+  "webcamReady": "分析を始めましょう",
+  "webcamNotReady": "カメラを準備中...",
+  "webcamRetry": "もう一度試す",
+  "webcamDoneMessage": "分析が完了しました。再度試すにはボタンを押してください。",
+  "analyzeButton": "分析スタート",
+  "retryButton": "やり直し",
+  "shareKakao": "KakaoTalkで共有",
+  "resultPrefix": "あなたの顔は",
+  "resultSuffix": "タイプに似ています！",
+  "celebrityLabel": "🎬 類似有名人",
+  "error.upload": "分析エラー",
+  "error.webcam": "カメラへのアクセスに失敗しました",
+  "error.kakao": "Kakaoの共有に失敗しました",
+  "error.kakaoNotReady": "Kakao SDKが準備できていません！",
+  "share.title": "私の顔MBTIは{{mbti}}！",
+  "share.button": "私も診断してみる"
+}

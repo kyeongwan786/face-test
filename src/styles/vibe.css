@@ -118,9 +118,8 @@ body{background:var(--vibe-bg);font-family:'Gowun Dodum',sans-serif;color:#333;o
     cursor:pointer;transition:filter .15s
 }
 .modal-buttons button:nth-child(1){background:var(--btn-blue);color:#fff}
-.modal-buttons button:nth-child(2){background:var(--btn-gray);color:#fff}
-.modal-buttons button:nth-child(3){background:var(--btn-yellow);color:#333}
-.modal-buttons button:nth-child(4){background:var(--btn-kakao);color:var(--kakao-text);font-weight:700}
+
+.modal-buttons button:nth-child(2){background:var(--btn-kakao);color:var(--kakao-text);font-weight:700}
 .modal-buttons button:hover{filter:brightness(1.05)}
 
 /*********************

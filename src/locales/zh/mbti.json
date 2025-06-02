@@ -1,0 +1,23 @@
+{
+  "title": "通过面相预测MBTI",
+  "subtitle": "请选择性别并选择下方的分析方式。",
+  "uploadMode": "上传照片",
+  "webcamMode": "实时分析",
+  "uploadLabel": "上传图片",
+  "webcamReady": "准备开始分析",
+  "webcamNotReady": "正在准备摄像头...",
+  "webcamRetry": "重新尝试",
+  "webcamDoneMessage": "分析已完成。点击按钮重新开始。",
+  "analyzeButton": "开始分析",
+  "retryButton": "再试一次",
+  "shareKakao": "分享到KakaoTalk",
+  "resultPrefix": "你的面相看起来像",
+  "resultSuffix": "类型！",
+  "celebrityLabel": "🎬 类似艺人",
+  "error.upload": "分析出错",
+  "error.webcam": "摄像头访问失败",
+  "error.kakao": "Kakao分享失败",
+  "error.kakaoNotReady": "Kakao SDK尚未准备好！",
+  "share.title": "我的面相MBTI是{{mbti}}！",
+  "share.button": "我也来试试"
+}

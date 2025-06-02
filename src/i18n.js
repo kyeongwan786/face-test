@@ -10,6 +10,9 @@ import koUgly from "./locales/ko/ugly.json";
 import koTerms from "./locales/ko/terms.json";
 import koPrivacy from "./locales/ko/privacy.json";
 import koGender from "./locales/ko/gender.json";
+import koMbti from "./locales/ko/mbti.json";
+import koAge from "./locales/ko/age.json";
+import koContact from "./locales/ko/contact.json";
 
 // 📁 영어
 import enShared from "./locales/en/shared.json";
@@ -19,6 +22,9 @@ import enUgly from "./locales/en/ugly.json";
 import enTerms from "./locales/en/terms.json";
 import enPrivacy from "./locales/en/privacy.json";
 import enGender from "./locales/en/gender.json";
+import enMbti from "./locales/en/mbti.json";
+import enAge from "./locales/en/age.json";
+import enContact from "./locales/en/contact.json";
 
 // 📁 일본어
 import jaShared from "./locales/ja/shared.json";
@@ -28,6 +34,9 @@ import jaUgly from "./locales/ja/ugly.json";
 import jaTerms from "./locales/ja/terms.json";
 import jaPrivacy from "./locales/ja/privacy.json";
 import jaGender from "./locales/ja/gender.json";
+import jaMbti from "./locales/ja/mbti.json";
+import jaAge from "./locales/ja/age.json";
+import jaContact from "./locales/ja/contact.json";
 
 // 📁 중국어
 import zhShared from "./locales/zh/shared.json";
@@ -37,6 +46,9 @@ import zhUgly from "./locales/zh/ugly.json";
 import zhTerms from "./locales/zh/terms.json";
 import zhPrivacy from "./locales/zh/privacy.json";
 import zhGender from "./locales/zh/gender.json";
+import zhMbti from "./locales/zh/mbti.json";
+import zhAge from "./locales/zh/age.json";
+import zhContact from "./locales/zh/contact.json";
 
 // 📁 베트남어
 import viShared from "./locales/vi/shared.json";
@@ -46,6 +58,9 @@ import viUgly from "./locales/vi/ugly.json";
 import viTerms from "./locales/vi/terms.json";
 import viPrivacy from "./locales/vi/privacy.json";
 import viGender from "./locales/vi/gender.json";
+import viMbti from "./locales/vi/mbti.json";
+import viAge from "./locales/vi/age.json";
+import viContact from "./locales/vi/contact.json";
 
 i18n
     .use(initReactI18next)
@@ -59,6 +74,9 @@ i18n
                 terms: koTerms,
                 privacy: koPrivacy,
                 gender: koGender,
+                mbti: koMbti,
+                age: koAge,
+                contact: koContact,
             },
             en: {
                 shared: enShared,
@@ -68,6 +86,9 @@ i18n
                 terms: enTerms,
                 privacy: enPrivacy,
                 gender: enGender,
+                mbti: enMbti,
+                age: enAge,
+                contact: enContact,
             },
             ja: {
                 shared: jaShared,
@@ -77,6 +98,9 @@ i18n
                 terms: jaTerms,
                 privacy: jaPrivacy,
                 gender: jaGender,
+                mbti: jaMbti,
+                age: jaAge,
+                contact: jaContact,
             },
             zh: {
                 shared: zhShared,
@@ -86,6 +110,9 @@ i18n
                 terms: zhTerms,
                 privacy: zhPrivacy,
                 gender: zhGender,
+                mbti: zhMbti,
+                age: zhAge,
+                contact: zhContact,
             },
             vi: {
                 shared: viShared,
@@ -95,11 +122,14 @@ i18n
                 terms: viTerms,
                 privacy: viPrivacy,
                 gender: viGender,
+                mbti: viMbti,
+                age: viAge,
+                contact: viContact,
             },
         },
         fallbackLng: "ko",
         lng: "ko",
-        ns: ["shared", "about", "main", "ugly", "terms", "privacy", "gender"],
+        ns: ["shared", "about", "main", "ugly", "terms", "privacy", "gender", "mbti", "age", "contact"],
         defaultNS: "shared",
         interpolation: {
             escapeValue: false,

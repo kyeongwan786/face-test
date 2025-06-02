@@ -1,0 +1,31 @@
+{
+  "title": "AI人脸年龄预测",
+  "subtitle": "AI将根据你的脸部特征预测年龄",
+  "uploadButton": "上传照片",
+  "webcamButton": "实时分析",
+  "startAnalysis": "开始分析",
+  "analyzing": "分析中",
+  "initialDesc": "AI正在分析你的面部特征…",
+  "ageLabel": "AI预测年龄",
+  "retry": "重新开始",
+  "shareKakao": "分享到Kakao",
+  "webcamOverlay": "请开始分析",
+
+  "group10.desc": "哇，你是<strong>小学生</strong>？👶<br>充满活力，满满童趣！还有学生餐的味道。",
+  "group10.keywords": ["小学生风", "活泼", "校园语言"],
+
+  "group20.desc": "很有大学生的感觉 🎓<br><strong>系里最受欢迎的类型</strong>。",
+  "group20.keywords": ["青春气息", "社交达人", "校园情侣"],
+
+  "group30.desc": "成熟与稳重的结合 🧑‍💼<br><strong>现在正是颜值巅峰！</strong>",
+  "group30.keywords": ["成熟", "巅峰", "稳定"],
+
+  "group40.desc": "优雅魅力十足 💼<br>沉稳气质吸引众人。",
+  "group40.keywords": ["沉稳", "优雅", "信赖感"],
+
+  "group50.desc": "气场十足 🧐<br><strong>每句话都充满信任感。</strong>",
+  "group50.keywords": ["信任", "气质", "老练"],
+
+  "group60.desc": "像极了资深名人 🎩<br>达到了从容优雅的顶点。",
+  "group60.keywords": ["从容", "优雅", "威望"]
+}

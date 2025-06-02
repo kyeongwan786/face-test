@@ -1,0 +1,23 @@
+{
+  "title": "MBTI qua khuôn mặt",
+  "subtitle": "Hãy chọn giới tính và thử một trong các phương pháp bên dưới.",
+  "uploadMode": "Tải ảnh lên",
+  "webcamMode": "Phân tích trực tiếp",
+  "uploadLabel": "Tải ảnh lên",
+  "webcamReady": "Sẵn sàng phân tích",
+  "webcamNotReady": "Đang khởi động webcam...",
+  "webcamRetry": "Thử lại",
+  "webcamDoneMessage": "Phân tích hoàn tất. Nhấn nút để thử lại.",
+  "analyzeButton": "Bắt đầu phân tích",
+  "retryButton": "Thử lại",
+  "shareKakao": "Chia sẻ qua KakaoTalk",
+  "resultPrefix": "Khuôn mặt của bạn giống kiểu",
+  "resultSuffix": "!",
+  "celebrityLabel": "🎬 Người nổi tiếng tương tự",
+  "error.upload": "Lỗi phân tích",
+  "error.webcam": "Không truy cập được webcam",
+  "error.kakao": "Chia sẻ Kakao thất bại",
+  "error.kakaoNotReady": "Kakao SDK chưa sẵn sàng!",
+  "share.title": "MBTI khuôn mặt của tôi là {{mbti}}!",
+  "share.button": "Tôi cũng muốn thử"
+}

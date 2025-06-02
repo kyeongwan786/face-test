@@ -1,0 +1,23 @@
+{
+  "title": "관상으로 보는 MBTI",
+  "subtitle": "성별을 선택하고 아래 방식 중 하나로 측정해보세요",
+  "uploadMode": "사진 업로드하기",
+  "webcamMode": "실시간으로 분석하기",
+  "uploadLabel": "사진 업로드",
+  "webcamReady": "분석을 시작하세요",
+  "webcamNotReady": "웹캠 준비 중...",
+  "webcamRetry": "다시 시도하기",
+  "webcamDoneMessage": "분석이 완료되었습니다. 다시 시도하려면 버튼을 눌러주세요.",
+  "analyzeButton": "분석 시작",
+  "retryButton": "다시 하기",
+  "shareKakao": "카카오톡 공유",
+  "resultPrefix": "당신의 얼굴은",
+  "resultSuffix": "형과 닮았어요!",
+  "celebrityLabel": "🎬 대표 연예인",
+  "error.upload": "분석 오류",
+  "error.webcam": "웹캠 접근 실패",
+  "error.kakao": "카카오 공유 실패",
+  "error.kakaoNotReady": "카카오 SDK 준비 중!",
+  "share.title": "내 관상 MBTI는 {{mbti}}!",
+  "share.button": "나도 측정하기"
+}

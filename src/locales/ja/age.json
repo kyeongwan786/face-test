@@ -1,0 +1,31 @@
+{
+  "title": "AI顔年齢予測",
+  "subtitle": "顔の特徴からAIが年齢を予測します",
+  "uploadButton": "写真をアップロード",
+  "webcamButton": "リアルタイムで分析",
+  "startAnalysis": "分析開始",
+  "analyzing": "分析中",
+  "initialDesc": "AIが顔の特徴を分析しています…",
+  "ageLabel": "AI予測年齢",
+  "retry": "もう一度",
+  "shareKakao": "カカオで共有",
+  "webcamOverlay": "分析を開始してください",
+
+  "group10.desc": "えっ、<strong>小学生</strong>？👶<br>フレッシュで元気いっぱい！まだ給食の香りがします。",
+  "group10.keywords": ["小学生風", "元気", "若者言葉"],
+
+  "group20.desc": "大学生の雰囲気たっぷり 🎓<br><strong>人気者タイプ</strong>。",
+  "group20.keywords": ["20代感", "キャンパスの花", "学園カップル"],
+
+  "group30.desc": "成熟と安定のバランス 🧑‍💼<br><strong>今がビジュアル全盛期！</strong>",
+  "group30.keywords": ["成熟", "全盛期", "安定感"],
+
+  "group40.desc": "品格あるカリスマ 💼<br>落ち着いた魅力で人を惹きつけるタイプ。",
+  "group40.keywords": ["落ち着き", "品格", "信頼感"],
+
+  "group50.desc": "クラスは永遠 🧐<br><strong>一言で信頼がにじみ出ます。</strong>",
+  "group50.keywords": ["信頼", "品格", "経験"],
+
+  "group60.desc": "レジェンド感満載 🎩<br>品位と余裕があふれています。",
+  "group60.keywords": ["品位", "余裕", "風格"]
+}

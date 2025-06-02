@@ -20,11 +20,8 @@ export default function Main() {
 
     return (
         <div>
-            {/* 언어 선택 */}
-            <div className="language-switcher-wrapper" style={{ textAlign: "right", padding: "1rem" }}>
-                <span className="language-switcher-label">{t("language.selectPrompt")}</span>
-                <LanguageSwitcher />
-            </div>
+
+
 
             {/* Hero Section */}
             <header className="hero">
@@ -39,6 +36,12 @@ export default function Main() {
                     </Link>
                 </div>
             </header>
+
+            {/* 언어 선택 */}
+            <div className="language-switcher-wrapper" style={{ textAlign: "right", padding: "1rem" }}>
+                <span className="language-switcher-label">{t("language.selectPrompt")}</span>
+                <LanguageSwitcher />
+            </div>
 
             {/* 카드 영역 */}
             <section className="cards">

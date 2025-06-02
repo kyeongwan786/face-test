@@ -1,0 +1,31 @@
+{
+  "title": "Dự đoán tuổi khuôn mặt bằng AI",
+  "subtitle": "AI sẽ đoán tuổi của bạn dựa trên đặc điểm khuôn mặt",
+  "uploadButton": "Tải ảnh lên",
+  "webcamButton": "Phân tích trực tiếp",
+  "startAnalysis": "Bắt đầu phân tích",
+  "analyzing": "Đang phân tích",
+  "initialDesc": "AI đang phân tích đặc điểm khuôn mặt…",
+  "ageLabel": "Tuổi dự đoán",
+  "retry": "Thử lại",
+  "shareKakao": "Chia sẻ qua Kakao",
+  "webcamOverlay": "Bắt đầu phân tích",
+
+  "group10.desc": "Ơ? <strong>Học sinh tiểu học</strong> sao? 👶<br>Tươi tắn, năng động! Mùi cơm trường vẫn còn.",
+  "group10.keywords": ["Phong cách học sinh", "Tươi vui", "Ngôn ngữ teen"],
+
+  "group20.desc": "Rất giống sinh viên đại học 🎓<br><strong>Người nổi bật trong khoa</strong>.",
+  "group20.keywords": ["Cảm giác tuổi 20", "Nữ thần hội trại", "Cặp đôi sinh viên"],
+
+  "group30.desc": "Trưởng thành và ổn định 🧑‍💼<br><strong>Đây là thời kỳ đỉnh cao ngoại hình!</strong>",
+  "group30.keywords": ["Trưởng thành", "Đỉnh cao", "Ổn định"],
+
+  "group40.desc": "Phong thái đĩnh đạc 💼<br>Thu hút bằng sự chững chạc.",
+  "group40.keywords": ["Đĩnh đạc", "Quý phái", "Đáng tin"],
+
+  "group50.desc": "Đẳng cấp là mãi mãi 🧐<br><strong>Mỗi lời nói đều toát lên sự tin tưởng.</strong>",
+  "group50.keywords": ["Tin tưởng", "Đẳng cấp", "Kinh nghiệm"],
+
+  "group60.desc": "Giống cụ tổ Lý Tự Trọng 🎩<br>Đạt đến sự đĩnh đạc và thư thái tối cao.",
+  "group60.keywords": ["Thư thái", "Đĩnh đạc", "Uy tín"]
+}

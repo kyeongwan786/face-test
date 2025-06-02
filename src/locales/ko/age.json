@@ -1,0 +1,31 @@
+{
+  "title": "AI 얼굴 나이 예측",
+  "subtitle": "당신의 얼굴에서 AI가 나이를 추측해드립니다",
+  "uploadButton": "사진 업로드하기",
+  "webcamButton": "실시간으로 분석하기",
+  "startAnalysis": "분석 시작",
+  "analyzing": "분석중",
+  "initialDesc": "AI가 얼굴 특징을 분석 중입니다…",
+  "ageLabel": "AI 예측 나이",
+  "retry": "다시 하기",
+  "shareKakao": "카카오 공유",
+  "webcamOverlay": "분석을 시작하세요",
+
+  "group10.desc": "어라? <strong>초딩</strong> 아니야? 👶<br>상큼하고 생기발랄! 아직도 급식 냄새가 나요.",
+  "group10.keywords": ["초딩st", "상큼발랄", "급식체"],
+
+  "group20.desc": "대학생 느낌 물씬 🎓<br><strong>인기 많았던 학과 인기인st</strong>.",
+  "group20.keywords": ["20대 감성", "MT 여신", "캠퍼스 커플"],
+
+  "group30.desc": "성숙미와 안정감의 조화 🧑‍💼<br><strong>지금이 외모 전성기입니다!</strong>",
+  "group30.keywords": ["성숙미", "전성기", "안정감"],
+
+  "group40.desc": "품격 있는 카리스마 💼<br>중후한 매력으로 사람을 사로잡는 타입.",
+  "group40.keywords": ["중후함", "품격", "신뢰"],
+
+  "group50.desc": "클래스는 영원하다 🧐<br><strong>말 한마디에 신뢰가 철철 넘쳐요.</strong>",
+  "group50.keywords": ["신뢰감", "클래스", "노련미"],
+
+  "group60.desc": "이순재 느낌 나는데요? 🎩<br>품위와 여유로움의 정점에 도달하셨습니다.",
+  "group60.keywords": ["품위", "여유", "관록"]
+}

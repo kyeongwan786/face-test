@@ -1,0 +1,31 @@
+{
+  "title": "AI Face Age Estimation",
+  "subtitle": "AI will guess your age based on your facial features",
+  "uploadButton": "Upload a Photo",
+  "webcamButton": "Analyze in Real Time",
+  "startAnalysis": "Start Analysis",
+  "analyzing": "Analyzing",
+  "initialDesc": "AI is analyzing your facial features…",
+  "ageLabel": "Predicted Age",
+  "retry": "Try Again",
+  "shareKakao": "Share on Kakao",
+  "webcamOverlay": "Start the analysis",
+
+  "group10.desc": "Wait, are you a <strong>kid</strong>? 👶<br>Fresh and lively! Still smells like school lunch.",
+  "group10.keywords": ["Kid style", "Lively", "Teen talk"],
+
+  "group20.desc": "Feels like a college student 🎓<br><strong>The popular one in class</strong>.",
+  "group20.keywords": ["Youth vibe", "Campus queen", "College couple"],
+
+  "group30.desc": "Mature and balanced 🧑‍💼<br><strong>This is your visual prime!</strong>",
+  "group30.keywords": ["Maturity", "Prime time", "Stability"],
+
+  "group40.desc": "Charisma with dignity 💼<br>Captivates with sophisticated charm.",
+  "group40.keywords": ["Dignified", "Classy", "Reliable"],
+
+  "group50.desc": "Class is eternal 🧐<br><strong>Your words inspire trust.</strong>",
+  "group50.keywords": ["Trustworthy", "Class", "Experienced"],
+
+  "group60.desc": "Giving off legendary vibes 🎩<br>You’ve reached the peak of grace and composure.",
+  "group60.keywords": ["Grace", "Composure", "Authority"]
+}

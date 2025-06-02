@@ -1,55 +1,20 @@
-// ✅ Updated AgeDetector.jsx with smooth scroll on webcam mode activation
+// ✅ AgeDetector.jsx with i18n support (with LanguageSwitcher)
 import React, { useState, useRef } from "react";
 import Webcam from "react-webcam";
 import html2canvas from "html2canvas";
+import { useTranslation } from "react-i18next";
 
 import "../styles/neo-common.css";
 import "../styles/age.css";
 
 import LoadingSpinner from "../components/LoadingSpinner";
 import GenderSelector from "../components/GenderSelector";
+import LanguageSwitcher from "../components/LanguageSwitcher";
 import { runAgeEstimation } from "../utils/runAgeModel";
 
-const AGE_GROUPS = {
-    10: {
-        min: 10,
-        max: 19,
-        desc: "어라? <strong>초딩</strong> 아니야? 👶<br>상큼하고 생기발랄! 아직도 급식 냄새가 나요.",
-        keywords: ["초딩st", "상큼발랄", "급식체"]
-    },
-    20: {
-        min: 20,
-        max: 29,
-        desc: "대학생 느낌 물씬 🎓<br><strong>인기 많았던 학과 인기인st</strong>.",
-        keywords: ["20대 감성", "MT 여신", "캠퍼스 커플"]
-    },
-    30: {
-        min: 30,
-        max: 39,
-        desc: "성숙미와 안정감의 조화 🧑‍💼<br><strong>지금이 외모 전성기입니다!</strong>",
-        keywords: ["성숙미", "전성기", "안정감"]
-    },
-    40: {
-        min: 40,
-        max: 49,
-        desc: "품격 있는 카리스마 💼<br>중후한 매력으로 사람을 사로잡는 타입.",
-        keywords: ["중후함", "품격", "신뢰"]
-    },
-    50: {
-        min: 50,
-        max: 59,
-        desc: "클래스는 영원하다 🧐<br><strong>말 한마디에 신뢰가 철철 넘쳐요.</strong>",
-        keywords: ["신뢰감", "클래스", "노련미"]
-    },
-    60: {
-        min: 60,
-        max: 75,
-        desc: "이순재 느낌 나는데요? 🎩<br>품위와 여유로움의 정점에 도달하셨습니다.",
-        keywords: ["품위", "여유", "관록"]
-    },
-};
-
 export default function AgeDetector() {
+    const { t } = useTranslation("age");
+
     const [gender, setGender] = useState("male");
     const [image, setImage] = useState(null);
     const [tick, setTick] = useState("--");
@@ -67,9 +32,7 @@ export default function AgeDetector() {
     const webcamWrapperRef = useRef(null);
 
     const scrollToWebcam = () => {
-        if (webcamWrapperRef.current) {
-            webcamWrapperRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
-        }
+        webcamWrapperRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
     };
 
     const startBounce = (final) => {
@@ -103,8 +66,8 @@ export default function AgeDetector() {
         setImage(dataUrl);
         setModal(true);
         setLoading(true);
-        setTick("분석중");
-        setDesc("AI가 얼굴 특징을 분석 중입니다…");
+        setTick(t("analyzing"));
+        setDesc(t("initialDesc"));
         setDone(false);
 
         const img = new Image();
@@ -112,16 +75,15 @@ export default function AgeDetector() {
         img.onload = async () => {
             try {
                 const cls = await runAgeEstimation(img, gender);
-                const group = AGE_GROUPS[cls] || AGE_GROUPS[30];
-                const final = Math.floor(Math.random() * (group.max - group.min + 1)) + group.min;
+                const final = Math.floor(Math.random() * 10) + cls;
                 startBounce(final);
                 setTimeout(() => {
-                    setDesc(group.desc);
-                    setKeywords(group.keywords || []);
+                    setDesc(t(`group${cls}.desc`));
+                    setKeywords(t(`group${cls}.keywords`, { returnObjects: true }));
                 }, 3600);
             } catch (e) {
                 console.error(e);
-                alert("AI 예측 실패");
+                alert(t("fail"));
             } finally {
                 setLoading(false);
             }
@@ -151,54 +113,37 @@ export default function AgeDetector() {
         setLoading(false);
     };
 
-    const save = () =>
-        modalRef.current &&
-        html2canvas(modalRef.current, { scale: 2 }).then((c) => {
-            const a = document.createElement("a");
-            a.download = "age-result.png";
-            a.href = c.toDataURL("image/png");
-            a.click();
-        });
+    const shareKakao = () => alert(t("notImplemented"));
 
     const gaugeW = !isNaN(Number(tick)) ? `${(tick / 80) * 100}%` : "0%";
 
     return (
         <div className="page">
+            <LanguageSwitcher />
+
             {modal && (
                 <div className="overlay-blur">
                     <div className="result-modal age-modal" ref={modalRef}>
                         <img className="modal-photo-circle" src={image} alt="face" />
                         <h2 className="age-head">
-                            <span className="ai-gradient">AI&nbsp;예측&nbsp;나이</span>
-                            <br />
+                            <span className="ai-gradient">{t("ageLabel")}</span><br />
                             <strong className={`age-number ${done ? "final" : ""}`}>{tick}</strong>
                         </h2>
-
                         <div className="age-bar-wrapper">
                             <div className="age-bar-bg">
                                 <div className="age-bar-fill" style={{ width: gaugeW }} />
                             </div>
                             <div className="age-labels">
-                                {[10, 20, 30, 40, 50, 60, 70, 80].map((n) => (
-                                    <span key={n}>{n}</span>
-                                ))}
+                                {[10, 20, 30, 40, 50, 60, 70, 80].map((n) => <span key={n}>{n}</span>)}
                             </div>
                         </div>
-
-                        <div
-                            className={`desc-box ${done ? "enhanced" : ""}`}
-                            dangerouslySetInnerHTML={{ __html: desc }}
-                        />
-
+                        <div className={`desc-box ${done ? "enhanced" : ""}`} dangerouslySetInnerHTML={{ __html: desc }} />
                         <div className="keyword-tags">
-                            {keywords.map((kw, i) => (
-                                <span className="keyword-tag" key={i}>{kw}</span>
-                            ))}
+                            {keywords.map((kw, i) => <span className="keyword-tag" key={i}>{kw}</span>)}
                         </div>
-
                         <div className="modal-buttons">
-                            <button className="btn-retry" onClick={reset}>다시 하기</button>
-                            <button className="btn-save" onClick={save}>결과 저장</button>
+                            <button className="btn-retry" onClick={reset}>{t("retry")}</button>
+                            <button className="btn-kakao" onClick={shareKakao}>{t("shareKakao")}</button>
                         </div>
                     </div>
                 </div>
@@ -206,24 +151,16 @@ export default function AgeDetector() {
 
             <div className="container">
                 <header>
-                    <h1>AI 얼굴 나이 예측</h1>
-                    <p className="subtitle">당신의 얼굴에서 AI가 나이를 추측해드립니다</p>
+                    <h1>{t("title")}</h1>
+                    <p className="subtitle">{t("subtitle")}</p>
                 </header>
 
                 <GenderSelector gender={gender} setGender={setGender} />
 
                 {!image && !loading && (
                     <div className="mode-toggle-buttons">
-                        <button className={!cam ? "mode-button active" : "mode-button"} onClick={() => setCam(false)}>사진 업로드하기</button>
-                        <button
-                            className={cam ? "mode-button active" : "mode-button"}
-                            onClick={() => {
-                                setCam(true);
-                                setTimeout(scrollToWebcam, 100);
-                            }}
-                        >
-                            실시간으로 분석하기
-                        </button>
+                        <button className={!cam ? "mode-button active" : "mode-button"} onClick={() => setCam(false)}>{t("uploadButton")}</button>
+                        <button className={cam ? "mode-button active" : "mode-button"} onClick={() => { setCam(true); setTimeout(scrollToWebcam, 100); }}>{t("webcamButton")}</button>
                     </div>
                 )}
 
@@ -232,14 +169,14 @@ export default function AgeDetector() {
                 {!image && !loading && cam && (
                     <div className="webcam-wrapper" ref={webcamWrapperRef}>
                         <Webcam ref={webcamRef} screenshotFormat="image/jpeg" videoConstraints={{ facingMode: "user" }} className="video-frame" />
-                        <p className="webcam-overlay-text">분석을 시작하세요</p>
-                        <button className="capture-button" onClick={capture}>분석 시작</button>
+                        <p className="webcam-overlay-text">{t("webcamOverlay")}</p>
+                        <button className="capture-button" onClick={capture}>{t("startAnalysis")}</button>
                     </div>
                 )}
 
                 {!image && !loading && !cam && (
                     <div className="upload-wrapper">
-                        <label className="upload-box" htmlFor="uploadAgeInput">사진 업로드하기</label>
+                        <label className="upload-box" htmlFor="uploadAgeInput">{t("uploadButton")}</label>
                         <input id="uploadAgeInput" type="file" accept="image/*" hidden onChange={upload} />
                     </div>
                 )}

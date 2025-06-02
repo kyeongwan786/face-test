@@ -1,4 +1,4 @@
-// ✅ 최종 수정본: i18n 적용 + 언어 선택기 + key 누락 수정
+// ✅ 최종 수정본: 저장 기능 제거, 다시하기 & 카카오 공유만 유지
 import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import html2canvas from "html2canvas";
@@ -148,16 +148,6 @@ export default function UglyMeter() {
         setUseWebcam(false);
     };
 
-    const saveShot = () => {
-        if (!modalRef.current) return;
-        html2canvas(modalRef.current, { scale: 2 }).then((canvas) => {
-            const a = document.createElement("a");
-            a.download = "ugly-result.png";
-            a.href = canvas.toDataURL("image/png", 0.9);
-            a.click();
-        });
-    };
-
     const shareKakao = async () => {
         const { Kakao } = window;
         if (!Kakao?.isInitialized()) {
@@ -222,7 +212,6 @@ export default function UglyMeter() {
                         <p className="modal-sub">{comment?.sub}</p>
                         <div className="modal-buttons">
                             <button className="btn-retry" onClick={reset}>{t("buttons.retry")}</button>
-                            <button className="btn-save" onClick={saveShot}>{t("buttons.save")}</button>
                             <button className="btn-kakao" onClick={shareKakao}>{t("buttons.kakao")}</button>
                         </div>
                     </div>

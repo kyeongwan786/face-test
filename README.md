@@ -133,6 +133,8 @@ $ npm start
 - [ ] 서비스 워커 / manifest 통한 PWA 기능 강화 및 아이콘 구성
 - [ ] 앱 배포 준비 (Capacitor 또는 React Native로 포팅 검토)
 - [ ] Google AdSense 승인 준비: 법적 고지, 콘텐츠 정책, 사용자 경험 전반 정비
+- [ ] 언어 선택 부분 로고 밑으로 빼기.
+- [ ] navbar 네이밍 수정
 
 ---
 
