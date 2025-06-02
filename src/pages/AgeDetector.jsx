@@ -1,7 +1,6 @@
 // ✅ AgeDetector.jsx with i18n support (with LanguageSwitcher)
 import React, { useState, useRef } from "react";
 import Webcam from "react-webcam";
-import html2canvas from "html2canvas";
 import { useTranslation } from "react-i18next";
 
 import "../styles/neo-common.css";

@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import html2canvas from "html2canvas";
 import { loadLikeModel, runLikeEstimation } from "../utils/runLikeModel";
 import { likePresets } from "../utils/likePresets";
 import GenderSelector from "../components/GenderSelector";
@@ -193,12 +192,6 @@ export default function Like() {
                         )}
                         <div className="modal-buttons like-buttons">
                             <button onClick={reset}>다시하기</button>
-                            <button onClick={() => html2canvas(modalRef.current).then((canvas) => {
-                                const a = document.createElement("a");
-                                a.href = canvas.toDataURL("image/png");
-                                a.download = "like-result.png";
-                                a.click();
-                            })}>결과 저장</button>
                         </div>
                     </div>
                 </div>

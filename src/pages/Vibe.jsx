@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import html2canvas from "html2canvas";
 import { useTranslation } from "react-i18next";
 import { loadVibeModel, runVibeEstimation } from "../utils/runVibeModel";
 import GenderSelector from "../components/GenderSelector";

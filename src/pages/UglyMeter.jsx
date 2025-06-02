@@ -1,7 +1,6 @@
 // ✅ 최종 수정본: 저장 기능 제거, 다시하기 & 카카오 공유만 유지 + 광고 삽입 위치 수정
 import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import html2canvas from "html2canvas";
 import { loadModelByGender, predictImage } from "../utils/runModel";
 import GenderSelector from "../components/GenderSelector";
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -162,8 +161,6 @@ export default function UglyMeter() {
         try {
             let file = origFile;
             if (!file) {
-                const canvas = await html2canvas(modalRef.current, { scale: 1 });
-                const dataUrl = canvas.toDataURL("image/jpeg", 0.85);
                 file = dataURLtoFile(dataUrl, "result.jpg");
             }
             if (file.size > MAX_UPLOAD_SIZE) {

@@ -1,14 +1,12 @@
 // MBTIByFace.jsx - 다국어(i18n) 적용된 전체 코드
 import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import html2canvas from "html2canvas";
 import "../styles/mbti.css";
 import { loadMBTIModelByGender, predictMBTIImage } from "../utils/runMBTIModel";
 import GenderSelector from "../components/GenderSelector";
 import LoadingSpinner from "../components/LoadingSpinner";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 
-const MAX_UPLOAD_SIZE = 5 * 1024 * 1024;
 const CONFETTI_COUNT = 40;
 
 const MBTI_COLOR = {
@@ -133,8 +131,6 @@ export default function MBTIByFace() {
         const { Kakao } = window;
         if (!Kakao?.isInitialized()) return alert(t("error.kakaoNotReady"));
         try {
-            const canvas = await html2canvas(modalRef.current, { scale: 1 });
-            const dataUrl = canvas.toDataURL("image/jpeg", 0.85);
             const res = await Kakao.Share.uploadImage({ file: [dataURLtoFile(dataUrl, "result.jpg")] });
             const pageUrl = window.location.origin;
             await Kakao.Share.sendDefault({
