@@ -1,4 +1,4 @@
-// ✅ 수정: html2canvas, dataUrl, 저장 기능 제거 + X버튼 추가 + eslint warning 제거
+// ✅ Kakao 공유 + AdFit 광고 포함 완성본
 import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import "../styles/mbti.css";
@@ -9,9 +9,6 @@ import LanguageSwitcher from "../components/LanguageSwitcher";
 
 const CONFETTI_COUNT = 40;
 const MBTI_COLOR = { NF: "#ff7ab2", NT: "#8e44ff", SF: "#00c8b4", ST: "#3fa8ff" };
-const MBTI_DESC_EXTENDED = {};
-const MBTI_CELEBS = {};
-const MBTI_KEYWORDS = {};
 const getMBTIColor = (t) => MBTI_COLOR[`${t[1]}${t[2]}`] || "#8e44ff";
 
 export default function MBTIByFace() {
@@ -32,10 +29,6 @@ export default function MBTIByFace() {
     const modalRef = useRef(null);
     const videoWrapperRef = useRef(null);
 
-    const scrollToWebcam = () => {
-        videoWrapperRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
-    };
-
     useEffect(() => {
         if (!window.Kakao) {
             const s = document.createElement("script");
@@ -43,7 +36,11 @@ export default function MBTIByFace() {
             s.onload = () => window.Kakao.init("d3f8af96c1e986cbfb2216380f1ea8e7");
             document.head.appendChild(s);
         }
-    }, [t]);
+        const ad = document.createElement("script");
+        ad.src = "//t1.daumcdn.net/kas/static/ba.min.js";
+        ad.async = true;
+        document.body.appendChild(ad);
+    }, []);
 
     useEffect(() => {
         if (useWebcam) {
@@ -69,7 +66,8 @@ export default function MBTIByFace() {
         setMBTI(best.className);
         const color = getMBTIColor(best.className);
         setMBTIColor(color);
-        setKeywords(MBTI_KEYWORDS[best.className] || []);
+        const rawKeywords = t(`keywords.${best.className}`, { returnObjects: true });
+        setKeywords(Array.isArray(rawKeywords) ? rawKeywords : []);
         setConfetti(makeConfetti(color));
         setModalOpen(true);
     };
@@ -91,8 +89,13 @@ export default function MBTIByFace() {
             const img = new Image();
             img.src = reader.result;
             img.onload = async () => {
-                try { await predictFromImage(img); } catch { alert(t("error.upload")); }
-                finally { setLoading(false); }
+                try {
+                    await predictFromImage(img);
+                } catch {
+                    alert(t("error.upload"));
+                } finally {
+                    setLoading(false);
+                }
             };
         };
         reader.readAsDataURL(file);
@@ -108,35 +111,50 @@ export default function MBTIByFace() {
         setImage(img.src);
         setLoading(true);
         webcamStream?.getTracks().forEach((t) => t.stop());
-        try { await predictFromImage(img); } catch { alert(t("error.upload")); }
-        finally {
+        try {
+            await predictFromImage(img);
+        } catch {
+            alert(t("error.upload"));
+        } finally {
             setLoading(false);
             setWebcamDone(true);
         }
     };
 
     const reset = () => {
-        setImage(null); setMBTI(null); setModalOpen(false);
-        setKeywords([]); setConfetti([]); setWebcamDone(false);
+        setImage(null);
+        setMBTI(null);
+        setModalOpen(false);
+        setKeywords([]);
+        setConfetti([]);
+        setWebcamDone(false);
         webcamStream?.getTracks().forEach((t) => t.stop());
-        setWebcamStream(null); setUseWebcam(false);
+        setWebcamStream(null);
+        setUseWebcam(false);
     };
 
     const shareKakao = async () => {
         const { Kakao } = window;
         if (!Kakao?.isInitialized()) return alert(t("error.kakaoNotReady"));
         try {
+            const blob = await fetch(image).then((res) => res.blob());
+            const file = new File([blob], "mbti-result.jpg", { type: blob.type });
+            const { infos } = await Kakao.Share.uploadImage({ file: [file] });
             const pageUrl = window.location.origin;
+
             await Kakao.Share.sendDefault({
                 objectType: "feed",
                 content: {
                     title: t("share.title", { mbti }),
-                    description: MBTI_DESC_EXTENDED[mbti],
-                    imageUrl: "https://via.placeholder.com/300x300.png?text=MBTI",
+                    description: t(`desc.${mbti}`),
+                    imageUrl: infos.original.url,
                     link: { mobileWebUrl: pageUrl, webUrl: pageUrl },
                 },
                 buttons: [
-                    { title: t("share.button"), link: { mobileWebUrl: pageUrl, webUrl: pageUrl } },
+                    {
+                        title: t("share.button"),
+                        link: { mobileWebUrl: pageUrl, webUrl: pageUrl },
+                    },
                 ],
             });
         } catch (e) {
@@ -171,8 +189,7 @@ export default function MBTIByFace() {
                         <h2 className="mbti-type">
                             {t("resultPrefix")} <strong style={{ color: mbtiColor }}>{mbti}</strong>{t("resultSuffix")}
                         </h2>
-                        <p className="mbti-desc">{MBTI_DESC_EXTENDED[mbti]}</p>
-                        <p className="mbti-example">{t("celebrityLabel")}: <strong>{MBTI_CELEBS[mbti]}</strong></p>
+                        <p className="mbti-desc">{t(`desc.${mbti}`)}</p>
                         <div className="keyword-list">
                             {keywords.map((k) => (
                                 <span key={k} className="tag" style={{ "--mbti-color": mbtiColor }}>{k}</span>
@@ -202,7 +219,7 @@ export default function MBTIByFace() {
                         className={useWebcam ? "mode-button active" : "mode-button"}
                         onClick={() => {
                             setUseWebcam(true);
-                            setTimeout(scrollToWebcam, 100);
+                            setTimeout(() => videoWrapperRef.current?.scrollIntoView({ behavior: "smooth", block: "center" }), 100);
                         }}
                     >
                         {t("webcamMode")}
@@ -227,9 +244,7 @@ export default function MBTIByFace() {
                                     <video ref={videoRef} autoPlay muted playsInline width="320" className="video-frame" />
                                     {webcamDone ? (
                                         <>
-                                            <div className="webcam-overlay-text retry-message">
-                                                {t("webcamDoneMessage")}
-                                            </div>
+                                            <div className="webcam-overlay-text retry-message">{t("webcamDoneMessage")}</div>
                                             <button className="btn-retry webcam-retry" onClick={reset}>{t("webcamRetry")}</button>
                                         </>
                                     ) : (
@@ -247,6 +262,16 @@ export default function MBTIByFace() {
                         </>
                     )
                 )}
+            </div>
+
+            {/* PC 광고 */}
+            <div className="ad-pc-banner">
+                <ins className="kakao_ad_area" style={{ display: "block", width: "100%", maxWidth: 300, margin: "1rem auto" }} data-ad-unit="DAN-2VAMRfWJcabygl9x" data-ad-width="300" data-ad-height="250"></ins>
+            </div>
+
+            {/* 모바일 띠배너 */}
+            <div className="ad-mobile-fixed">
+                <ins className="kakao_ad_area" style={{ display: "block", width: 320, height: 50 }} data-ad-unit="DAN-vq03WNxmpMBMVvd5" data-ad-width="320" data-ad-height="50"></ins>
             </div>
         </div>
     );

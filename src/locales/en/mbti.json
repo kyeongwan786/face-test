@@ -19,5 +19,23 @@
   "error.kakao": "Kakao share failed",
   "error.kakaoNotReady": "Kakao SDK is not ready!",
   "share.title": "My MBTI by face is {{mbti}}!",
-  "share.button": "Try it yourself"
+  "share.button": "Try it yourself",
+  "desc": {
+    "INFP": "Idealistic and empathetic with a rich inner world.",
+    "ENFP": "Energetic, creative, and full of innovative ideas.",
+    "INTP": "Logical and independent with a thirst for knowledge.",
+    "ESFJ": "Kind and sociable, valuing harmony with others.",
+    "ENTJ": "Decisive, strategic, and a natural leader.",
+    "ISFJ": "Loyal and quiet with a strong sense of duty.",
+    "ESTP": "Spontaneous, active, and loves challenges.",
+    "INFJ": "Insightful and warm, often offering deep guidance.",
+    "ISTJ": "Responsible and dependable with strong principles.",
+    "ESFP": "Sociable and positive, lighting up every room.",
+    "ISTP": "Practical, observant, and solution-oriented.",
+    "ENFJ": "Inspiring and empathetic leaders with strong values.",
+    "ISFP": "Quiet, gentle, and artistically inclined.",
+    "ESTJ": "Efficient, realistic, and values structure.",
+    "INTJ": "Strategic and goal-oriented with big visions.",
+    "ENTP": "Quick learners who thrive on innovation and debate."
+  }
 }

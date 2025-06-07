@@ -31,6 +31,22 @@ export default function Like() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
+    useEffect(() => {
+        // Kakao SDK 로딩
+        if (!window.Kakao) {
+            const script = document.createElement("script");
+            script.src = "https://t1.kakaocdn.net/kakao_js_sdk/v1/kakao.min.js";
+            script.onload = () => window.Kakao.init("d3f8af96c1e986cbfb2216380f1ea8e7");
+            document.head.appendChild(script);
+        }
+
+        // 광고 스크립트
+        const adScript = document.createElement("script");
+        adScript.src = "//t1.daumcdn.net/kas/static/ba.min.js";
+        adScript.async = true;
+        document.body.appendChild(adScript);
+    }, []);
+
     const scrollToInput = () => {
         inputBoxRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
     };
@@ -132,6 +148,36 @@ export default function Like() {
         }
     };
 
+    const shareKakao = () => {
+        if (!window.Kakao || !window.Kakao.isInitialized()) {
+            alert("카카오 SDK가 준비되지 않았습니다.");
+            return;
+        }
+
+        const label = result?.label || "연예인";
+        window.Kakao.Share.sendDefault({
+            objectType: "feed",
+            content: {
+                title: `AI 닮은꼴 테스트 결과: ${label}`,
+                description: `나는 ${label} 님과 닮았대요! 당신은?`,
+                imageUrl: image,
+                link: {
+                    mobileWebUrl: window.location.href,
+                    webUrl: window.location.href,
+                },
+            },
+            buttons: [
+                {
+                    title: "나도 측정하기",
+                    link: {
+                        mobileWebUrl: window.location.href,
+                        webUrl: window.location.href,
+                    },
+                },
+            ],
+        });
+    };
+
     return (
         <div className="page">
             <div className="container">
@@ -178,7 +224,7 @@ export default function Like() {
             )}
 
             {modalOpen && result && (
-                <div className="overlay-blur">
+                <div className="overlay-blur" onClick={(e) => e.target.classList.contains("overlay-blur") && reset()}>
                     <div className="result-modal like-result-modal" ref={modalRef}>
                         <div className="like-photo-wrapper">
                             <img src={image} alt="user" className="modal-photo-circle like-photo" />
@@ -192,10 +238,29 @@ export default function Like() {
                         )}
                         <div className="modal-buttons like-buttons">
                             <button onClick={reset}>다시하기</button>
+                            <button className="btn-kakao" onClick={shareKakao}>카카오톡 공유</button>
                         </div>
                     </div>
                 </div>
             )}
+
+            {/* PC 광고 */}
+            <div className="ad-pc-banner">
+                <ins className="kakao_ad_area"
+                     style={{ display: "block", width: "100%", maxWidth: 300, margin: "1rem auto" }}
+                     data-ad-unit="DAN-2VAMRfWJcabygl9x"
+                     data-ad-width="300"
+                     data-ad-height="250"></ins>
+            </div>
+
+            {/* 모바일 띠배너 */}
+            <div className="ad-mobile-fixed">
+                <ins className="kakao_ad_area"
+                     style={{ display: "block", width: 320, height: 50 }}
+                     data-ad-unit="DAN-vq03WNxmpMBMVvd5"
+                     data-ad-width="320"
+                     data-ad-height="50"></ins>
+            </div>
         </div>
     );
 }

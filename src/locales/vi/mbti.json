@@ -19,5 +19,24 @@
   "error.kakao": "Chia sẻ Kakao thất bại",
   "error.kakaoNotReady": "Kakao SDK chưa sẵn sàng!",
   "share.title": "MBTI khuôn mặt của tôi là {{mbti}}!",
-  "share.button": "Tôi cũng muốn thử"
+  "share.button": "Tôi cũng muốn thử",
+  "desc": {
+    "INFP": "Lý tưởng, giàu lòng trắc ẩn và nội tâm sâu sắc.",
+    "ENFP": "Nhiệt huyết, sáng tạo và đầy ý tưởng mới lạ.",
+    "INTP": "Tư duy logic, độc lập và ham học hỏi.",
+    "ESFJ": "Thân thiện và hòa đồng, coi trọng sự hài hòa.",
+    "ENTJ": "Quyết đoán, có tầm nhìn và khả năng lãnh đạo.",
+    "ISFJ": "Trầm lặng, tận tụy và giàu trách nhiệm.",
+    "ESTP": "Ứng biến linh hoạt, thích hoạt động và thử thách.",
+    "INFJ": "Thấu hiểu và ấm áp, thường là người định hướng.",
+    "ISTJ": "Đáng tin cậy, có trách nhiệm và nguyên tắc.",
+    "ESFP": "Năng động, vui vẻ và luôn mang lại năng lượng tích cực.",
+    "ISTP": "Thực tế, quan sát tốt và giỏi giải quyết vấn đề.",
+    "ENFJ": "Lãnh đạo ấm áp, truyền cảm hứng và biết quan tâm.",
+    "ISFP": "Yên tĩnh, nhẹ nhàng và có xu hướng nghệ thuật.",
+    "ESTJ": "Thực tế, có tổ chức và thích quản lý.",
+    "INTJ": "Chiến lược, định hướng mục tiêu và đầy tham vọng.",
+    "ENTP": "Học nhanh, sáng tạo và thích thử thách truyền thống."
+  }
+
 }

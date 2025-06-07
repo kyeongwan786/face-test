@@ -1,3 +1,4 @@
+// ✅ Vibe.jsx with Kakao Share + AdFit
 import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { loadVibeModel, runVibeEstimation } from "../utils/runVibeModel";
@@ -25,6 +26,22 @@ export default function Vibe() {
     const videoRef = useRef(null);
     const webcamWrapperRef = useRef(null);
     const inputBoxRef = useRef(null);
+
+    useEffect(() => {
+        // Kakao SDK
+        if (!window.Kakao) {
+            const s = document.createElement("script");
+            s.src = "https://t1.kakaocdn.net/kakao_js_sdk/v1/kakao.min.js";
+            s.onload = () => window.Kakao.init("d3f8af96c1e986cbfb2216380f1ea8e7");
+            document.head.appendChild(s);
+        }
+
+        // AdFit
+        const ad = document.createElement("script");
+        ad.src = "//t1.daumcdn.net/kas/static/ba.min.js";
+        ad.async = true;
+        document.body.appendChild(ad);
+    }, []);
 
     useEffect(() => {
         const handleScroll = () => setShowScrollButton(window.scrollY < 300);
@@ -136,6 +153,43 @@ export default function Vibe() {
         return t(`${vibe.label}.${context}Comment`);
     };
 
+    const shareKakao = async () => {
+        const { Kakao } = window;
+        if (!Kakao?.isInitialized()) return alert(t("error.kakaoNotReady"));
+        try {
+            const blob = await fetch(image).then((res) => res.blob());
+            const file = new File([blob], "vibe-result.jpg", { type: blob.type });
+            const { infos } = await Kakao.Share.uploadImage({ file: [file] });
+
+            const pageUrl = window.location.origin;
+
+            await Kakao.Share.sendDefault({
+                objectType: "feed",
+                content: {
+                    title: t("share.title", { label: t(`${vibe.label}.label`) }),
+                    description: getContextualComment(),
+                    imageUrl: infos.original.url,
+                    link: {
+                        mobileWebUrl: pageUrl,
+                        webUrl: pageUrl,
+                    },
+                },
+                buttons: [
+                    {
+                        title: t("share.button"),
+                        link: {
+                            mobileWebUrl: pageUrl,
+                            webUrl: pageUrl,
+                        },
+                    },
+                ],
+            });
+        } catch (e) {
+            console.error(e);
+            alert(t("error.kakao"));
+        }
+    };
+
     return (
         <div className="page">
             <div className="container">
@@ -220,9 +274,7 @@ export default function Vibe() {
                         </div>
                         <div className="modal-buttons">
                             <button onClick={reset}>{t("retry")}</button>
-                            <button onClick={() => alert("카카오 공유 기능은 아직 구현되지 않았습니다.")}>
-                                {t("shareKakao")}
-                            </button>
+                            <button onClick={shareKakao}>{t("shareKakao")}</button>
                         </div>
                         <div className="alt-context-button">
                             <p className="alt-context-label">{t("altContextLabel")}</p>
@@ -237,6 +289,24 @@ export default function Vibe() {
                     </div>
                 </div>
             )}
+
+            {/* PC용 광고 */}
+            <div className="ad-pc-banner">
+                <ins className="kakao_ad_area"
+                     style={{ display: "block", width: "100%", maxWidth: 300, margin: "1rem auto" }}
+                     data-ad-unit="DAN-2VAMRfWJcabygl9x"
+                     data-ad-width="300"
+                     data-ad-height="250"></ins>
+            </div>
+
+            {/* 모바일 띠배너 */}
+            <div className="ad-mobile-fixed">
+                <ins className="kakao_ad_area"
+                     style={{ display: "block", width: 320, height: 50 }}
+                     data-ad-unit="DAN-vq03WNxmpMBMVvd5"
+                     data-ad-width="320"
+                     data-ad-height="50"></ins>
+            </div>
         </div>
     );
 }

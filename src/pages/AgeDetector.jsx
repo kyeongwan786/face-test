@@ -1,5 +1,4 @@
-// ✅ AgeDetector.jsx with i18n support (with LanguageSwitcher)
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Webcam from "react-webcam";
 import { useTranslation } from "react-i18next";
 
@@ -33,6 +32,20 @@ export default function AgeDetector() {
     const scrollToWebcam = () => {
         webcamWrapperRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
     };
+
+    useEffect(() => {
+        const script = document.createElement("script");
+        script.src = "//t1.daumcdn.net/kas/static/ba.min.js";
+        script.async = true;
+        document.body.appendChild(script);
+
+        if (!window.Kakao) {
+            const s = document.createElement("script");
+            s.src = "https://t1.kakaocdn.net/kakao_js_sdk/v1/kakao.min.js";
+            s.onload = () => window.Kakao.init("d3f8af96c1e986cbfb2216380f1ea8e7");
+            document.head.appendChild(s);
+        }
+    }, []);
 
     const startBounce = (final) => {
         let pos = 10, dir = 3, elapsed = 0;
@@ -112,7 +125,42 @@ export default function AgeDetector() {
         setLoading(false);
     };
 
-    const shareKakao = () => alert(t("notImplemented"));
+    const shareKakao = async () => {
+        const { Kakao } = window;
+        if (!Kakao?.isInitialized()) return alert(t("error.kakaoNotReady"));
+        try {
+            const blob = await fetch(image).then((r) => r.blob());
+            const file = new File([blob], "age-result.jpg", { type: blob.type });
+            const { infos } = await Kakao.Share.uploadImage({ file: [file] });
+
+            const pageUrl = window.location.origin;
+
+            await Kakao.Share.sendDefault({
+                objectType: "feed",
+                content: {
+                    title: t("share.title", { age: tick }),
+                    description: t("share.description"),
+                    imageUrl: infos.original.url,
+                    link: {
+                        mobileWebUrl: pageUrl,
+                        webUrl: pageUrl,
+                    },
+                },
+                buttons: [
+                    {
+                        title: t("share.button"),
+                        link: {
+                            mobileWebUrl: pageUrl,
+                            webUrl: pageUrl,
+                        },
+                    },
+                ],
+            });
+        } catch (e) {
+            console.error(e);
+            alert(t("error.kakao"));
+        }
+    };
 
     const gaugeW = !isNaN(Number(tick)) ? `${(tick / 80) * 100}%` : "0%";
 
@@ -182,6 +230,24 @@ export default function AgeDetector() {
                         <input id="uploadAgeInput" type="file" accept="image/*" hidden onChange={upload} />
                     </div>
                 )}
+            </div>
+
+            {/* PC용 AdFit 배너 */}
+            <div className="ad-pc-banner">
+                <ins className="kakao_ad_area"
+                     style={{ display: "block", width: "100%", maxWidth: 300, margin: "1rem auto" }}
+                     data-ad-unit="DAN-2VAMRfWJcabygl9x"
+                     data-ad-width="300"
+                     data-ad-height="250"></ins>
+            </div>
+
+            {/* 모바일 띠배너 */}
+            <div className="ad-mobile-fixed">
+                <ins className="kakao_ad_area"
+                     style={{ display: "block", width: 320, height: 50 }}
+                     data-ad-unit="DAN-vq03WNxmpMBMVvd5"
+                     data-ad-width="320"
+                     data-ad-height="50"></ins>
             </div>
         </div>
     );

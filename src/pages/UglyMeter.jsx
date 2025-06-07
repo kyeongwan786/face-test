@@ -202,21 +202,7 @@ export default function UglyMeter() {
                     <p className="subtitle">{t("subtitle")}</p>
                 </header>
 
-                {/* PC 광고 */}
-                <div className="ad-pc-banner">
-                    <ins
-                        className="kakao_ad_area"
-                        style={{
-                            display: "block",
-                            width: "100%",
-                            maxWidth: 300,
-                            margin: "1rem auto",
-                        }}
-                        data-ad-unit="DAN-2VAMRfWJcabygl9x"
-                        data-ad-width="300"
-                        data-ad-height="250"
-                    ></ins>
-                </div>
+
 
                 <GenderSelector gender={gender} setGender={setGender} />
 
@@ -288,6 +274,22 @@ export default function UglyMeter() {
                 )}
             </div>
 
+            {/* PC 광고 */}
+            <div className="ad-pc-banner">
+                <ins
+                    className="kakao_ad_area"
+                    style={{
+                        display: "block",
+                        width: "100%",
+                        maxWidth: 300,
+                        margin: "1rem auto",
+                    }}
+                    data-ad-unit="DAN-2VAMRfWJcabygl9x"
+                    data-ad-width="300"
+                    data-ad-height="250"
+                ></ins>
+            </div>
+
             {/* 모바일 띠배너 */}
             <div className="ad-mobile-fixed">
                 <ins
@@ -300,8 +302,16 @@ export default function UglyMeter() {
             </div>
 
             {/* 결과 모달 */}
+
+
+
             {modalOpen && (
-                <div className="overlay-blur">
+                <div
+                    className="overlay-blur"
+                    onClick={(e) => {
+                        if (e.target.classList.contains("overlay-blur")) reset();
+                    }}
+                >
                     <div className="result-modal" style={{ "--tier-color": tier?.color }}>
                         <button className="modal-close" onClick={reset}>
                             ×
@@ -335,6 +345,7 @@ export default function UglyMeter() {
                     </div>
                 </div>
             )}
+
         </div>
     );
 }
