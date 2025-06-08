@@ -8,6 +8,19 @@ import LanguageSwitcher from "../components/LanguageSwitcher";
 import "../styles/common.css";
 import "../styles/vibe.css";
 
+import { Helmet } from "react-helmet";
+
+<Helmet>
+    <title>첫인상 분석기 | AI 얼굴 실험실</title>
+    <meta name="description" content="AI가 얼굴을 분석해 첫인상을 평가합니다. 호감도, 분위기, 인상 점수까지!" />
+    <meta property="og:title" content="첫인상 분석기 | AI 얼굴 실험실" />
+    <meta property="og:description" content="AI가 평가한 당신의 첫인상은? 호감도부터 인상 분석까지 한 번에 확인하세요!" />
+    <meta property="og:image" content="/meta/impression.png" />
+    <meta property="og:url" content="https://facealchemy.site/impression" />
+    <meta property="og:type" content="website" />
+</Helmet>
+
+
 const CONTEXTS = ["default", "interviewer", "date", "police", "dog", "kid"];
 
 export default function Vibe() {

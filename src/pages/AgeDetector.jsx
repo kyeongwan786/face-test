@@ -10,6 +10,11 @@ import GenderSelector from "../components/GenderSelector";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 import { runAgeEstimation } from "../utils/runAgeModel";
 
+import { Helmet } from "react-helmet";
+
+
+
+
 export default function AgeDetector() {
     const { t } = useTranslation("age");
 
@@ -166,6 +171,15 @@ export default function AgeDetector() {
 
     return (
         <div className="page">
+            <Helmet>
+                <title>AI 나이 추측기 | AI 얼굴 실험실</title>
+                <meta name="description" content="AI가 얼굴 이미지를 기반으로 나이를 추정합니다. 과연 당신의 얼굴 나이는 몇 살일까요?" />
+                <meta property="og:title" content="AI 나이 추측기 | AI 얼굴 실험실" />
+                <meta property="og:description" content="실제 나이와 얼굴 나이의 차이를 확인해보세요! AI 기반 얼굴 분석으로 추정." />
+                <meta property="og:image" content="/meta/age.png" />
+                <meta property="og:url" content="https://facealchemy.site/age" />
+                <meta property="og:type" content="website" />
+            </Helmet>
             <LanguageSwitcher />
 
             {modal && (

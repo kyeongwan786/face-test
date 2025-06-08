@@ -6,6 +6,11 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import "../styles/common.css";
 import "../styles/like.css";
 
+import { Helmet } from "react-helmet";
+
+
+
+
 export default function Like() {
     const [gender, setGender] = useState("male");
     const [useWebcam, setUseWebcam] = useState(false);
@@ -180,6 +185,20 @@ export default function Like() {
 
     return (
         <div className="page">
+            <Helmet>
+                <title>연예인 닮은꼴 찾기 | AI 얼굴 실험실</title>
+                <meta name="description" content="당신은 과연 어떤 연예인과 닮았을까요? AI가 얼굴을 분석해 닮은꼴 연예인을 찾아드립니다!" />
+                <meta property="og:title" content="연예인 닮은꼴 찾기 | AI 얼굴 실험실" />
+                <meta property="og:description" content="사진만 올리면 AI가 닮은 연예인을 찾아줍니다! 병맛 보장, 연예인 소환!" />
+                <meta property="og:image" content="/meta/lookalike.png" />
+                <meta property="og:url" content="https://facealchemy.site/lookalike" />
+                <meta property="og:type" content="website" />
+
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="연예인 닮은꼴 찾기 | AI 얼굴 실험실" />
+                <meta name="twitter:description" content="나랑 닮은 연예인이 누군지 궁금해? AI가 얼굴만 보고 알려준다!" />
+                <meta name="twitter:image" content="/meta/lookalike.png" />
+            </Helmet>
             <div className="container">
                 <header>
                     <h1 className="section-title">연예인 닮은꼴 테스트</h1>

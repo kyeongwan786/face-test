@@ -1,119 +1,379 @@
-.result-modal {
-    position: relative;
-    background: linear-gradient(to bottom right, #ffffff, #f9f9f9);
-    border-radius: var(--rad-l);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-    padding: 6rem 1.5rem 2rem;
-    width: 90%;
-    max-width: 460px;
+:root {
+    --mbti-gradient: linear-gradient(135deg, #8b5cf6, #6366f1);
+    --bg-card: #ffffff;
+    --bg-muted: #f3f4f6;
+    --bg-deep: #eef2ff;
+    --text-main: #1f2937;
+    --text-sub: #4b5563;
+    --text-muted: #9ca3af;
+    --accent-purple: #a78bfa;
+    --accent-pink: #f472b6;
+    --accent-yellow: #fde047;
+    --accent-blue: #3b82f6;
+    --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.07);
+    --shadow-pop: 0 8px 24px rgba(0, 0, 0, 0.1);
+    --rad-lg: 1.2rem;
+    --rad-full: 9999px;
+    --font-display: 'Pretendard', 'Noto Sans KR', sans-serif;
+    --font-funny: 'DungGeunMo', 'BMJUA', cursive;
+}
+
+/* 🌟 결과 카드 모달 */
+.result-modal.mbti-style {
+    background: var(--bg-card);
+    border-radius: var(--rad-lg);
+    box-shadow: var(--shadow-pop);
+    width: 92%;
+    max-width: 500px;
+    padding: 2.2rem 2rem;
+    padding-top: 3.5rem; /* ✅ 이미지 영역 여유 공간 확보 */
     text-align: center;
-    color: var(--nc-900);
-    overflow: visible;
-    animation: fadeInUp 0.4s ease;
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--nc-200);
+    color: var(--text-main);
+    animation: fadeInUp 0.5s ease-out;
+    overflow: hidden;
+    background-image: radial-gradient(circle at top left, #eef2ff, #ffffff);
+
+    max-height: 90vh; /* ✅ 내부 스크롤 */
+    overflow-y: auto;
+    position: relative;
+}
+
+/* ✨ 타이틀 상단 */
+.modal-main-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--accent-purple);
+    margin-bottom: 0.8rem;
+    font-family: var(--font-display);
+    letter-spacing: -0.2px;
+    position: relative;
+    padding-bottom: 1rem;
+}
+.modal-main-title::after {
+    content: '✨';
+    position: absolute;
+    right: -1.4rem;
+    top: 0;
+    animation: bounceEmoji 1.2s infinite ease-in-out;
+}
+
+.photo-box.mbti {
+    width: 130px;
+    height: 130px;
+    margin: -2rem auto 0;
+    border-radius: 50%;
+    border: 4px dashed var(--accent-yellow);
+    background: #fff8db;
+    box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.9);
+    animation: pulseBorder 2.5s infinite;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.photo-box.mbti img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* ✅ contain → cover로 변경 */
+    object-position: center;
+    display: block;
+    border-radius: 50%; /* ✅ 이미지도 원형으로 깎기 */
 }
 
 
 
-/* MBTI 결과 텍스트 */
-.mbti-type {
-    font-size: 2.6rem;
+
+
+
+
+/* 🔤 MBTI 코드 */
+.mbti-code {
+    font-size: 3.1rem;
     font-weight: 900;
-    font-family: var(--ff-head);
-    margin-top: 0.8rem;
-    background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
+    font-family: var(--font-display);
+    margin-top: 1.2rem;
+    margin-bottom: 0.2rem;
+    background: linear-gradient(to right, #8b5cf6, #ec4899);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    animation: scalePop 0.4s ease;
 }
 
-/* 한 줄 요약 설명 */
-.mbti-highlight {
-    margin-top: 0.4rem;
+/* 💬 닉네임 */
+.mbti-nickname {
     font-size: 1rem;
-    color: var(--nc-600);
-    font-weight: 600;
+    font-weight: 500;
+    color: var(--text-sub);
     font-style: italic;
+    margin-bottom: 0.8rem;
 }
 
-/* 설명 박스 - 진짜 예쁘게 카드처럼 */
+/* 🤪 병맛 타이틀 뱃지 */
+.badge-box {
+    margin-top: 1rem;
+    margin-bottom: 1.3rem;
+}
+.badge {
+    display: inline-block;
+    background: var(--accent-yellow);
+    color: #1f2937;
+    font-family: var(--font-funny);
+    padding: 0.5rem 1.2rem;
+    font-size: 0.85rem;
+    border-radius: var(--rad-full);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    transform: rotate(-2deg);
+}
+/* 📜 설명 카드 */
 .mbti-desc-box {
-    background: #ffffff;
-    border: 1px solid var(--nc-200);
-    border-radius: var(--rad-m);
-    padding: 1.2rem 1.4rem;
-    margin: 1.4rem 0;
-    color: var(--nc-700);
+    background: var(--bg-muted);
+    border-radius: var(--rad-lg);
+    padding: 1.1rem 1.4rem;
+    margin: 1.4rem auto;
     font-size: 0.95rem;
-    line-height: 1.6;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
-    animation: fadeIn 0.5s ease;
+    line-height: 1.65;
+    color: var(--text-main);
+    text-align: left;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.03);
+    max-width: 90%;
+    position: relative;
+}
+.mbti-desc-box::before {
+    content: "📜";
+    position: absolute;
+    top: -0.8rem;
+    left: 1rem;
+    font-size: 1.2rem;
 }
 
-/* 키워드 태그 */
+/* 🧩 키워드 태그 */
 .keyword-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0.4rem 0.6rem;
     justify-content: center;
-    margin-bottom: 1rem;
+    margin-bottom: 1.4rem;
+    padding: 0 1rem;
 }
 .tag {
-    background: linear-gradient(to right, var(--accent-mint), var(--accent-blue));
+    background: var(--accent-purple);
     color: white;
-    font-size: 0.8rem;
-    padding: 0.4rem 0.9rem;
+    padding: 0.35rem 0.9rem;
+    font-size: 0.75rem;
+    font-weight: 600;
     border-radius: var(--rad-full);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.tag:hover {
+    transform: scale(1.08);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-/* 버튼 섹션 */
+/* 🎮 버튼 영역 */
 .modal-buttons {
     display: flex;
     flex-wrap: wrap;
     gap: 0.6rem;
     justify-content: center;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
 }
-.modal-buttons > button {
+.modal-buttons button {
     flex: 1 1 40%;
-    min-width: 120px;
-    padding: 0.7rem 1.2rem;
-    font-size: 0.95rem;
+    min-width: 130px;
+    padding: 0.65rem 1.1rem;
+    font-size: 0.88rem;
     font-weight: 700;
     border-radius: var(--rad-full);
+    border: none;
     cursor: pointer;
-    transition: 0.3s ease;
+    transition: all 0.2s ease;
 }
 .btn-retry {
-    background: linear-gradient(to right, var(--accent-blue), #7baeff);
+    background: var(--accent-blue);
     color: white;
+}
+.btn-retry:hover {
+    background: #2563eb;
+    transform: scale(1.04);
 }
 .btn-kakao {
     background: #fee500;
     color: #3a1e1f;
 }
+.btn-kakao:hover {
+    filter: brightness(0.95);
+    transform: scale(1.03);
+}
 
-/* 닫기 버튼 */
+/* 🎯 CTA 텍스트 강조 */
+.cta-box {
+    text-align: center;
+    margin: 2rem 0 0.6rem;
+}
+.cta-box p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 0.8rem;
+}
+.cta-box strong {
+    display: block;
+    font-size: 1rem;
+    color: var(--accent-purple);
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+}
+/* 📦 추천 테스트 박스 */
+.other-tests-box {
+    text-align: center;
+    margin-top: 2.5rem;
+}
+.section-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-bottom: 0.8rem;
+}
+
+/* 💡 테스트 추천 카드 */
+.test-suggestions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 0 1rem;
+}
+.test-suggestion-card {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    background: var(--bg-muted);
+    border-radius: var(--rad-lg);
+    text-decoration: none;
+    color: var(--text-main);
+    box-shadow: var(--shadow-card);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.test-suggestion-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-pop);
+    background: #e5e7eb;
+}
+.test-emoji {
+    font-size: 1.4rem;
+    margin-right: 0.9rem;
+}
+.test-text strong {
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+.test-text p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 0;
+    margin-top: 2px;
+}
+
+/* ❌ 닫기 버튼 */
 .modal-close {
     position: absolute;
     top: 1rem;
     right: 1rem;
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     background: none;
     border: none;
-    color: var(--nc-700);
-    font-weight: bold;
+    color: #9ca3af;
     cursor: pointer;
-    z-index: 10;
-    transition: 0.2s ease;
+    transition: transform 0.2s ease;
 }
 .modal-close:hover {
     transform: scale(1.2);
+    color: #4b5563;
 }
 
-/* 종이쪼가리 제거 */
-.confetti-wrapper > div {
-    display: none; /* 일시적으로 없앰, 진짜 종이 쪼가리라면 JSX에서도 제거 필요 */
+/* 📱 모바일 대응 */
+@media (max-width: 480px) {
+    .photo-box.mbti {
+        width: 100px;
+        height: 100px;
+    }
+    .mbti-code {
+        font-size: 2.2rem;
+    }
+    .modal-main-title {
+        font-size: 1rem;
+        padding-bottom: 1rem;
+    }
+    .badge {
+        font-size: 0.8rem;
+    }
+    .mbti-desc-box {
+        font-size: 0.9rem;
+        padding: 1rem;
+    }
+    .modal-buttons button {
+        font-size: 0.82rem;
+        padding: 0.55rem 1rem;
+    }
+    .tag {
+        font-size: 0.7rem;
+        padding: 0.35rem 0.7rem;
+    }
+    .test-suggestion-card {
+        padding: 0.7rem 0.9rem;
+    }
+}
+
+/* ✨ 애니메이션들 */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes bounceEmoji {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-4px);
+    }
+}
+@keyframes scalePop {
+    0% {
+        transform: scale(0.85);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+@keyframes pulseBorder {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(253, 224, 71, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 0 8px rgba(253, 224, 71, 0.1);
+    }
+}
+
+.overlay-blur {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(6px);
+    z-index: 1000;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* 윗부분부터 정렬 */
+    overflow-y: auto;
+    padding: 5rem 1rem; /* ✅ 위 여백 확보 */
+
 }

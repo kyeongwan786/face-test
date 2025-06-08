@@ -8,6 +8,10 @@ import TestSuggestions from "../components/TestSuggestions";
 import ExploreAllTests from "../components/ExploreAllTests";
 import "../styles/common.css";
 import "../styles/ugly.css";
+import { Helmet } from "react-helmet";
+
+
+
 
 const BUCKETS = [
     { key: "top", max: 20 },
@@ -210,6 +214,15 @@ export default function UglyMeter() {
 
     return (
         <div className="page">
+            <Helmet>
+                <title>못생김 측정기 | AI 얼굴 실험실</title>
+                <meta name="description" content="AI가 당신의 얼굴을 분석해 못생김 점수를 매겨드립니다. 티어, 개드립 해설까지 완벽 지원!" />
+                <meta property="og:title" content="못생김 측정기 | AI 얼굴 실험실" />
+                <meta property="og:description" content="얼굴 하나로 못생김 티어 분석받고 병맛 해설까지! AI 얼굴 실험실에서 지금 확인하세요." />
+                <meta property="og:image" content="/meta/ugly.png" />
+                <meta property="og:url" content="https://facealchemy.site/ugly" />
+                <meta property="og:type" content="website" />
+            </Helmet>
             <div className="container">
                 <header>
                     <h1>{t("title")}</h1>
@@ -289,9 +302,10 @@ export default function UglyMeter() {
                         <div className="funny-random-comment">🧠 "{getFunnyComment(score, t)}"</div>
                         <TestSuggestions />
                         <div className="modal-buttons">
-                            <button className="btn-retry" onClick={reset}>🔁 {t("buttons.retry")}</button>
-                            <button className="btn-kakao" onClick={shareKakao}>💬 {t("buttons.kakao")}</button>
+                            <button className="common-btn retry" onClick={reset}>🔁 {t("buttons.retry")}</button>
+                            <button className="common-btn kakao" onClick={shareKakao}>💬 {t("buttons.kakao")}</button>
                         </div>
+
                     </div>
                 </div>
             )}

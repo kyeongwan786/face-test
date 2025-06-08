@@ -132,19 +132,26 @@ button,
     cursor: pointer;
     transition: 0.3s ease;
 }
-.btn-retry {
-    background: linear-gradient(135deg, #ff658a, #ff4f81);
+.common-btn.retry {
+    background: linear-gradient(135deg, #3fa8ff, #0066cc);
     color: white;
+    font-weight: 600;
 }
-.btn-save {
-    background: linear-gradient(135deg, #3fa8ff, #7badff);
-    color: white;
+.common-btn.retry:hover {
+    background: #2563eb;
+    transform: scale(1.05);
 }
-.btn-kakao {
+
+.common-btn.kakao {
     background: #fee500;
-    color: #3b1e1e;
+    color: #3a1e1f;
     font-weight: 700;
 }
+.common-btn.kakao:hover {
+    filter: brightness(0.95);
+    transform: scale(1.03);
+}
+
 
 /* 6. Upload Box */
 .upload-box {
@@ -211,17 +218,26 @@ button,
     box-shadow: var(--shadow-s);
     z-index: 2;
 }
+/* Buttons */
 .modal-buttons {
     display: flex;
+    flex-direction: row; /* ✅ 가로 정렬로 명시 */
     flex-wrap: wrap;
     gap: 0.6rem;
     justify-content: center;
     margin-top: 0.8rem;
 }
+
 .modal-buttons > button {
-    flex: 1 1 100px;
-    padding: 0.6rem 1rem;
-    font-size: 0.85rem;
+    flex: 1 1 40%;
+    min-width: 130px;
+    padding: 0.65rem 1.1rem;
+    font-size: 0.88rem;
+    font-weight: 700;
+    border-radius: var(--rad-full);
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 /* 8. Animation Keyframes */
