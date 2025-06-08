@@ -1,48 +1,57 @@
+/* ==========================================================================
+   like.css — AI 컬러블리 달리기 (여부, 노력) 페이지 전용 스타일
+   Updated: 2025-06-07
+   ==========================================================================
+*/
+
 :root {
     --like-yellow: #ffe082;
     --like-orange: #ffca28;
     --like-deep: #ff8f00;
     --like-bg: #fffde7;
     --like-text: #4e342e;
+    --like-border: #ffe082;
+    --like-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    --btn-radius: 14px;
 }
 
-/* 📦 모달 외부 백그라운드 블러 */
+/* === OVERLAY === */
 .overlay-blur {
     position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background: rgba(0, 0, 0, 0.45);
     backdrop-filter: blur(6px);
     z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 16px;
+    padding: 0 1rem;
+    overflow-y: auto;
 }
 
-/* 💬 결과 모달 */
+/* === RESULT MODAL === */
 .like-result-modal {
+    position: relative;
     background: var(--like-bg);
     border-radius: 2rem;
-    padding: 6.5rem 1.5rem 2rem; /* 사진 들어갈 공간 확보 */
+    padding: 6.5rem 1.5rem 2rem;
     width: 100%;
     max-width: 440px;
-    position: relative;
-    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    box-shadow: var(--like-shadow);
     border: 3px dashed var(--like-orange);
     animation: modalPopIn 0.5s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
 }
 
 @keyframes modalPopIn {
     from { transform: scale(0.9); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+    to   { transform: scale(1); opacity: 1; }
 }
 
-/* 🖼 내 사진 */
-.like-photo {
+.modal-photo-circle {
     position: absolute;
     top: -75px;
     left: 50%;
@@ -59,10 +68,10 @@
 
 @keyframes floatDown {
     from { transform: translate(-50%, -30px); opacity: 0; }
-    to { transform: translate(-50%, 0); opacity: 1; }
+    to   { transform: translate(-50%, 0); opacity: 1; }
 }
 
-/* ✨ 이름 강조 */
+/* === RESULT LABEL === */
 .like-label {
     font-size: 2rem;
     font-weight: 800;
@@ -82,20 +91,15 @@
     animation: sparkle 1.5s infinite;
 }
 
-.like-label::before {
-    left: -30px;
-}
-
-.like-label::after {
-    right: -30px;
-}
+.like-label::before { left: -30px; }
+.like-label::after  { right: -30px; }
 
 @keyframes sparkle {
     0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.2); opacity: 0.6; }
+    50%      { transform: scale(1.2); opacity: 0.6; }
 }
 
-/* 🧾 코멘트 */
+/* === COMMENT === */
 .like-comment {
     background: #fff8e1;
     border-left: 4px solid var(--like-deep);
@@ -109,7 +113,7 @@
     width: 100%;
 }
 
-/* 💬 왜 닮았는지 설명 */
+/* === DESCRIPTION === */
 .like-description {
     font-size: 0.95rem;
     color: #5d4037;
@@ -123,29 +127,98 @@
     margin-bottom: 1.4rem;
 }
 
-/* 🎯 버튼들 */
-.like-buttons {
+/* === KEYWORDS === */
+.keyword-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 0.6rem;
+    margin-top: 1.2rem;
 }
 
-.like-buttons button {
+.tag {
+    padding: 0.35rem 0.9rem;
+    background: #fff0fb;
+    color: #d63384;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 999px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+/* === BUTTONS === */
+.modal-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-top: 1.6rem;
+}
+
+.modal-buttons button {
     background: var(--like-orange);
     color: #000;
     border: none;
     padding: 0.6rem 1.2rem;
     font-size: 1rem;
     font-weight: 600;
-    border-radius: 0.9rem;
+    border-radius: var(--btn-radius);
     cursor: pointer;
     transition: all 0.2s ease;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.like-buttons button:hover {
+.modal-buttons button:hover {
     background: var(--like-deep);
     color: #fff;
     transform: translateY(-2px);
+}
+
+/* === CLOSE === */
+.modal-close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.8rem;
+    font-weight: bold;
+    background: transparent;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.modal-close-button:hover {
+    color: #111;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 520px) {
+    .modal-photo-circle {
+        width: 100px;
+        height: 100px;
+        top: -55px;
+    }
+
+    .like-label {
+        font-size: 1.7rem;
+    }
+
+    .like-comment {
+        font-size: 0.92rem;
+    }
+
+    .like-description {
+        font-size: 0.9rem;
+    }
+
+    .modal-buttons {
+        flex-direction: column;
+    }
+
+    .modal-buttons button {
+        width: 100%;
+    }
 }

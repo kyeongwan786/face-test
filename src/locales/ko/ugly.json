@@ -1,62 +1,110 @@
 {
   "title": "못생김 측정기",
-  "subtitle": "성별을 선택하고 아래 방식 중 하나로 측정해보세요",
+  "subtitle": "성별을 고르고 아래 방식 중 하나로 AI에게 실망당해보세요",
 
   "mode": {
     "upload": "사진 업로드하기",
-    "webcam": "실시간으로 분석하기"
+    "webcam": "웹캠으로 굴욕 당하기"
   },
   "upload": {
-    "label": "사진 올리기"
+    "label": "자신 있으면 올려보세요"
   },
 
   "webcam": {
-    "loading": "웹캠 준비 중...",
-    "ready": "분석을 시작하세요",
-    "done": "분석이 완료되었습니다. 다시 시도하려면 버튼을 눌러주세요."
+    "loading": "카메라 켜는 중... 도망가기엔 늦었어요",
+    "ready": "이제... 진실을 마주할 시간",
+    "done": "AI 충격에 빠짐. 다시 하려면 눌러보세요"
   },
 
   "buttons": {
-    "retry": "다시하기",
-    "save": "결과 저장",
-    "kakao": "카카오톡 공유",
-    "analyze": "분석 시작"
+    "retry": "한 번 더 망신",
+    "save": "망신 저장하기",
+    "kakao": "카톡으로 망신 공유",
+    "analyze": "망신 시작"
   },
 
   "result": {
-    "label": "못생김"
+    "label": "못생김",
+    "reaction": "이 정도면 AI한테 사과받아야 합니다.",
+    "score": "못생김 점수"
   },
 
   "buckets": {
-    "top": { "title": "최상위 티어", "sub": "훌륭한데요?" },
-    "high": { "title": "상위 티어", "sub": "괜찮은데요?" },
-    "mid": { "title": "평균선 착지", "sub": "낫배드~" },
-    "low": { "title": "카메라가 한숨", "sub": "흠........" },
-    "bottom": { "title": "괜찮아요", "sub": "그럴 수 있어요" }
+    "top": { "title": "AI가 놀람", "sub": "이 정도면 인간 맞나요?" },
+    "high": { "title": "잘생긴 축에 듦", "sub": "못생긴 쪽은 아닌 듯" },
+    "mid": { "title": "평균선 착지", "sub": "AI도 판단 유보함" },
+    "low": { "title": "AI가 한숨", "sub": "사진 바꿔보는 건 어때요?" },
+    "bottom": { "title": "카메라 고장 아님", "sub": "이건 진심으로 미안해요" }
   },
 
   "tier": {
-    "challenger": { "name": "Challenger", "desc": "상위 0.01%" },
-    "grandmaster": { "name": "Grandmaster", "desc": "상위 0.1%" },
-    "master": { "name": "Master", "desc": "상위 1%" },
-    "diamond": { "name": "Diamond", "desc": "상위 5%" },
-    "platinum": { "name": "Platinum", "desc": "상위 10%" },
-    "gold": { "name": "Gold", "desc": "상위 25%" },
-    "silver": { "name": "Silver", "desc": "상위 50%" },
-    "bronze": { "name": "Bronze", "desc": "남은 인원" }
+    "challenger": { "name": "Challenger", "desc": "이 얼굴로 인간관계 유지 중인 전설" },
+    "grandmaster": { "name": "Grandmaster", "desc": "AI가 도망갈 뻔함" },
+    "master": { "name": "Master", "desc": "거울과 화해가 시급함" },
+    "diamond": { "name": "Diamond", "desc": "어느 정도 버틸 만함" },
+    "platinum": { "name": "Platinum", "desc": "상위권 턱걸이 성공!" },
+    "gold": { "name": "Gold", "desc": "못생김 중엔 에이스" },
+    "silver": { "name": "Silver", "desc": "애매한 못생김 대표주자" },
+    "bronze": { "name": "Bronze", "desc": "인류애 테스트 실패" }
+  },
+
+  "reaction": {
+    "top": "😎 AI가 널 못생겼다고 못 하겠대요",
+    "high": "🙂 아직은 인간 중 상위권이에요",
+    "mid": "😐 평범한 못생김, 흔한 얼굴",
+    "low": "😬 AI가 당황했어요...",
+    "bottom": "😱 이 정도면 AI한테 사과받아야 합니다"
+  },
+
+  "funnyComment": {
+    "top": [
+      "못생김이 부족해서 분석이 안 돼요",
+      "AI가 오히려 기분 좋아졌어요",
+      "이건 잘생김 감별기에 써야 함",
+      "너 이 테스트 왜 들어왔냐",
+      "못생김 수치 0... AI 당황함"
+    ],
+    "high": [
+      "못생기진 않았어… 그게 다야",
+      "이 정도면 실물 보고 판단해야 함",
+      "사진빨이 안 받는 스타일",
+      "못생김은 아닌데 애매하네?",
+      "AI가 판단을 미룸"
+    ],
+    "mid": [
+      "평범한 못생김입니다",
+      "이 얼굴 많이 봤어… 지하철에서",
+      "여기서 더 못 나오면 접속 끊어야 함",
+      "카메라 렌즈가 실망함",
+      "AI가 '흠…' 이랬음"
+    ],
+    "low": [
+      "못생김이 주 장르예요?",
+      "이건 스타일로 커버 안 됨",
+      "이 얼굴로 지금까지 살아온 거 실화?",
+      "사진 속 너한테 사과해",
+      "거울이랑 거리 두기 좀 해봐"
+    ],
+    "bottom": [
+      "못생김이 공격력이야",
+      "이건… 그냥 미안하다",
+      "AI가 도망갔습니다",
+      "네 얼굴 보고 서버 꺼짐",
+      "못생김계의 종결자 등장"
+    ]
   },
 
   "share": {
-    "title": "못생김 {{score}}%",
-    "button": "나도 측정하기"
+    "title": "AI가 평가한 못생김: {{score}}%",
+    "button": "나도 굴욕 당하러 가기"
   },
 
   "error": {
-    "webcamAccess": "웹캠 접근에 실패했습니다.",
-    "analysisFailed": "이미지를 분석하는 중 문제가 발생했습니다.",
-    "modelLoad": "모델을 불러오는데 실패했습니다.",
-    "kakaoInit": "카카오 SDK 준비 중!",
-    "kakaoFail": "카카오톡 공유에 실패했습니다.",
-    "sizeLimit": "이미지 크기가 5MB를 초과하여 카카오톡에 업로드할 수 없습니다."
+    "webcamAccess": "웹캠 접근 실패! 얼굴이 너무 강했나?",
+    "analysisFailed": "AI가 분석을 포기했어요. 다시 시도해보세요.",
+    "modelLoad": "모델 불러오기 실패... 외모가 너무 충격적이었나?",
+    "kakaoInit": "카카오 준비 중입니다… AI가 놀라서 늦는 중?",
+    "kakaoFail": "공유 실패! 당신의 못생김은 비공유급입니다.",
+    "sizeLimit": "이미지가 너무 큽니다 (5MB 초과). 얼굴 크기 때문일까요?"
   }
 }

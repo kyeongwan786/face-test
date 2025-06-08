@@ -1,17 +1,60 @@
-// src/pages/UglyMeter.jsx
 import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { loadModelByGender, predictImage } from "../utils/runModel";
 import GenderSelector from "../components/GenderSelector";
 import LoadingSpinner from "../components/LoadingSpinner";
 import LanguageSwitcher from "../components/LanguageSwitcher";
+import TestSuggestions from "../components/TestSuggestions";
+import ExploreAllTests from "../components/ExploreAllTests";
 import "../styles/common.css";
 import "../styles/ugly.css";
 
+const BUCKETS = [
+    { key: "top", max: 20 },
+    { key: "high", max: 40 },
+    { key: "mid", max: 60 },
+    { key: "low", max: 80 },
+    { key: "bottom", max: Infinity }
+];
+
+const TIER_TABLE = [
+    { key: "challenger", max: 10, file: "Challenger.png", color: "#ffd700" },
+    { key: "grandmaster", max: 20, file: "Grandmaster.png", color: "#ff5252" },
+    { key: "master", max: 30, file: "Master.png", color: "#b56cff" },
+    { key: "diamond", max: 45, file: "Diamond.png", color: "#29d4f6" },
+    { key: "platinum", max: 60, file: "Platinum.png", color: "#2db8a8" },
+    { key: "gold", max: 75, file: "Gold.png", color: "#cfa93e" },
+    { key: "silver", max: 90, file: "Silver.png", color: "#aeb6bf" },
+    { key: "bronze", max: 101, file: "Bronze.png", color: "#5d5d5d" }
+];
+
+function getTier(score) {
+    return TIER_TABLE.find((t) => score < t.max);
+}
+
+function getReaction(score, t) {
+    if (score < 20) return t("reaction.top");
+    if (score < 40) return t("reaction.high");
+    if (score < 60) return t("reaction.mid");
+    if (score < 80) return t("reaction.low");
+    return t("reaction.bottom");
+}
+
+function getFunnyComment(score, t) {
+    if (score < 20) return pickRandom(t("funnyComment.top", { returnObjects: true }));
+    if (score < 40) return pickRandom(t("funnyComment.high", { returnObjects: true }));
+    if (score < 60) return pickRandom(t("funnyComment.mid", { returnObjects: true }));
+    if (score < 80) return pickRandom(t("funnyComment.low", { returnObjects: true }));
+    return pickRandom(t("funnyComment.bottom", { returnObjects: true }));
+}
+
+
+function pickRandom(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+}
+
 export default function UglyMeter() {
     const { t } = useTranslation("ugly");
-
-    /* ───────── state ───────── */
     const [gender, setGender] = useState("male");
     const [useWebcam, setUseWebcam] = useState(false);
     const [image, setImage] = useState(null);
@@ -24,25 +67,14 @@ export default function UglyMeter() {
     const [webcamFinished, setWebcamFinished] = useState(false);
     const [webcamStream, setWebcamStream] = useState(null);
 
-    /* ───────── ref ───────── */
     const videoRef = useRef(null);
     const webcamWrapperRef = useRef(null);
 
-    /* ───────── utils ───────── */
-    const scrollToWebcam = () => {
-        webcamWrapperRef.current?.scrollIntoView({
-            behavior: "smooth",
-            block: "center",
-        });
-    };
-
-    /* ───────── sdk / ads script ───────── */
     useEffect(() => {
         if (!window.Kakao) {
             const s = document.createElement("script");
             s.src = "https://t1.kakaocdn.net/kakao_js_sdk/v1/kakao.min.js";
-            s.onload = () =>
-                window.Kakao.init("d3f8af96c1e986cbfb2216380f1ea8e7");
+            s.onload = () => window.Kakao.init("d3f8af96c1e986cbfb2216380f1ea8e7");
             document.head.appendChild(s);
         }
         const ad = document.createElement("script");
@@ -51,13 +83,11 @@ export default function UglyMeter() {
         document.body.appendChild(ad);
     }, []);
 
-    /* ───────── webcam on/off ───────── */
     useEffect(() => {
         if (useWebcam) {
             setWebcamReady(false);
             setWebcamFinished(false);
-            navigator.mediaDevices
-                .getUserMedia({ video: true })
+            navigator.mediaDevices.getUserMedia({ video: true })
                 .then((stream) => {
                     videoRef.current.srcObject = stream;
                     videoRef.current.onloadedmetadata = () => {
@@ -70,33 +100,29 @@ export default function UglyMeter() {
         }
     }, [useWebcam, t]);
 
-    /* ───────── core predict helper ───────── */
     const predictAndShow = async (img) => {
         await loadModelByGender(gender);
         const preds = await predictImage(img);
-        const ugly = preds.find((p) =>
-            p.className.toLowerCase().includes("ugly")
-        );
+        const ugly = preds.find((p) => p.className.toLowerCase().includes("ugly"));
         const s = Math.round((ugly?.probability ?? 0) * 100);
         setScore(s);
 
         const matched = BUCKETS.find((b) => s < b.max);
         setComment({
             title: t(`buckets.${matched.key}.title`),
-            sub: t(`buckets.${matched.key}.sub`),
+            sub: t(`buckets.${matched.key}.sub`)
         });
 
         const currentTier = getTier(s);
         setTier({
             ...currentTier,
             name: t(`tier.${currentTier.key}.name`),
-            desc: t(`tier.${currentTier.key}.desc`),
+            desc: t(`tier.${currentTier.key}.desc`)
         });
 
         setModalOpen(true);
     };
 
-    /* ───────── upload flow ───────── */
     const handleUpload = (e) => {
         const file = e.target.files[0];
         if (!file) return;
@@ -118,22 +144,18 @@ export default function UglyMeter() {
         reader.readAsDataURL(file);
     };
 
-    /* ───────── webcam capture ───────── */
     const captureFromWebcam = async () => {
-        if (!videoRef.current) return;
         const canvas = document.createElement("canvas");
         canvas.width = videoRef.current.videoWidth;
         canvas.height = videoRef.current.videoHeight;
         canvas.getContext("2d").drawImage(videoRef.current, 0, 0);
-
         const data = canvas.toDataURL("image/jpeg");
         setImage(data);
         setLoading(true);
-
         webcamStream?.getTracks().forEach((t) => t.stop());
+
         const img = new Image();
         img.src = data;
-
         try {
             await img.decode();
             await predictAndShow(img);
@@ -143,7 +165,6 @@ export default function UglyMeter() {
         }
     };
 
-    /* ───────── reset ───────── */
     const reset = () => {
         setImage(null);
         setScore(null);
@@ -156,7 +177,6 @@ export default function UglyMeter() {
         setUseWebcam(false);
     };
 
-    /* ───────── kakao share ───────── */
     const shareKakao = async () => {
         const { Kakao } = window;
         if (!Kakao?.isInitialized()) {
@@ -168,90 +188,63 @@ export default function UglyMeter() {
             const file = new File([blob], "result.jpg", { type: blob.type });
             const { infos } = await Kakao.Share.uploadImage({ file: [file] });
             const pageUrl = window.location.origin;
-
             await Kakao.Share.sendDefault({
                 objectType: "feed",
                 content: {
-                    title: t("share.title", { score }),
+                    title: `못생김 ${score}%`,
                     description: `${comment.title} ${comment.sub}`,
                     imageUrl: infos.original.url,
-                    link: { mobileWebUrl: pageUrl, webUrl: pageUrl },
+                    link: { mobileWebUrl: pageUrl, webUrl: pageUrl }
                 },
                 buttons: [
                     {
                         title: t("share.button"),
-                        link: { mobileWebUrl: pageUrl, webUrl: pageUrl },
-                    },
-                ],
+                        link: { mobileWebUrl: pageUrl, webUrl: pageUrl }
+                    }
+                ]
             });
         } catch {
             alert(t("error.kakaoFail"));
         }
     };
 
-    /* ───────── jsx ───────── */
     return (
         <div className="page">
-            <div className="language-switcher-wrapper">
-                <LanguageSwitcher />
-            </div>
-
             <div className="container">
                 <header>
                     <h1>{t("title")}</h1>
                     <p className="subtitle">{t("subtitle")}</p>
+                    <div className="language-switcher-wrapper">
+                        <LanguageSwitcher />
+                    </div>
                 </header>
-
-
-
                 <GenderSelector gender={gender} setGender={setGender} />
-
                 <div className="mode-toggle-buttons">
-                    <button
-                        className={!useWebcam ? "mode-button active" : "mode-button"}
-                        onClick={() => setUseWebcam(false)}
-                    >
+                    <button className={!useWebcam ? "mode-button active" : "mode-button"} onClick={() => setUseWebcam(false)}>
                         {t("mode.upload")}
                     </button>
-                    <button
-                        className={useWebcam ? "mode-button active" : "mode-button"}
-                        onClick={() => {
-                            setUseWebcam(true);
-                            setTimeout(scrollToWebcam, 100);
-                        }}
-                    >
+                    <button className={useWebcam ? "mode-button active" : "mode-button"} onClick={() => {
+                        setUseWebcam(true);
+                        setTimeout(() => webcamWrapperRef.current?.scrollIntoView({ behavior: "smooth" }), 100);
+                    }}>
                         {t("mode.webcam")}
                     </button>
                 </div>
-
                 {loading ? (
                     <LoadingSpinner />
                 ) : (
-                    !image &&
-                    (!useWebcam ? (
+                    !image && (!useWebcam ? (
                         <label className="upload-box">
                             <span className="upload-label">{t("upload.label")}</span>
-                            <input
-                                type="file"
-                                accept="image/*"
-                                hidden
-                                onChange={handleUpload}
-                            />
+                            <input type="file" accept="image/*" hidden onChange={handleUpload} />
                         </label>
                     ) : (
                         <div className="webcam-wrapper active" ref={webcamWrapperRef}>
                             <video ref={videoRef} autoPlay muted playsInline width="300" />
                             {webcamFinished ? (
                                 <>
-                                    <div className="webcam-overlay-text retry-message">
-                                        {t("webcam.done")}
-                                    </div>
-                                    <button
-                                        className="btn-retry webcam-retry"
-                                        onClick={reset}
-                                    >
-                                        {t("buttons.retry")}
-                                    </button>
+                                    <div className="webcam-overlay-text retry-message">{t("webcam.done")}</div>
+                                    <button className="btn-retry webcam-retry" onClick={reset}>{t("buttons.retry")}</button>
                                 </>
                             ) : (
                                 <>
@@ -259,10 +252,7 @@ export default function UglyMeter() {
                                         {webcamReady ? t("webcam.ready") : t("webcam.loading")}
                                     </div>
                                     {webcamReady && (
-                                        <button
-                                            className="btn-analyze webcam-analyze"
-                                            onClick={captureFromWebcam}
-                                        >
+                                        <button className="btn-analyze webcam-analyze" onClick={captureFromWebcam}>
                                             {t("buttons.analyze")}
                                         </button>
                                     )}
@@ -273,103 +263,41 @@ export default function UglyMeter() {
                     ))
                 )}
             </div>
-
-            {/* PC 광고 */}
-            <div className="ad-pc-banner">
-                <ins
-                    className="kakao_ad_area"
-                    style={{
-                        display: "block",
-                        width: "100%",
-                        maxWidth: 300,
-                        margin: "1rem auto",
-                    }}
-                    data-ad-unit="DAN-2VAMRfWJcabygl9x"
-                    data-ad-width="300"
-                    data-ad-height="250"
-                ></ins>
-            </div>
-
-            {/* 모바일 띠배너 */}
-            <div className="ad-mobile-fixed">
-                <ins
-                    className="kakao_ad_area"
-                    style={{ display: "block", width: 320, height: 50 }}
-                    data-ad-unit="DAN-vq03WNxmpMBMVvd5"
-                    data-ad-width="320"
-                    data-ad-height="50"
-                ></ins>
-            </div>
-
-            {/* 결과 모달 */}
-
-
-
             {modalOpen && (
-                <div
-                    className="overlay-blur"
-                    onClick={(e) => {
-                        if (e.target.classList.contains("overlay-blur")) reset();
-                    }}
-                >
-                    <div className="result-modal" style={{ "--tier-color": tier?.color }}>
-                        <button className="modal-close" onClick={reset}>
-                            ×
-                        </button>
-
-                        <img src={image} alt="uploaded" className="modal-photo-circle" />
-
-                        <div className="tier-badge-wrapper">
+                <div className="overlay-blur funny-theme" onClick={(e) => {
+                    if (e.target.classList.contains("overlay-blur")) reset();
+                }}>
+                    <div className="funny-result-modal" style={{ '--tier-color': tier?.color }}>
+                        <button className="modal-close" onClick={reset}>×</button>
+                        <h2 className="funny-modal-title">{getReaction(score, t)}</h2>
+                        <div className="funny-photo-frame">
+                            <img src={image} alt="uploaded" className="funny-photo" />
+                        </div>
+                        <div className="funny-tier-badge">
                             <img src={`/rank/${tier?.file}`} alt={tier?.name} />
+                            <p className="tier-name big">{tier?.name}</p>
+                            <p className="tier-desc">{tier?.desc}</p>
                         </div>
-
-                        <p className="tier-name">{tier?.name}</p>
-                        <p className="tier-desc">{tier?.desc}</p>
-
-                        <div className="modal-score">
-                            <span className="score-label">{t("result.label")}</span>
-                            <span className="modal-percent">{score}%</span>
+                        <div className="funny-score-block">
+                            <p className="funny-score-label">{t("result.score")}</p>
+                            <p className="funny-score">{score}%</p>
                         </div>
-
-                        <p className="modal-title">{comment?.title}</p>
-                        <p className="modal-sub">{comment?.sub}</p>
-
+                        <div className="funny-comment-box">
+                            <p className="comment-main">{comment?.title}</p>
+                            <p className="comment-sub">{comment?.sub}</p>
+                        </div>
+                        <div className="funny-random-comment">🧠 "{getFunnyComment(score, t)}"</div>
+                        <TestSuggestions />
                         <div className="modal-buttons">
-                            <button className="btn-retry" onClick={reset}>
-                                {t("buttons.retry")}
-                            </button>
-                            <button className="btn-kakao" onClick={shareKakao}>
-                                {t("buttons.kakao")}
-                            </button>
+                            <button className="btn-retry" onClick={reset}>🔁 {t("buttons.retry")}</button>
+                            <button className="btn-kakao" onClick={shareKakao}>💬 {t("buttons.kakao")}</button>
                         </div>
                     </div>
                 </div>
             )}
-
+            <div className="explore-tests-section">
+                <ExploreAllTests />
+            </div>
         </div>
     );
-}
-
-/* ───────── constants ───────── */
-const BUCKETS = [
-    { key: "top", max: 20 },
-    { key: "high", max: 40 },
-    { key: "mid", max: 60 },
-    { key: "low", max: 80 },
-    { key: "bottom", max: Infinity },
-];
-
-const TIER_TABLE = [
-    { key: "challenger", max: 10, file: "Challenger.png", color: "#ffd700" },
-    { key: "grandmaster", max: 20, file: "Grandmaster.png", color: "#ff5252" },
-    { key: "master", max: 30, file: "Master.png", color: "#b56cff" },
-    { key: "diamond", max: 45, file: "Diamond.png", color: "#29d4f6" },
-    { key: "platinum", max: 60, file: "Platinum.png", color: "#2db8a8" },
-    { key: "gold", max: 75, file: "Gold.png", color: "#cfa93e" },
-    { key: "silver", max: 90, file: "Silver.png", color: "#aeb6bf" },
-    { key: "bronze", max: 101, file: "Bronze.png", color: "#5d5d5d" },
-];
-
-function getTier(score) {
-    return TIER_TABLE.find((t) => score < t.max);
 }

@@ -1,0 +1,39 @@
+{
+  "testSuggestions": {
+    "title": "다른 테스트도 즐겨보세요!",
+    "tests": {
+      "age": {
+        "title": "AI 나이 추정기",
+        "desc": "얼굴만 보고 몇 살일까?"
+      },
+      "mbti": {
+        "title": "MBTI 얼굴 테스트",
+        "desc": "표정으로 성격을 맞춘다고?"
+      },
+      "vibe": {
+        "title": "첫인상 분석기",
+        "desc": "첫눈에 보이는 분위기는?"
+      }
+    }
+  },
+  "peopleAlsoTried": {
+    "title": "나랑 비슷한 사람들은 이런 테스트도 했어요",
+    "tests": {
+      "age": {
+        "title": "AI 나이 측정기",
+        "desc": "얼굴만 보고 나이 맞출 수 있을까?"
+      },
+      "mbti": {
+        "title": "얼굴 MBTI 테스트",
+        "desc": "AI가 당신의 성격을 맞춰드립니다"
+      },
+      "vibe": {
+        "title": "AI 분위기 분석기",
+        "desc": "첫인상, 지금 어떤 분위기?"
+      }
+    }
+  },
+  "exploreAll": {
+    "button": "전체 테스트 보러가기 →"
+  }
+}

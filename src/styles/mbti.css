@@ -1,215 +1,119 @@
-/* ==========================================================================
-   mbti.css – 관상 MBTI 전용 스타일 (공통 common.css 이후 import)
-   ========================================================================== */
-
-/* ───────────────────── 010. RESULT MODAL ───────────────────── */
 .result-modal {
     position: relative;
-    width: 92%;
-    max-width: 440px;
-    background: #fff;
-    border-radius: var(--radius-l, 26px);
-    padding: 6rem 2rem 2.5rem;
-    box-shadow: var(--shadow-l);
-    overflow: visible;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    background: linear-gradient(to bottom right, #ffffff, #f9f9f9);
+    border-radius: var(--rad-l);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    padding: 6rem 1.5rem 2rem;
+    width: 90%;
+    max-width: 460px;
     text-align: center;
+    color: var(--nc-900);
+    overflow: visible;
+    animation: fadeInUp 0.4s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--nc-200);
 }
 
-/* ✨ 애니메이션 백그라운드 효과 */
-.result-modal::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(
-            circle at center,
-            var(--mbti-color, #c5c5c5) 0%,
-            transparent 70%
-    );
-    filter: blur(48px);
-    opacity: 0.3;
-    z-index: -2;
-    animation: pulseBg 6s ease-in-out infinite alternate;
-}
 
-.result-modal::after {
-    content: "";
-    position: absolute;
-    inset: 2px;
-    background: #fff;
-    border-radius: inherit;
-    z-index: -1;
-}
 
-@keyframes pulseBg {
-    0% { transform: scale(1); opacity: 0.25; }
-    100% { transform: scale(1.04); opacity: 0.4; }
-}
-
-/* ───────────────────── 020. 프로필 썸네일 ───────────────────── */
-.modal-photo-circle {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    object-position: center;
-    border: 4px solid #fff;
-    box-shadow: 0 0 0 6px var(--mbti-color, #8e44ff), var(--shadow-m);
-    position: absolute;
-    top: -60px;
-    background: #eee;
-}
-
-/* ───────────────────── 030. MBTI 결과 텍스트 ───────────────────── */
+/* MBTI 결과 텍스트 */
 .mbti-type {
+    font-size: 2.6rem;
+    font-weight: 900;
     font-family: var(--ff-head);
-    font-size: 2rem;
-    font-weight: 700;
-    margin-top: 1rem;
-    background: linear-gradient(120deg, var(--mbti-st), var(--mbti-nt));
+    margin-top: 0.8rem;
+    background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.mbti-desc {
+/* 한 줄 요약 설명 */
+.mbti-highlight {
+    margin-top: 0.4rem;
     font-size: 1rem;
-    line-height: 1.6;
-    margin-top: 0.8rem;
-    color: #4a4a4a;
-    max-width: 90%;
+    color: var(--nc-600);
+    font-weight: 600;
+    font-style: italic;
 }
 
-.mbti-example {
-    margin-top: 0.6rem;
+/* 설명 박스 - 진짜 예쁘게 카드처럼 */
+.mbti-desc-box {
+    background: #ffffff;
+    border: 1px solid var(--nc-200);
+    border-radius: var(--rad-m);
+    padding: 1.2rem 1.4rem;
+    margin: 1.4rem 0;
+    color: var(--nc-700);
     font-size: 0.95rem;
-    font-weight: 500;
-    color: #888;
+    line-height: 1.6;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    animation: fadeIn 0.5s ease;
 }
 
-/* ───────────────────── 040. 키워드 태그 ───────────────────── */
+/* 키워드 태그 */
 .keyword-list {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
     justify-content: center;
-    margin-top: 1.2rem;
+    margin-bottom: 1rem;
 }
-
 .tag {
-    padding: 0.4rem 0.8rem;
+    background: linear-gradient(to right, var(--accent-mint), var(--accent-blue));
+    color: white;
     font-size: 0.8rem;
-    font-weight: 600;
-    color: #fff;
-    background: var(--mbti-color, var(--mbti-nt));
-    border-radius: 999px;
-    box-shadow: var(--shadow-s);
+    padding: 0.4rem 0.9rem;
+    border-radius: var(--rad-full);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
 }
 
-/* ───────────────────── 050. 버튼 영역 ───────────────────── */
+/* 버튼 섹션 */
 .modal-buttons {
     display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 1.5rem;
     flex-wrap: wrap;
+    gap: 0.6rem;
+    justify-content: center;
+    margin-top: 1rem;
 }
-
-.modal-buttons button {
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
+.modal-buttons > button {
+    flex: 1 1 40%;
     min-width: 120px;
-    min-height: 3rem;
-    font-weight: 600;
+    padding: 0.7rem 1.2rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border-radius: var(--rad-full);
+    cursor: pointer;
+    transition: 0.3s ease;
 }
-
 .btn-retry {
-    background-color: #e0e0e0;
-    color: #333;
+    background: linear-gradient(to right, var(--accent-blue), #7baeff);
+    color: white;
 }
-
-.btn-retry:hover {
-    background-color: #d5d5d5;
-}
-
 .btn-kakao {
-    background-color: #FEE500;
-    color: #3C1E1E;
+    background: #fee500;
+    color: #3a1e1f;
 }
 
-.btn-kakao:hover {
-    background-color: #ffd900;
-}
-
-
-/* ───────────────────── 060. CONFETTI ───────────────────── */
-.confetti-wrapper {
+/* 닫기 버튼 */
+.modal-close {
     position: absolute;
-    inset: 0;
-    pointer-events: none;
-    overflow: hidden;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.7rem;
+    background: none;
+    border: none;
+    color: var(--nc-700);
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10;
+    transition: 0.2s ease;
+}
+.modal-close:hover {
+    transform: scale(1.2);
 }
 
-.confetti {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background: var(--mbti-color, var(--mbti-nt));
-    top: -20px;
-    animation: confettiFall 4s linear infinite;
-}
-
-@keyframes confettiFall {
-    0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(100vh) rotate(360deg);
-        opacity: 0;
-    }
-}
-
-/* ───────────────────── 070. RESPONSIVE ───────────────────── */
-@media (max-width: 768px) {
-    .result-modal {
-        padding: 5rem 1.5rem 2rem;
-    }
-    .modal-photo-circle {
-        width: 90px;
-        height: 90px;
-        top: -45px;
-        box-shadow: 0 0 0 4px var(--mbti-color, #8e44ff), var(--shadow-s);
-    }
-    .mbti-type {
-        font-size: 1.6rem;
-    }
-    .mbti-desc {
-        font-size: 0.9rem;
-        padding: 0 0.5rem;
-    }
-    .mbti-example {
-        font-size: 0.85rem;
-    }
-    .keyword-list {
-        gap: 0.4rem;
-        padding: 0 0.5rem;
-    }
-    .tag {
-        font-size: 0.75rem;
-        padding: 0.3rem 0.6rem;
-    }
-    .modal-buttons {
-        flex-direction: column;
-        gap: 0.8rem;
-        margin-top: 1.4rem;
-    }
-    .modal-buttons button {
-        width: 100%;
-    }
+/* 종이쪼가리 제거 */
+.confetti-wrapper > div {
+    display: none; /* 일시적으로 없앰, 진짜 종이 쪼가리라면 JSX에서도 제거 필요 */
 }

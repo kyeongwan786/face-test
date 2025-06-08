@@ -1,0 +1,39 @@
+{
+  "testSuggestions": {
+    "title": "他の面白いテストも試してみよう！",
+    "tests": {
+      "age": {
+        "title": "AI年齢推定器",
+        "desc": "顔だけで年齢を当てられる？"
+      },
+      "mbti": {
+        "title": "MBTI顔診断",
+        "desc": "表情で性格がわかるって本当？"
+      },
+      "vibe": {
+        "title": "第一印象分析器",
+        "desc": "あなたの第一印象はどんな雰囲気？"
+      }
+    }
+  },
+  "peopleAlsoTried": {
+    "title": "このテストを受けた人はこんなのもやってます",
+    "tests": {
+      "age": {
+        "title": "AI年齢予測",
+        "desc": "AIはどれだけ正確に年齢を予測できる？"
+      },
+      "mbti": {
+        "title": "顔でMBTI診断",
+        "desc": "AIが顔から性格を読み取ります"
+      },
+      "vibe": {
+        "title": "第一印象チェッカー",
+        "desc": "初対面でどんな印象を与える？"
+      }
+    }
+  },
+  "exploreAll": {
+    "button": "全てのテストを見る →"
+  }
+}

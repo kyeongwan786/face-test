@@ -13,6 +13,7 @@ import koMbti from "./locales/ko/mbti.json";
 import koAge from "./locales/ko/age.json";
 import koContact from "./locales/ko/contact.json";
 import koVibe from "./locales/ko/vibe.json";
+import koCommon from "./locales/ko/common.json";
 
 // 📁 영어
 import enShared from "./locales/en/shared.json";
@@ -26,6 +27,7 @@ import enMbti from "./locales/en/mbti.json";
 import enAge from "./locales/en/age.json";
 import enContact from "./locales/en/contact.json";
 import enVibe from "./locales/en/vibe.json";
+import enCommon from "./locales/en/common.json";
 
 // 📁 일본어
 import jaShared from "./locales/ja/shared.json";
@@ -39,6 +41,7 @@ import jaMbti from "./locales/ja/mbti.json";
 import jaAge from "./locales/ja/age.json";
 import jaContact from "./locales/ja/contact.json";
 import jaVibe from "./locales/ja/vibe.json";
+import jaCommon from "./locales/ja/common.json";
 
 // 📁 중국어
 import zhShared from "./locales/zh/shared.json";
@@ -52,6 +55,7 @@ import zhMbti from "./locales/zh/mbti.json";
 import zhAge from "./locales/zh/age.json";
 import zhContact from "./locales/zh/contact.json";
 import zhVibe from "./locales/zh/vibe.json";
+import zhCommon from "./locales/zh/common.json";
 
 // 📁 베트남어
 import viShared from "./locales/vi/shared.json";
@@ -65,6 +69,7 @@ import viMbti from "./locales/vi/mbti.json";
 import viAge from "./locales/vi/age.json";
 import viContact from "./locales/vi/contact.json";
 import viVibe from "./locales/vi/vibe.json";
+import viCommon from "./locales/vi/common.json";
 
 i18n.use(initReactI18next).init({
     resources: {
@@ -80,6 +85,7 @@ i18n.use(initReactI18next).init({
             age: koAge,
             contact: koContact,
             vibe: koVibe,
+            common: koCommon,
         },
         en: {
             shared: enShared,
@@ -93,6 +99,7 @@ i18n.use(initReactI18next).init({
             age: enAge,
             contact: enContact,
             vibe: enVibe,
+            common: enCommon,
         },
         ja: {
             shared: jaShared,
@@ -106,6 +113,7 @@ i18n.use(initReactI18next).init({
             age: jaAge,
             contact: jaContact,
             vibe: jaVibe,
+            common: jaCommon,
         },
         zh: {
             shared: zhShared,
@@ -119,6 +127,7 @@ i18n.use(initReactI18next).init({
             age: zhAge,
             contact: zhContact,
             vibe: zhVibe,
+            common: zhCommon,
         },
         vi: {
             shared: viShared,
@@ -132,11 +141,25 @@ i18n.use(initReactI18next).init({
             age: viAge,
             contact: viContact,
             vibe: viVibe,
+            common: viCommon,
         },
     },
     fallbackLng: "ko",
     lng: "ko",
-    ns: ["shared", "about", "main", "ugly", "terms", "privacy", "gender", "mbti", "age", "contact", "vibe"],
+    ns: [
+        "shared",
+        "about",
+        "main",
+        "ugly",
+        "terms",
+        "privacy",
+        "gender",
+        "mbti",
+        "age",
+        "contact",
+        "vibe",
+        "common"
+    ],
     defaultNS: "shared",
     interpolation: {
         escapeValue: false,

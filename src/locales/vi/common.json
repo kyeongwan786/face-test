@@ -1,0 +1,39 @@
+{
+  "testSuggestions": {
+    "title": "Hãy thử thêm các bài test thú vị khác!",
+    "tests": {
+      "age": {
+        "title": "Dự đoán tuổi bằng AI",
+        "desc": "Chỉ nhìn mặt có đoán được tuổi không?"
+      },
+      "mbti": {
+        "title": "Trắc nghiệm MBTI qua gương mặt",
+        "desc": "Biểu cảm tiết lộ tính cách của bạn?"
+      },
+      "vibe": {
+        "title": "Phân tích ấn tượng đầu tiên",
+        "desc": "Bạn mang lại cảm giác gì khi gặp lần đầu?"
+      }
+    }
+  },
+  "peopleAlsoTried": {
+    "title": "Người giống bạn cũng đã thử các bài test này",
+    "tests": {
+      "age": {
+        "title": "AI đoán tuổi",
+        "desc": "Xem AI đoán tuổi bạn chính xác đến đâu"
+      },
+      "mbti": {
+        "title": "MBTI theo khuôn mặt",
+        "desc": "Để AI đọc tính cách qua khuôn mặt của bạn"
+      },
+      "vibe": {
+        "title": "Kiểm tra ấn tượng đầu",
+        "desc": "Khám phá bạn tạo ấn tượng gì lúc đầu gặp"
+      }
+    }
+  },
+  "exploreAll": {
+    "button": "Xem tất cả bài test →"
+  }
+}

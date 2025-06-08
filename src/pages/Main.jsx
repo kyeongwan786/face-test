@@ -37,7 +37,6 @@ export default function Main() {
 
             {/* 언어 선택 */}
             <div className="language-switcher-wrapper" style={{ textAlign: "right", padding: "1rem" }}>
-                <span className="language-switcher-label">{t("language.selectPrompt")}</span>
                 <LanguageSwitcher />
             </div>
 

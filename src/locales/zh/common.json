@@ -1,0 +1,39 @@
+{
+  "testSuggestions": {
+    "title": "你可能还会喜欢这些测试！",
+    "tests": {
+      "age": {
+        "title": "AI年龄预测器",
+        "desc": "仅凭脸能猜出你几岁？"
+      },
+      "mbti": {
+        "title": "MBTI面部测试",
+        "desc": "表情能揭示性格？"
+      },
+      "vibe": {
+        "title": "第一印象分析",
+        "desc": "第一眼你给人什么感觉？"
+      }
+    }
+  },
+  "peopleAlsoTried": {
+    "title": "做这个测试的人也尝试了这些",
+    "tests": {
+      "age": {
+        "title": "AI年龄检测",
+        "desc": "看看AI能不能准确猜出你的年龄"
+      },
+      "mbti": {
+        "title": "面部MBTI测试",
+        "desc": "AI会根据你脸部判断性格"
+      },
+      "vibe": {
+        "title": "印象分析器",
+        "desc": "揭晓你带给人的第一印象"
+      }
+    }
+  },
+  "exploreAll": {
+    "button": "查看全部测试 →"
+  }
+}

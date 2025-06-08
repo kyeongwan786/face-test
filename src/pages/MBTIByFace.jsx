@@ -1,4 +1,4 @@
-// ✅ Kakao 공유 + AdFit 광고 포함 완성본
+// ✅ 완성본 MBTIByFace.jsx (광고 포함)
 import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import "../styles/mbti.css";
@@ -26,7 +26,6 @@ export default function MBTIByFace() {
     const [webcamDone, setWebcamDone] = useState(false);
     const [webcamStream, setWebcamStream] = useState(null);
     const videoRef = useRef(null);
-    const modalRef = useRef(null);
     const videoWrapperRef = useRef(null);
 
     useEffect(() => {
@@ -140,22 +139,16 @@ export default function MBTIByFace() {
             const blob = await fetch(image).then((res) => res.blob());
             const file = new File([blob], "mbti-result.jpg", { type: blob.type });
             const { infos } = await Kakao.Share.uploadImage({ file: [file] });
-            const pageUrl = window.location.origin;
-
+            const url = window.location.origin;
             await Kakao.Share.sendDefault({
                 objectType: "feed",
                 content: {
                     title: t("share.title", { mbti }),
                     description: t(`desc.${mbti}`),
                     imageUrl: infos.original.url,
-                    link: { mobileWebUrl: pageUrl, webUrl: pageUrl },
+                    link: { mobileWebUrl: url, webUrl: url },
                 },
-                buttons: [
-                    {
-                        title: t("share.button"),
-                        link: { mobileWebUrl: pageUrl, webUrl: pageUrl },
-                    },
-                ],
+                buttons: [{ title: t("share.button"), link: { mobileWebUrl: url, webUrl: url } }],
             });
         } catch (e) {
             console.error(e);
@@ -163,45 +156,21 @@ export default function MBTIByFace() {
         }
     };
 
-    const makeConfetti = (color) => Array.from({ length: CONFETTI_COUNT }).map((_, i) => {
-        const style = {
-            left: Math.random() * 100 + "%",
-            width: 6 + Math.random() * 6 + "px",
-            height: 6 + Math.random() * 6 + "px",
-            backgroundColor: color,
-            animationDelay: Math.random() * 2 + "s",
-        };
-        return <div key={i} className="confetti" style={style} />;
-    });
+    const makeConfetti = (color) =>
+        Array.from({ length: CONFETTI_COUNT }).map((_, i) => {
+            const style = {
+                left: Math.random() * 100 + "%",
+                width: 6 + Math.random() * 6 + "px",
+                height: 6 + Math.random() * 6 + "px",
+                backgroundColor: color,
+                animationDelay: Math.random() * 2 + "s",
+            };
+            return <div key={i} className="confetti" style={style} />;
+        });
 
     return (
         <div className="page">
-            <div className="language-switcher-wrapper">
-                <LanguageSwitcher />
-            </div>
-
-            {modalOpen && (
-                <div className="overlay-blur">
-                    <div className="result-modal" ref={modalRef} style={{ "--mbti-color": mbtiColor }}>
-                        <button className="modal-close" onClick={reset}>×</button>
-                        <div className="confetti-wrapper">{confetti}</div>
-                        <img className="modal-photo-circle" src={image} alt="uploaded" />
-                        <h2 className="mbti-type">
-                            {t("resultPrefix")} <strong style={{ color: mbtiColor }}>{mbti}</strong>{t("resultSuffix")}
-                        </h2>
-                        <p className="mbti-desc">{t(`desc.${mbti}`)}</p>
-                        <div className="keyword-list">
-                            {keywords.map((k) => (
-                                <span key={k} className="tag" style={{ "--mbti-color": mbtiColor }}>{k}</span>
-                            ))}
-                        </div>
-                        <div className="modal-buttons">
-                            <button className="btn-retry" onClick={reset}>{t("retryButton")}</button>
-                            <button className="btn-kakao" onClick={shareKakao}>{t("shareKakao")}</button>
-                        </div>
-                    </div>
-                </div>
-            )}
+            <div className="language-switcher-wrapper"><LanguageSwitcher /></div>
 
             <div className="container">
                 <header>
@@ -215,13 +184,10 @@ export default function MBTIByFace() {
                     <button className={!useWebcam ? "mode-button active" : "mode-button"} onClick={() => setUseWebcam(false)}>
                         {t("uploadMode")}
                     </button>
-                    <button
-                        className={useWebcam ? "mode-button active" : "mode-button"}
-                        onClick={() => {
-                            setUseWebcam(true);
-                            setTimeout(() => videoWrapperRef.current?.scrollIntoView({ behavior: "smooth", block: "center" }), 100);
-                        }}
-                    >
+                    <button className={useWebcam ? "mode-button active" : "mode-button"} onClick={() => {
+                        setUseWebcam(true);
+                        setTimeout(() => videoWrapperRef.current?.scrollIntoView({ behavior: "smooth", block: "center" }), 100);
+                    }}>
                         {t("webcamMode")}
                     </button>
                 </div>
@@ -230,49 +196,101 @@ export default function MBTIByFace() {
                     <LoadingSpinner />
                 ) : (
                     !image && (
-                        <>
-                            {!useWebcam && (
-                                <div className="upload-wrapper">
-                                    <label className="upload-box" htmlFor="uploadInput">
-                                        <span className="upload-label">{t("uploadLabel")}</span>
-                                    </label>
-                                    <input id="uploadInput" type="file" accept="image/*" hidden onChange={handleUpload} />
-                                </div>
-                            )}
-                            {useWebcam && (
-                                <div className="webcam-wrapper active" ref={videoWrapperRef}>
-                                    <video ref={videoRef} autoPlay muted playsInline width="320" className="video-frame" />
-                                    {webcamDone ? (
-                                        <>
-                                            <div className="webcam-overlay-text retry-message">{t("webcamDoneMessage")}</div>
-                                            <button className="btn-retry webcam-retry" onClick={reset}>{t("webcamRetry")}</button>
-                                        </>
-                                    ) : (
-                                        <>
-                                            <div className="webcam-overlay-text">
-                                                {webcamReady ? t("webcamReady") : t("webcamNotReady")}
-                                            </div>
-                                            {webcamReady && (
-                                                <button className="btn-analyze" onClick={captureFromWebcam}>{t("analyzeButton")}</button>
-                                            )}
-                                        </>
-                                    )}
-                                </div>
-                            )}
-                        </>
+                        !useWebcam ? (
+                            <div className="upload-wrapper">
+                                <label className="upload-box" htmlFor="uploadInput">
+                                    <span className="upload-label">{t("uploadLabel")}</span>
+                                </label>
+                                <input
+                                    id="uploadInput"
+                                    type="file"
+                                    accept="image/*"
+                                    hidden
+                                    onChange={handleUpload}
+                                />
+                            </div>
+                        ) : (
+                            <div className="webcam-wrapper active" ref={videoWrapperRef}>
+                                <video
+                                    ref={videoRef}
+                                    autoPlay
+                                    muted
+                                    playsInline
+                                    width="320"
+                                    className="video-frame"
+                                />
+                                {webcamDone ? (
+                                    <>
+                                        <div className="webcam-overlay-text retry-message">{t("webcamDoneMessage")}</div>
+                                        <button className="btn-retry webcam-retry" onClick={reset}>{t("webcamRetry")}</button>
+                                    </>
+                                ) : (
+                                    <>
+                                        <div className="webcam-overlay-text">{webcamReady ? t("webcamReady") : t("webcamNotReady")}</div>
+                                        {webcamReady && <button className="btn-analyze" onClick={captureFromWebcam}>{t("analyzeButton")}</button>}
+                                    </>
+                                )}
+                            </div>
+                        )
                     )
                 )}
             </div>
 
-            {/* PC 광고 */}
+            {/* ✅ 광고 삽입 */}
             <div className="ad-pc-banner">
-                <ins className="kakao_ad_area" style={{ display: "block", width: "100%", maxWidth: 300, margin: "1rem auto" }} data-ad-unit="DAN-2VAMRfWJcabygl9x" data-ad-width="300" data-ad-height="250"></ins>
+                <ins
+                    className="kakao_ad_area"
+                    style={{ display: "block", width: "100%", maxWidth: 300, margin: "1rem auto" }}
+                    data-ad-unit="DAN-2VAMRfWJcabygl9x"
+                    data-ad-width="300"
+                    data-ad-height="250"
+                ></ins>
             </div>
 
-            {/* 모바일 띠배너 */}
             <div className="ad-mobile-fixed">
-                <ins className="kakao_ad_area" style={{ display: "block", width: 320, height: 50 }} data-ad-unit="DAN-vq03WNxmpMBMVvd5" data-ad-width="320" data-ad-height="50"></ins>
+                <ins
+                    className="kakao_ad_area"
+                    style={{ display: "block", width: 320, height: 50 }}
+                    data-ad-unit="DAN-vq03WNxmpMBMVvd5"
+                    data-ad-width="320"
+                    data-ad-height="50"
+                ></ins>
             </div>
+
+            {/* ✅ 결과 모달 */}
+            {modalOpen && (
+                <div className="overlay-blur">
+                    <div
+                        className="result-modal fancy-modal"
+                        style={{ "--mbti-color": mbtiColor, "--mbti-gradient": `linear-gradient(135deg, ${mbtiColor}80, ${mbtiColor})` }}
+                    >
+                        <div className="confetti-wrapper">{confetti}</div>
+
+                        <div className="modal-header">
+                            <div className="photo-circle-wrapper">
+                                <img className="modal-photo-circle" src={image} alt="uploaded" />
+                            </div>
+                            <h2 className="mbti-type">{mbti}</h2>
+                            <p className="mbti-highlight">{t(`highlightLine.${mbti}`)}</p>
+                        </div>
+
+                        <div className="mbti-desc-box fancy-card">
+                            <p>{t(`desc.${mbti}`)}</p>
+                        </div>
+
+                        <div className="keyword-list">
+                            {keywords.map((k) => <span key={k} className="tag">{k}</span>)}
+                        </div>
+
+                        <div className="modal-buttons">
+                            <button className="btn-retry" onClick={reset}>{t("retryButton")}</button>
+                            <button className="btn-kakao" onClick={shareKakao}>{t("shareKakao")}</button>
+                        </div>
+
+                        <button className="modal-close" onClick={reset}>×</button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

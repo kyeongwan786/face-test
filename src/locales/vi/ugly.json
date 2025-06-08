@@ -1,62 +1,110 @@
 {
-  "title": "Máy đo độ xấu",
-  "subtitle": "Hãy chọn giới tính và chọn một trong các phương thức bên dưới để bắt đầu",
+  "title": "Máy đo xấu xí",
+  "subtitle": "Chọn giới tính và để AI làm bạn thất vọng bằng một trong các cách sau",
 
   "mode": {
     "upload": "Tải ảnh lên",
-    "webcam": "Phân tích trực tiếp"
+    "webcam": "Bị AI chế nhạo qua webcam"
   },
   "upload": {
-    "label": "Chọn ảnh"
+    "label": "Tự tin thì tải lên thử xem"
   },
 
   "webcam": {
-    "loading": "Đang chuẩn bị webcam...",
-    "ready": "Sẵn sàng phân tích",
-    "done": "Phân tích đã hoàn tất. Nhấn nút để thử lại."
+    "loading": "Đang bật camera... Giờ trốn không kịp đâu",
+    "ready": "Đã đến lúc... đối mặt với sự thật",
+    "done": "AI bị sốc. Nhấn lại để thử lại"
   },
 
   "buttons": {
-    "retry": "Thử lại",
-    "save": "Lưu kết quả",
-    "kakao": "Chia sẻ qua KakaoTalk",
-    "analyze": "Bắt đầu phân tích"
+    "retry": "Bị chế nhạo lần nữa",
+    "save": "Lưu lại sự xấu hổ",
+    "kakao": "Chia sẻ nỗi nhục qua Kakao",
+    "analyze": "Bắt đầu xấu hổ"
   },
 
   "result": {
-    "label": "Mức độ xấu"
+    "label": "Mức độ xấu",
+    "reaction": "Xấu thế này à? AI nên xin lỗi.",
+    "score": "Điểm xấu xí"
   },
 
   "buckets": {
-    "top": { "title": "Hạng cao nhất", "sub": "Tuyệt vời!" },
-    "high": { "title": "Hạng cao", "sub": "Trông ổn đấy!" },
-    "mid": { "title": "Mức trung bình", "sub": "Không tệ~" },
-    "low": { "title": "Máy ảnh thở dài", "sub": "Hmm..." },
-    "bottom": { "title": "Không sao đâu", "sub": "Ai cũng có lúc như vậy mà" }
+    "top": { "title": "AI ngạc nhiên", "sub": "Bạn là người thật chứ?" },
+    "high": { "title": "Cũng khá ổn", "sub": "Chưa đến mức xấu" },
+    "mid": { "title": "Trung bình", "sub": "AI chưa quyết định được" },
+    "low": { "title": "AI thở dài", "sub": "Thử ảnh khác xem?" },
+    "bottom": { "title": "Camera không hỏng đâu", "sub": "Chúng tôi thành thật xin lỗi" }
   },
 
   "tier": {
-    "challenger": { "name": "Challenger", "desc": "Top 0.01%" },
-    "grandmaster": { "name": "Grandmaster", "desc": "Top 0.1%" },
-    "master": { "name": "Master", "desc": "Top 1%" },
-    "diamond": { "name": "Diamond", "desc": "Top 5%" },
-    "platinum": { "name": "Platinum", "desc": "Top 10%" },
-    "gold": { "name": "Gold", "desc": "Top 25%" },
-    "silver": { "name": "Silver", "desc": "Top 50%" },
-    "bronze": { "name": "Bronze", "desc": "Phần còn lại" }
+    "challenger": { "name": "Challenger", "desc": "Huyền thoại sống sót với gương mặt này" },
+    "grandmaster": { "name": "Grandmaster", "desc": "AI suýt chạy mất" },
+    "master": { "name": "Master", "desc": "Cần làm hòa gấp với gương" },
+    "diamond": { "name": "Diamond", "desc": "Tạm chấp nhận được" },
+    "platinum": { "name": "Platinum", "desc": "Vượt rào vào top trên!" },
+    "gold": { "name": "Gold", "desc": "Át chủ bài trong thế giới xấu xí" },
+    "silver": { "name": "Silver", "desc": "Gương mặt xấu một cách lạ lùng" },
+    "bronze": { "name": "Bronze", "desc": "Không vượt qua được bài kiểm tra nhân loại" }
+  },
+
+  "reactions": {
+    "top": "😎 AI từ chối gọi bạn là xấu",
+    "high": "🙂 Vẫn còn thuộc tầng lớp trên",
+    "mid": "😐 Gương mặt trung bình, xấu thường thấy",
+    "low": "😬 AI đang lúng túng...",
+    "bottom": "😱 AI cũng cảm thấy có lỗi"
+  },
+
+  "funnyComments": {
+    "top": [
+      "Chưa đủ xấu để phân tích",
+      "AI thấy vui hơn sau khi nhìn bạn",
+      "Đáng lẽ đưa vào máy đo đẹp trai",
+      "Vào đây làm gì vậy?",
+      "Điểm xấu xí 0... AI bối rối"
+    ],
+    "high": [
+      "Không xấu... thế thôi",
+      "Phải gặp ngoài đời mới biết",
+      "Không ăn ảnh à?",
+      "Không xấu, nhưng không rõ ràng",
+      "AI hoãn lại phán quyết"
+    ],
+    "mid": [
+      "Xấu bình thường",
+      "Gương mặt này thấy nhiều rồi",
+      "Nếu không xấu hơn được thì thôi",
+      "Ống kính camera thất vọng",
+      "AI nói: 'Hmm...'"
+    ],
+    "low": [
+      "Phong cách chính là xấu?",
+      "Không cách nào cứu được bằng style",
+      "Sống được đến giờ là giỏi rồi",
+      "Xin lỗi chính bạn trong ảnh đi",
+      "Cách ly xã hội với gương thử xem"
+    ],
+    "bottom": [
+      "Xấu là siêu năng lực của bạn",
+      "Buồn thật sự",
+      "AI bỏ chạy rồi",
+      "Gương mặt làm sập server",
+      "Trùm cuối của sự xấu xí xuất hiện"
+    ]
   },
 
   "share": {
-    "title": "Độ xấu của tôi: {{score}}%",
-    "button": "Tôi cũng muốn thử"
+    "title": "Điểm xấu xí theo AI: {{score}}%",
+    "button": "Tôi cũng muốn bị chế nhạo"
   },
 
   "error": {
-    "webcamAccess": "Không thể truy cập webcam.",
-    "analysisFailed": "Đã xảy ra lỗi khi phân tích hình ảnh.",
-    "modelLoad": "Không thể tải mô hình.",
-    "kakaoInit": "Đang khởi tạo Kakao SDK!",
-    "kakaoFail": "Chia sẻ qua KakaoTalk thất bại.",
-    "sizeLimit": "Ảnh vượt quá 5MB, không thể chia sẻ qua KakaoTalk."
+    "webcamAccess": "Không thể truy cập webcam! Mặt bạn mạnh quá?",
+    "analysisFailed": "AI bỏ cuộc rồi. Hãy thử lại.",
+    "modelLoad": "Không tải được mô hình... Có lẽ bạn quá shock",
+    "kakaoInit": "Đang chuẩn bị Kakao… AI vẫn đang hồi phục",
+    "kakaoFail": "Chia sẻ thất bại! Mức độ xấu không thể chia sẻ được",
+    "sizeLimit": "Ảnh quá lớn (trên 5MB). Do mặt bạn chăng?"
   }
 }

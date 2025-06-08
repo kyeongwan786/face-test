@@ -1,62 +1,110 @@
 {
   "title": "Ugly Meter",
-  "subtitle": "Choose your gender and select one of the analysis methods below",
+  "subtitle": "Choose your gender and get disappointed by the AI in one of the following ways",
 
   "mode": {
     "upload": "Upload a photo",
-    "webcam": "Analyze in real-time"
+    "webcam": "Get roasted by webcam"
   },
   "upload": {
-    "label": "Upload Image"
+    "label": "Upload if you dare"
   },
 
   "webcam": {
-    "loading": "Preparing webcam...",
-    "ready": "Ready to start analysis",
-    "done": "Analysis complete. Click the button to retry."
+    "loading": "Turning on the camera... too late to run",
+    "ready": "It's time... to face the truth",
+    "done": "AI is shocked. Tap to try again"
   },
 
   "buttons": {
-    "retry": "Try Again",
-    "save": "Save Result",
-    "kakao": "Share on KakaoTalk",
-    "analyze": "Start Analysis"
+    "retry": "Get roasted again",
+    "save": "Save the shame",
+    "kakao": "Share on Kakao",
+    "analyze": "Start the roast"
   },
 
   "result": {
-    "label": "Ugly Score"
+    "label": "Ugliness",
+    "reaction": "This bad? The AI should apologize.",
+    "score": "Ugliness Score"
   },
 
   "buckets": {
-    "top": { "title": "Top Tier", "sub": "Impressive!" },
-    "high": { "title": "High Tier", "sub": "Not bad at all!" },
-    "mid": { "title": "Average Zone", "sub": "Not bad~" },
-    "low": { "title": "Camera is sighing", "sub": "Hmm..." },
-    "bottom": { "title": "It's okay", "sub": "It happens!" }
+    "top": { "title": "AI is surprised", "sub": "Are you even human?" },
+    "high": { "title": "Pretty decent", "sub": "You're not on the ugly side" },
+    "mid": { "title": "Average look", "sub": "AI is on the fence" },
+    "low": { "title": "AI sighs", "sub": "Try another photo maybe?" },
+    "bottom": { "title": "Camera's fine", "sub": "Truly sorry for this" }
   },
 
   "tier": {
-    "challenger": { "name": "Challenger", "desc": "Top 0.01%" },
-    "grandmaster": { "name": "Grandmaster", "desc": "Top 0.1%" },
-    "master": { "name": "Master", "desc": "Top 1%" },
-    "diamond": { "name": "Diamond", "desc": "Top 5%" },
-    "platinum": { "name": "Platinum", "desc": "Top 10%" },
-    "gold": { "name": "Gold", "desc": "Top 25%" },
-    "silver": { "name": "Silver", "desc": "Top 50%" },
-    "bronze": { "name": "Bronze", "desc": "Remaining Users" }
+    "challenger": { "name": "Challenger", "desc": "A legend surviving life with this face" },
+    "grandmaster": { "name": "Grandmaster", "desc": "AI almost ran away" },
+    "master": { "name": "Master", "desc": "Urgent truce with the mirror needed" },
+    "diamond": { "name": "Diamond", "desc": "Tolerable to some extent" },
+    "platinum": { "name": "Platinum", "desc": "Barely made it into the top ranks" },
+    "gold": { "name": "Gold", "desc": "Top-tier among the ugly" },
+    "silver": { "name": "Silver", "desc": "The face of awkward ugliness" },
+    "bronze": { "name": "Bronze", "desc": "Failed the humanity test" }
+  },
+
+  "reaction": {
+    "top": "😎 AI refuses to call you ugly",
+    "high": "🙂 You're still in humanity's top tier",
+    "mid": "😐 Plain ugly, nothing special",
+    "low": "😬 AI got nervous...",
+    "bottom": "😱 Even the AI feels sorry"
+  },
+
+  "funnyComment": {
+    "top": [
+      "Not ugly enough to analyze",
+      "AI feels better after seeing you",
+      "Should go into a handsomeness detector",
+      "Why are you even here?",
+      "Ugliness score: 0... AI is confused"
+    ],
+    "high": [
+      "You're not ugly… that's all",
+      "Need to see you in real life to judge",
+      "Not photogenic, huh?",
+      "Not ugly, but kind of unclear",
+      "AI is postponing judgment"
+    ],
+    "mid": [
+      "Just your average ugly",
+      "Seen this face on the subway",
+      "If this is your best, log off",
+      "Camera lens is disappointed",
+      "AI said 'Hmm...'"
+    ],
+    "low": [
+      "Is ugliness your brand?",
+      "No style can fix this",
+      "You lived with this face?!",
+      "Say sorry to your photo-self",
+      "Try distancing from the mirror"
+    ],
+    "bottom": [
+      "Your ugliness is lethal",
+      "This is... just sad",
+      "AI ran away",
+      "Your face crashed the server",
+      "Final boss of ugly has arrived"
+    ]
   },
 
   "share": {
-    "title": "Ugly Score: {{score}}%",
-    "button": "Check Yours"
+    "title": "AI's Ugliness Score: {{score}}%",
+    "button": "Get roasted yourself"
   },
 
   "error": {
-    "webcamAccess": "Failed to access webcam.",
-    "analysisFailed": "An error occurred during image analysis.",
-    "modelLoad": "Failed to load model.",
-    "kakaoInit": "Kakao SDK is still loading!",
-    "kakaoFail": "Failed to share via KakaoTalk.",
-    "sizeLimit": "Image exceeds 5MB and cannot be shared via KakaoTalk."
+    "webcamAccess": "Webcam access failed! Was your face too powerful?",
+    "analysisFailed": "AI gave up. Try again.",
+    "modelLoad": "Failed to load the model... your face might be too shocking",
+    "kakaoInit": "Kakao is loading… AI needs a moment to recover",
+    "kakaoFail": "Sharing failed! Your ugliness is unsharable",
+    "sizeLimit": "Image too large (over 5MB). Is it your face size?"
   }
 }

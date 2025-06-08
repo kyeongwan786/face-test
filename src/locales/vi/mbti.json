@@ -20,6 +20,25 @@
   "error.kakaoNotReady": "Kakao SDK chưa sẵn sàng!",
   "share.title": "MBTI khuôn mặt của tôi là {{mbti}}!",
   "share.button": "Tôi cũng muốn thử",
+  "highlightLine": {
+    "INFP": "Người mơ mộng nhạy cảm và đầy lý tưởng",
+    "ENFP": "Cỗ máy ý tưởng đầy đam mê và sáng tạo",
+    "INTP": "Người suy nghĩ logic và độc lập",
+    "ESFJ": "Người hòa đồng và ấm áp",
+    "ENTJ": "Nhà lãnh đạo quyết đoán và chiến lược",
+    "ISFJ": "Người bảo vệ yên lặng và tận tụy",
+    "ESTP": "Nhà thám hiểm linh hoạt và hoạt bát",
+    "INFJ": "Người cố vấn sâu sắc và đồng cảm",
+    "ISTJ": "Người tổ chức đáng tin cậy và hệ thống",
+    "ESFP": "Người tạo không khí vui vẻ và năng động",
+    "ISTP": "Người giải quyết vấn đề phân tích và điềm tĩnh",
+    "ENFJ": "Nhà lãnh đạo truyền cảm hứng và giàu lòng nhân ái",
+    "ISFP": "Tâm hồn nghệ sĩ tự do và nhẹ nhàng",
+    "ESTJ": "Người thực tế và có tổ chức",
+    "INTJ": "Nhà hoạch định có tầm nhìn và định hướng mục tiêu",
+    "ENTP": "Nhà sáng tạo thông minh và nhanh trí"
+  },
+
   "desc": {
     "INFP": "Lý tưởng, giàu lòng trắc ẩn và nội tâm sâu sắc.",
     "ENFP": "Nhiệt huyết, sáng tạo và đầy ý tưởng mới lạ.",

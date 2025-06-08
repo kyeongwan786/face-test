@@ -1,184 +1,234 @@
-/* =============================================================
-   vibe.css – FIXED (no cut circle, no cut content)
-   ============================================================= */
+/* ==========================================================================
+   vibe.css – 최종본 (분위기 테스트 전용 스타일)
+   ========================================================================== */
 @import url('https://fonts.googleapis.com/css2?family=Fugaz+One&family=Gowun+Dodum&display=swap');
 
-/*********************
- * 0. ROOT VARIABLES *
- *********************/
-:root{
-    --vibe-accent:#60a3f3;
-    --vibe-accent-dark:#4a8be0;
-    --vibe-accent-light:#eaf3ff;
-    --vibe-bg:#f9fbff;
-    --vibe-surface:#fff;
-    --vibe-border:#bcdaf9;
-    --vibe-tag:#d0e7ff;
-    --vibe-tag-text:#2366c9;
-    --vibe-radius:14px;
-    --shadow-sm:0 2px 4px rgba(0,0,0,.06);
-    --shadow-md:0 6px 16px rgba(0,0,0,.1);
-
-    --btn-blue:#60a3f3;
-    --btn-gray:#999;
-    --btn-yellow:#f8d347;
-    --btn-kakao:#fee500;
-    --kakao-text:#181600;
-
-    --ctx-interviewer:#3c8dff;
-    --ctx-date:#ff7698;
-    --ctx-police:#5e5e5e;
-    --ctx-dog:#ffb74d;
-    --ctx-kid:#46c779;
-
-    /*  새롭게 추가 */
-    --photo-size:130px; /* 한 곳에서만 바꾸면 전역 적용 */
-    --photo-border:4px;
+/* === 0. 루트 변수 === */
+:root {
+    --vibe-accent: #60a3f3;
+    --vibe-bg: #f9fbff;
+    --vibe-surface: #ffffff;
+    --vibe-border: #bcdaf9;
+    --vibe-tag: #d0e7ff;
+    --vibe-tag-text: #2366c9;
+    --photo-size: 130px;
+    --photo-border: 4px;
+    --radius: 16px;
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.1);
+    --btn-kakao: #fee500;
+    --kakao-text: #181600;
 }
 
-/*********************
- * 1. GLOBAL RESET   *
- *********************/
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{width:100%;height:100%}
-body{background:var(--vibe-bg);font-family:'Gowun Dodum',sans-serif;color:#333;overflow:auto}
-
-/*********************
- * 2. OVERLAY BACKDROP
- * - 상단 padding 을 줘서 원형이 절대 잘리지 않게
- * - 세로 스크롤이 필요한 경우 전체 화면 스크롤 허용
- *********************/
-.overlay-blur{
-    position:fixed;inset:0;display:flex;justify-content:center;align-items:flex-start;
-    padding:calc(var(--photo-size)/2 + 40px) 12px 40px; /* top: circle/2 + breathing */
-    background:rgba(0,0,0,.35);backdrop-filter:blur(6px);overflow:auto;z-index:9999;
+/* === 1. 초기화 === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html,
+body {
+    width: 100%;
+    height: 100%;
+    font-family: 'Gowun Dodum', sans-serif;
+    background: var(--vibe-bg);
+    color: #333;
+    overflow: auto;
 }
 
-/*********************
- * 3. MODAL CARD
- * - 내부 스크롤 없이 내용이 넘치면 뷰포트가 스크롤
- *********************/
-.result-modal{
-    position:relative;display:flex;flex-direction:column;align-items:center;gap:.6rem;
-    width:100%;max-width:430px;
-    background:var(--vibe-surface);border-radius:26px;box-shadow:var(--shadow-md);
-
-    /* 사진 + 여백 만큼 상단 패딩 */
-    padding:calc(var(--photo-size)/2 + 1.5rem) 1.2rem 1.8rem;
-
-    /* 높이를 제한하지 않고, 대신 부모(overlay)가 스크롤 */
-    max-height:none;overflow:visible;
+/* === 2. 오버레이 === */
+.overlay-blur {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: calc(var(--photo-size) / 2 + 40px) 12px 40px;
+    overflow-y: auto;
+    z-index: 9999;
 }
 
-/*********************
- * 4. CIRCLE PHOTO   *
- *********************/
-.modal-photo-circle{
-    position:absolute;left:50%;top:0;transform:translate(-50%,-50%);
-    width:var(--photo-size);height:var(--photo-size);border-radius:50%;object-fit:cover;
-    background:#fff;border:var(--photo-border) solid #fff;box-shadow:var(--shadow-md);
+/* === 3. 결과 모달 === */
+.result-modal {
+    position: relative;
+    width: 100%;
+    max-width: 430px;
+    background: var(--vibe-surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    padding: calc(var(--photo-size) / 2 + 1.5rem) 1.2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    overflow: visible;
 }
 
-/*********************
- * 5. TITLE & COMMENT
- *********************/
-.vibe-label{
-    font-family:'Fugaz One',cursive;font-size:1.9rem;line-height:1.2;
-    color:var(--vibe-accent);text-align:center;word-break:keep-all;margin-top:.1rem
-}
-.vibe-comment{
-    font-size:.96rem;line-height:1.45;font-weight:500;
-    background:var(--vibe-accent-light);padding:.75rem .9rem;border-left:4px solid var(--vibe-accent);
-    border-radius:8px;color:#444;white-space:pre-line;text-align:center;word-break:keep-all
-}
-
-/*********************
- * 6. DESCRIPTION     *
- *********************/
-.vibe-description.short-text{
-    font-size:.88rem;line-height:1.4;color:#555;text-align:center;
-    background:#fefefe;padding:.6rem .8rem;border:1px solid var(--vibe-border);border-radius:8px;
-    box-shadow:0 1px 3px rgba(0,0,0,.04);
-    display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;
-    overflow:hidden;text-overflow:ellipsis
+/* === 4. 프로필 이미지 === */
+.modal-photo-circle {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: var(--photo-size);
+    height: var(--photo-size);
+    border-radius: 50%;
+    object-fit: cover;
+    border: var(--photo-border) solid white;
+    background: #fff;
+    box-shadow: var(--shadow-md);
+    z-index: 2;
 }
 
-/*********************
- * 7. KEYWORDS TAGS   *
- *********************/
-.keyword-list{display:flex;flex-wrap:wrap;justify-content:center;gap:.35rem}
-.tag{background:var(--vibe-tag);color:var(--vibe-tag-text);padding:.28rem .75rem;border-radius:9999px;font-size:.78rem;font-weight:600}
-
-/*********************
- * 8. MODAL BUTTONS  *
- *********************/
-.modal-buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem;margin-top:.5rem}
-.modal-buttons button{
-    padding:.45rem 1rem;font-size:.88rem;font-weight:600;border:none;border-radius:12px;
-    cursor:pointer;transition:filter .15s
-}
-.modal-buttons button:nth-child(1){background:var(--btn-blue);color:#fff}
-
-.modal-buttons button:nth-child(2){background:var(--btn-kakao);color:var(--kakao-text);font-weight:700}
-.modal-buttons button:hover{filter:brightness(1.05)}
-
-/*********************
- * 9. CONTEXT SWITCH  *
- *********************/
-.alt-context-label{font-size:.9rem;font-weight:500;color:#555;text-align:center;margin:.8rem 0 .4rem}
-.context-switcher{display:flex;flex-wrap:wrap;justify-content:center;gap:.35rem;margin-bottom:.8rem}
-.context-button{
-    padding:.32rem .8rem;font-size:.8rem;font-weight:500;border-radius:var(--vibe-radius);
-    border:1px solid var(--vibe-border);background:#fff;color:#444;cursor:pointer;
-    box-shadow:var(--shadow-sm);transition:background .2s,color .2s
-}
-.context-button:hover{background:#edf4ff;color:#2366c9}
-.context-button.active{background:var(--vibe-accent);color:#fff;border-color:var(--vibe-accent)}
-.context-button[data-context="interviewer"]{border-color:var(--ctx-interviewer)}
-.context-button[data-context="date"]{border-color:var(--ctx-date)}
-.context-button[data-context="police"]{border-color:var(--ctx-police)}
-.context-button[data-context="dog"]{border-color:var(--ctx-dog)}
-.context-button[data-context="kid"]{border-color:var(--ctx-kid)}
-.context-button[data-context="interviewer"].active{background:var(--ctx-interviewer)}
-.context-button[data-context="date"].active{background:var(--ctx-date)}
-.context-button[data-context="police"].active{background:var(--ctx-police)}
-.context-button[data-context="dog"].active{background:var(--ctx-dog)}
-.context-button[data-context="kid"].active{background:var(--ctx-kid)}
-
-/*********************
- *10. FLOATING CTA    *
- *********************/
-.go-analyze-button{
-    position:fixed;bottom:20px;right:20px;padding:.55rem 1.1rem;font-size:.9rem;font-weight:600;
-    background:var(--vibe-accent);color:#fff;border:none;border-radius:var(--vibe-radius);
-    cursor:pointer;box-shadow:var(--shadow-sm);animation:pulse 1.2s infinite;z-index:10000
+/* === 5. 결과 텍스트 === */
+.vibe-label {
+    font-family: 'Fugaz One', cursive;
+    font-size: 1.9rem;
+    color: var(--vibe-accent);
+    text-align: center;
+    word-break: keep-all;
+    margin-top: 0.2rem;
 }
 
-/*********************
- *11. ANIMATIONS      *
- *********************/
-@keyframes popIn{0%{opacity:0;transform:scale(.8)}80%{opacity:1;transform:scale(1.03)}100%{opacity:1;transform:scale(1)}}
-@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)}}
-
-/*********************
- *12. RESPONSIVE RULES
- *********************/
-@media(max-width:480px){
-    :root{--photo-size:115px}
-    .overlay-blur{padding:calc(var(--photo-size)/2 + 36px) 10px 34px}
-
-    .vibe-label{font-size:1.6rem}
-    .vibe-comment{font-size:.84rem}
-    .vibe-description.short-text{font-size:.8rem}
-    .tag{font-size:.7rem;padding:.24rem .65rem}
-    .modal-buttons{gap:.35rem}
-    .modal-buttons button{font-size:.82rem;padding:.4rem .9rem}
+.vibe-comment {
+    font-size: 0.95rem;
+    font-weight: 500;
+    background: var(--vibe-tag);
+    color: #444;
+    padding: 0.75rem 1rem;
+    border-left: 4px solid var(--vibe-accent);
+    border-radius: 10px;
+    text-align: center;
+    word-break: keep-all;
+    white-space: pre-line;
 }
 
-@media(max-height:600px){
-    :root{--photo-size:110px}
-    .overlay-blur{padding:calc(var(--photo-size)/2 + 32px) 12px 30px}
-    .vibe-label{font-size:1.65rem}
-    .vibe-comment{font-size:.82rem}
-    .vibe-description.short-text{font-size:.78rem}
+/* === 6. 설명 === */
+.vibe-description {
+    font-size: 0.88rem;
+    color: #555;
+    background: #fff;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid var(--vibe-border);
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    text-align: center;
+}
+
+/* === 7. 키워드 태그 === */
+.keyword-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem;
+}
+.tag {
+    font-size: 0.78rem;
+    font-weight: 600;
+    background: var(--vibe-tag);
+    color: var(--vibe-tag-text);
+    padding: 0.35rem 0.8rem;
+    border-radius: 9999px;
+}
+
+/* === 8. 버튼 === */
+.modal-buttons {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.modal-buttons button {
+    font-size: 0.85rem;
+    font-weight: bold;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+.btn-retry {
+    background: linear-gradient(135deg, #ff658a, #ff4f81);
+    color: #fff;
+}
+.btn-kakao {
+    background: var(--btn-kakao);
+    color: var(--kakao-text);
+}
+
+/* === 9. 닫기 버튼 === */
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+}
+
+/* === 10. 애니메이션 === */
+@keyframes popIn {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.06);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* === 11. 반응형 === */
+@media (max-width: 480px) {
+    :root {
+        --photo-size: 110px;
+    }
+
+    .vibe-label {
+        font-size: 1.6rem;
+    }
+
+    .vibe-comment {
+        font-size: 0.84rem;
+    }
+
+    .vibe-description {
+        font-size: 0.8rem;
+    }
+
+    .tag {
+        font-size: 0.72rem;
+        padding: 0.3rem 0.6rem;
+    }
+
+    .modal-buttons button {
+        font-size: 0.82rem;
+        padding: 0.5rem 1rem;
+    }
 }

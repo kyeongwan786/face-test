@@ -1,0 +1,39 @@
+{
+  "testSuggestions": {
+    "title": "Try these fun tests too!",
+    "tests": {
+      "age": {
+        "title": "AI Age Estimator",
+        "desc": "Can it guess your age from your face?"
+      },
+      "mbti": {
+        "title": "MBTI Face Test",
+        "desc": "Can your expression reveal your personality?"
+      },
+      "vibe": {
+        "title": "Vibe Analyzer",
+        "desc": "What impression do you give off at first glance?"
+      }
+    }
+  },
+  "peopleAlsoTried": {
+    "title": "People who took this also tried these",
+    "tests": {
+      "age": {
+        "title": "AI Age Predictor",
+        "desc": "How accurately can AI guess your age?"
+      },
+      "mbti": {
+        "title": "Face-based MBTI Test",
+        "desc": "Let AI read your personality from your face"
+      },
+      "vibe": {
+        "title": "First Impression Analyzer",
+        "desc": "Discover the mood you give off at first sight"
+      }
+    }
+  },
+  "exploreAll": {
+    "button": "Explore all tests →"
+  }
+}

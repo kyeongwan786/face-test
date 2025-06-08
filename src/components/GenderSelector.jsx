@@ -11,17 +11,23 @@ export default function GenderSelector({ gender, setGender }) {
             <div className="gender-buttons">
                 <button
                     type="button"
-                    className={`gender-button ${gender === "female" ? "active-female" : ""}`}
-                    onClick={() => setGender("female")}
+                    className={`gender-button ${gender === "male" ? "active-male" : ""}`}
+                    onClick={() => {
+                        console.log("👦 모델: 남자 선택됨");
+                        setGender("male");
+                    }}
                 >
-                    {t("female")}
+                    {t("male")}
                 </button>
                 <button
                     type="button"
-                    className={`gender-button ${gender === "male" ? "active-male" : ""}`}
-                    onClick={() => setGender("male")}
+                    className={`gender-button ${gender === "female" ? "active-female" : ""}`}
+                    onClick={() => {
+                        console.log("👧 모델: 여자 선택됨");
+                        setGender("female");
+                    }}
                 >
-                    {t("male")}
+                    {t("female")}
                 </button>
             </div>
         </div>

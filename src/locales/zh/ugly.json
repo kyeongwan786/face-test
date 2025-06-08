@@ -1,62 +1,110 @@
 {
-  "title": "丑陋度测量器",
-  "subtitle": "请选择性别，并从以下方式中选择一种开始分析",
+  "title": "醜陋測量器",
+  "subtitle": "選擇性別，然後讓 AI 用以下方式讓你失望",
 
   "mode": {
-    "upload": "上传照片",
-    "webcam": "实时分析"
+    "upload": "上傳照片",
+    "webcam": "透過攝影機來羞辱我"
   },
   "upload": {
-    "label": "选择照片"
+    "label": "有自信的話就上傳吧"
   },
 
   "webcam": {
-    "loading": "正在准备摄像头...",
-    "ready": "可以开始分析了",
-    "done": "分析已完成。如需重新尝试，请点击按钮。"
+    "loading": "正在開啟攝影機……想逃已經來不及",
+    "ready": "是時候……面對現實了",
+    "done": "AI 已陷入震驚。再來一次就點我"
   },
 
   "buttons": {
-    "retry": "重新尝试",
-    "save": "保存结果",
-    "kakao": "通过KakaoTalk分享",
-    "analyze": "开始分析"
+    "retry": "再羞辱一次",
+    "save": "儲存這份羞辱",
+    "kakao": "分享到 Kakao",
+    "analyze": "開始羞辱"
   },
 
   "result": {
-    "label": "丑陋度"
+    "label": "醜度",
+    "reaction": "醜成這樣？AI 該向你道歉。",
+    "score": "醜陋分數"
   },
 
   "buckets": {
-    "top": { "title": "顶级档位", "sub": "太优秀了！" },
-    "high": { "title": "高级档位", "sub": "看起来不错！" },
-    "mid": { "title": "中间水平", "sub": "还行啦～" },
-    "low": { "title": "相机叹了口气", "sub": "嗯……" },
-    "bottom": { "title": "没关系", "sub": "每个人都有这样的时刻" }
+    "top": { "title": "AI 驚呆了", "sub": "你真的是人類嗎？" },
+    "high": { "title": "蠻好看的", "sub": "應該不是醜的那邊" },
+    "mid": { "title": "普通水準", "sub": "AI 無法做出結論" },
+    "low": { "title": "AI 嘆了口氣", "sub": "要不要換張照片？" },
+    "bottom": { "title": "攝影機沒壞", "sub": "我們真的很抱歉" }
   },
 
   "tier": {
-    "challenger": { "name": "最强王者", "desc": "前0.01%" },
-    "grandmaster": { "name": "宗师", "desc": "前0.1%" },
-    "master": { "name": "大师", "desc": "前1%" },
-    "diamond": { "name": "钻石", "desc": "前5%" },
-    "platinum": { "name": "白金", "desc": "前10%" },
-    "gold": { "name": "黄金", "desc": "前25%" },
-    "silver": { "name": "白银", "desc": "前50%" },
-    "bronze": { "name": "青铜", "desc": "剩余人群" }
+    "challenger": { "name": "Challenger", "desc": "能以這張臉維持人際關係的傳奇" },
+    "grandmaster": { "name": "Grandmaster", "desc": "AI 差點落跑" },
+    "master": { "name": "Master", "desc": "快去跟鏡子和解吧" },
+    "diamond": { "name": "Diamond", "desc": "勉強還能接受" },
+    "platinum": { "name": "Platinum", "desc": "好險進入了上位圈" },
+    "gold": { "name": "Gold", "desc": "醜人中的王牌" },
+    "silver": { "name": "Silver", "desc": "不尷尬的醜代表" },
+    "bronze": { "name": "Bronze", "desc": "不及格的人性測試" }
+  },
+
+  "reactions": {
+    "top": "😎 AI 無法說你醜",
+    "high": "🙂 你還算人類裡的上等",
+    "mid": "😐 普通的醜，常見的臉",
+    "low": "😬 AI 有點慌張…",
+    "bottom": "😱 AI 都替你道歉了"
+  },
+
+  "funnyComments": {
+    "top": [
+      "醜得不夠分析不了",
+      "AI 反而心情變好",
+      "應該拿來當帥氣檢測器用",
+      "你來這幹嘛？",
+      "醜度 0 分…AI 很困惑"
+    ],
+    "high": [
+      "不算醜…就是這樣",
+      "可能要親眼看看才知道",
+      "你不太上鏡喔？",
+      "不醜但也不明朗",
+      "AI 暫時保留意見"
+    ],
+    "mid": [
+      "這是標準的醜",
+      "這臉我在捷運上常看到",
+      "如果不能再醜一點就關掉吧",
+      "攝影鏡頭有點失望",
+      "AI 表示『嗯……』"
+    ],
+    "low": [
+      "你的主打是醜嗎？",
+      "怎麼打扮都救不了",
+      "你真的靠這張臉活到現在？",
+      "請向照片裡的你道歉",
+      "試著跟鏡子保持距離"
+    ],
+    "bottom": [
+      "你的醜是種超能力",
+      "這真的……令人難過",
+      "AI 已逃離現場",
+      "你的臉讓伺服器當機",
+      "醜界最終魔王登場"
+    ]
   },
 
   "share": {
-    "title": "我的丑陋度：{{score}}%",
-    "button": "我也要测一测"
+    "title": "AI 評定的醜度：{{score}}%",
+    "button": "我也要來被羞辱"
   },
 
   "error": {
-    "webcamAccess": "无法访问摄像头。",
-    "analysisFailed": "分析图像时发生错误。",
-    "modelLoad": "模型加载失败。",
-    "kakaoInit": "正在初始化 Kakao SDK！",
-    "kakaoFail": "KakaoTalk 分享失败。",
-    "sizeLimit": "图片大于5MB，无法通过KakaoTalk分享。"
+    "webcamAccess": "無法存取攝影機！是你的臉太強了嗎？",
+    "analysisFailed": "AI 放棄分析了。請再試一次。",
+    "modelLoad": "載入模型失敗…外貌可能太震撼了？",
+    "kakaoInit": "Kakao 準備中…AI 還在驚嚇中",
+    "kakaoFail": "分享失敗！你的醜不可分享",
+    "sizeLimit": "圖片太大（超過 5MB）。臉也太大了吧？"
   }
 }

@@ -1,56 +1,40 @@
-/* ========================================================================
-   common.css  –  AI 얼굴 실험실 공통 스타일 (v2025-05-31)
-   ------------------------------------------------------------------------
-   ▸ Reset, 변수, 폰트, 애니메이션, 유틸, 재사용 컴포넌트 일괄 정의
-   ▸ mbti / age / ugly(못생김) 등 모든 페이지에서 import
-   ====================================================================== */
+/* ==========================================================================
+   common.css — 공통 스타일 시트
+   - 공통 폰트, 색상 변수, 레이아웃, 버튼, 네비게이션, 업로드 박스, 모달, 반응형 등 포함
+   ========================================================================== */
 
-/* 000 ────────────────── IMPORT GOOGLE FONTS ─────────────────────────── */
+/* 1. Font Import */
 @import url('https://fonts.googleapis.com/css2?family=Fugaz+One&family=Gowun+Dodum&family=Poppins&family=Bebas+Neue&display=swap');
 
-/* 010 ────────────────── RESET & BASE TYPOGRAPHY ─────────────────────── */
-*,
-*::before,
-*::after {
+/* 2. Reset */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
-html,
+html {
+    scroll-behavior: smooth;
+}
 body {
-    width: 100%;
-    height: 100%;
-    font-family: var(--ff-body, 'Poppins', sans-serif);
+    font-family: 'Gowun Dodum', sans-serif;
     background: var(--bg, #fffcf8);
     color: #303030;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
-/* 020 ────────────────── ROOT VARIABLES (통합 팔레트) ─────────────────── */
+/* 3. Design Tokens */
 :root {
-    /* 폰트 */
     --ff-head: 'Fugaz One', cursive;
     --ff-head-alt: 'Bebas Neue', cursive;
     --ff-body: 'Gowun Dodum', sans-serif;
 
-    /* MBTI·AGE 공통 컬러 */
-    --mbti-nf: #ff7ab2;
-    --mbti-nt: #8e44ff;
-    --mbti-sf: #00c8b4;
-    --mbti-st: #3fa8ff;
-
-    /* General Accent 팔레트 */
     --accent-pink: #ff4f81;
     --accent-blue: #3fa8ff;
     --accent-mint: #00c4b4;
     --accent-gold: #f5b021;
     --accent-lime: #b7dd29;
-    --tier-color: var(--accent-gold);
 
-    /* Neutral Colors (nc-000 ~ 900) */
     --nc-000: #ffffff;
     --nc-050: #fafafa;
     --nc-100: #f9f8f6;
@@ -63,172 +47,242 @@ body {
     --nc-800: #34312d;
     --nc-900: #1e1b18;
 
-    /* AGE 바 차트 색 */
-    --age-bar-bg: #e0e0e7;
-    --age-label: #6f6c66;
-    --age-bar-fill: linear-gradient(90deg, #76a9ff 0%, #8ec5fc 100%);
+    --bg: #fffcf8;
+    --glass: rgba(255, 255, 255, 0.45);
+    --shadow-s: 0 2px 4px rgba(0, 0, 0, 0.06);
+    --shadow-m: 0 6px 16px rgba(0, 0, 0, 0.08);
+    --shadow-l: 0 12px 28px rgba(0, 0, 0, 0.15);
 
-    /* Radius & Shadow */
     --rad-xs: 6px;
     --rad-s: 12px;
     --rad-m: 18px;
     --rad-l: 26px;
     --rad-full: 999px;
 
-    --shadow-s: 0 2px 4px rgba(0, 0, 0, 0.06);
-    --shadow-m: 0 6px 16px rgba(0, 0, 0, 0.08);
-    --shadow-l: 0 12px 28px rgba(0, 0, 0, 0.15);
-
-    /* 기타 */
-    --bg: #fffcf8;
-    --glass: rgba(255, 255, 255, 0.45);
-
-    /* Easing */
     --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
     --ease-spring: cubic-bezier(0.25, 1.25, 0.5, 1);
-    --ease: cubic-bezier(.25,.8,.25,1);
 }
 
-/* 030 ────────────────── GLOBAL UTILITIES ─────────────────────────────── */
-.visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
+/* 4. Navbar */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    box-shadow: var(--shadow-l);
+    padding: 0.6rem 1.2rem;
+    display: flex;
+    justify-content: center;
+}
+.navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+.nav-left {
+    display: flex;
+    align-items: center;
+}
+.logo {
+    font-size: 1.6rem;
+    font-family: var(--ff-head);
+    background: linear-gradient(120deg, var(--accent-pink), var(--accent-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     white-space: nowrap;
-    border: 0;
+    margin-right: 1rem;
 }
-.text-center { text-align: center; }
-.mt-1 { margin-top: .25rem; } .mt-2 { margin-top: .5rem; }
-.mb-1 { margin-bottom: .25rem; } .mb-2 { margin-bottom: .5rem; }
+.hamburger {
+    display: none;
+    font-size: 1.8rem;
+    background: none;
+    border: none;
+    color: var(--nc-700);
+    cursor: pointer;
+}
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+.nav-links li a {
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--nc-900);
+}
+.nav-links li a:hover {
+    color: var(--accent-pink);
+}
+.nav-links li .active {
+    border-bottom: 2px solid var(--accent-blue);
+}
 
-/* 040 ────────────────── CORE ANIMATIONS (공통) ───────────────────────── */
-@keyframes fadeIn        { from { opacity:0; transform:translateY(20px);} to { opacity:1; transform:none; } }
-@keyframes slideFadeUp   { from { opacity:0; transform:translateY(14px);} to { opacity:1; transform:none; } }
-@keyframes slideFadeDown { from { opacity:0; transform:translateY(-20px);} to { opacity:1; transform:none; } }
-@keyframes rubber        { 0%{transform:scale(.9);} 45%{transform:scale(1.15);} 100%{transform:scale(1);} }
-@keyframes countBounce   { 0%{transform:scale(1);} 50%{transform:scale(1.1);} 100%{transform:scale(1);} }
-@keyframes gradientRotate{ 0%{background-position:0% 50%;} 50%{background-position:100% 50%;} 100%{background-position:0% 50%;} }
-@keyframes hueShift      { 0%{filter:hue-rotate(0deg);} 100%{filter:hue-rotate(360deg);} }
-@keyframes spinGradient  { to { --angle:360deg; } }
-@keyframes confettiFall  { to { transform: translateY(600px) rotateZ(360deg);} }
+/* 5. Buttons */
+button,
+.btn {
+    padding: 0.6rem 1.2rem;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--rad-full);
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+.btn-retry {
+    background: linear-gradient(135deg, #ff658a, #ff4f81);
+    color: white;
+}
+.btn-save {
+    background: linear-gradient(135deg, #3fa8ff, #7badff);
+    color: white;
+}
+.btn-kakao {
+    background: #fee500;
+    color: #3b1e1e;
+    font-weight: 700;
+}
 
-/* 050 ────────────────── GLOBAL COMPONENTS ───────────────────────────── */
+/* 6. Upload Box */
+.upload-box {
+    max-width: 420px;
+    border: 2px dashed var(--accent-mint);
+    border-radius: var(--rad-m);
+    padding: 3.5rem 2rem;
+    background: var(--nc-000);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.upload-box:hover {
+    background: rgba(216, 246, 227, 0.35);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-m);
+}
+.upload-label {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--accent-mint);
+}
 
-/* 051 ─ Overlay(Blur) */
+/* 7. Modal Layout */
 .overlay-blur {
     position: fixed;
     inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(14px);
     display: flex;
     justify-content: center;
     align-items: center;
-    backdrop-filter: blur(12px) brightness(0.9);
-    background: rgba(0, 0, 0, 0.45);
     z-index: 1500;
-    animation: fadeIn 0.25s var(--ease);
+    overflow: auto;
 }
-
-/* 052 ─ Upload Box (공통) */
-.upload-wrapper { display: flex; justify-content: center; }
-.upload-box {
-    width: 220px; height: 160px;
-    display: inline-flex; flex-direction: column; align-items: center; justify-content: center;
-    padding: 2rem;
-    border: 2px dashed var(--mbti-nt);
-    border-radius: var(--rad-s);
-    background: #fff;
-    font-size: 1.25rem; font-weight: 600; color: var(--mbti-nt);
-    cursor: pointer;
-    box-shadow: var(--shadow-s);
-    transition: all .25s var(--ease);
+.result-modal {
+    background: var(--nc-000);
+    border-radius: var(--rad-l);
+    padding: 3rem 1rem 1rem;
+    width: 90%;
+    max-width: 420px;
+    position: relative;
     text-align: center;
+    box-shadow: var(--shadow-l);
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
 }
-.upload-box:hover { background:#f9f5ff; transform: translateY(-4px); box-shadow: var(--shadow-m); }
-.upload-box::before { content:"📷"; font-size:2.4rem; margin-bottom:.6rem; }
-
-/* 053 ─ Mode Toggle 버튼 (사진 업로드 / 실시간 분석) */
-.mode-toggle-buttons { display:flex; justify-content:center; gap:1rem; margin:2rem 0 1rem; }
-.mode-button {
-    font-size:.95rem; font-weight:600; padding:.7rem 1.4rem;
-    border-radius: var(--rad-full); border:2px solid var(--accent-blue);
-    background:#fff; color: var(--nc-700); cursor:pointer;
-    transition: background .2s, color .2s, box-shadow .2s;
-}
-.mode-button:hover { background:#f0f8ff; }
-.mode-button.active {
-    background: var(--accent-blue); color:#fff; box-shadow: var(--shadow-s);
-}
-
-/* 054 ─ Webcam Frame & Buttons */
-.webcam-wrapper { display:flex; flex-direction:column; align-items:center; gap:1rem; margin-top:2rem; }
-.video-frame,
-.webcam-wrapper video {
-    width:100%; max-width:320px; border-radius: var(--rad-s);
-    border:2px solid var(--mbti-st); background:#fff; box-shadow: var(--shadow-s);
-}
-.capture-button,
-.btn-analyze, /* alias */
-.webcam-retry {
-    padding: 0.65rem 1.4rem; font-weight:700; font-size:1rem;
-    border:none; border-radius: var(--rad-s); color:#fff;
-    background: linear-gradient(135deg, var(--mbti-st), var(--mbti-nt));
-    cursor:pointer; transition: transform .18s ease, opacity .18s ease;
+.modal-photo-circle {
+    width: 100px;
+    height: 100px;
+    top: -45px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #fff;
+    background: #fff;
     box-shadow: var(--shadow-s);
+    z-index: 2;
 }
-.capture-button:hover,
-.btn-analyze:hover,
-.webcam-retry:hover { transform: translateY(-3px); opacity:.95; }
-
-.webcam-overlay-text {
-    font-size:1rem; font-weight:600; color: var(--accent-blue);
-    text-align:center; margin-top:.5rem; animation: fadeIn .3s ease;
-}
-
-/* 055 ─ Generic Modal Buttons */
 .modal-buttons {
-    display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; margin-top:1.5rem;
-}
-.modal-buttons button {
-    flex:1 1 120px; padding:.65rem 1.2rem; font-weight:700; font-size:.9rem;
-    border:none; border-radius: var(--rad-s); color:#fff; cursor:pointer;
-    transition: transform .18s var(--ease), opacity .18s var(--ease);
-}
-.modal-buttons button:hover { transform: translateY(-3px); opacity:.92; }
-/* 025 ────────────── GLOBAL LAYOUT HELPER (NEW) ───────────────── */
-.page {               /* → 모든 페이지 최외곽 래퍼 */
     display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    justify-content: center;
+    margin-top: 0.8rem;
+}
+.modal-buttons > button {
+    flex: 1 1 100px;
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
 }
 
-.container {          /* → 각 페이지 컨텐츠 래퍼 */
-    flex: 1;
-    width: 100%;
-    max-width: 960px;
-    margin: 0 auto;   /* ⬅︎ 중앙 정렬 핵심 */
-    display: flex;
-    flex-direction: column;
-    align-items: center;        /* ⬅︎ 모든 자식 중앙정렬 */
-    text-align: center;         /* h1, p 전부 가운데 */
+/* 8. Animation Keyframes */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+@keyframes popIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+@keyframes bounceIn {
+    0% { transform: translateY(-20px); opacity: 0; }
+    60% { transform: translateY(10px); }
+    100% { transform: translateY(0); opacity: 1; }
+}
+@keyframes rubber {
+    0% { transform: scale(1); }
+    30% { transform: scale(1.25, 0.75); }
+    40% { transform: scale(0.75, 1.25); }
+    50% { transform: scale(1.15, 0.85); }
+    65% { transform: scale(0.95, 1.05); }
+    75% { transform: scale(1.05, 0.95); }
+    100% { transform: scale(1); }
 }
 
-
-
-/* 060 ────────────────── RESPONSIVE UTILITIES ─────────────────────────── */
-@media (max-width:768px) {
-    .upload-box          { width:160px; height:140px; font-size:1.1rem; padding:1.8rem; }
-    .mode-toggle-buttons { flex-direction:column; gap:.6rem; }
-    .mode-button         { width:100%; }
-    .video-frame,
-    .webcam-wrapper video{ max-width:280px; }
-    .webcam-overlay-text { font-size:.9rem; }
+/* 9. Responsive */
+@media (max-width: 768px) {
+    .navbar-container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .logo {
+        font-size: 1.3rem;
+    }
+    .hamburger {
+        display: block;
+    }
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.8rem;
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        pointer-events: none;
+        transition: max-height 0.3s ease, opacity 0.3s ease;
+    }
+    .nav-links.open {
+        max-height: 400px;
+        opacity: 1;
+        pointer-events: auto;
+    }
+    .modal-photo-circle {
+        width: 80px;
+        height: 80px;
+        top: -35px;
+    }
+    .modal-buttons button {
+        width: auto;
+        min-width: 120px;
+        font-size: 0.9rem;
+    }
 }
-
-@media (min-width:1600px) {
-    .container { max-width:1140px; }
-}
-
-/* ===================================================================== */

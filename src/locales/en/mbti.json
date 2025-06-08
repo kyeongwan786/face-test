@@ -20,6 +20,25 @@
   "error.kakaoNotReady": "Kakao SDK is not ready!",
   "share.title": "My MBTI by face is {{mbti}}!",
   "share.button": "Try it yourself",
+  "highlightLine": {
+    "INFP": "A sensitive and idealistic dreamer",
+    "ENFP": "A passionate and creative idea machine",
+    "INTP": "A logical and independent thinker",
+    "ESFJ": "A warm-hearted and social harmonizer",
+    "ENTJ": "A bold and strategic leader",
+    "ISFJ": "A quiet yet dedicated protector",
+    "ESTP": "A witty and spontaneous adventurer",
+    "INFJ": "An insightful and empathetic advisor",
+    "ISTJ": "A reliable and systematic organizer",
+    "ESFP": "An energetic and cheerful entertainer",
+    "ISTP": "A calm and analytical problem-solver",
+    "ENFJ": "A compassionate and inspiring leader",
+    "ISFP": "A free-spirited and artistic soul",
+    "ESTJ": "A practical and structured executive",
+    "INTJ": "A goal-driven and visionary planner",
+    "ENTP": "A quick-witted and inventive innovator"
+  },
+
   "desc": {
     "INFP": "Idealistic and empathetic with a rich inner world.",
     "ENFP": "Energetic, creative, and full of innovative ideas.",

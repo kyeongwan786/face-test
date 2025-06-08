@@ -1,37 +1,16 @@
 /* =========================================================================
-   age.css — Updated: 2025-05-31
+   age.css — 최종 리디자인 (2025-06-07)
    ========================================================================= */
 
 :root {
-    --c-blue-100: #e7f4ff;
-    --c-blue-300: #b5d8ff;
-    --c-blue-500: #3fa8ff;
-    --c-blue-700: #1c6dff;
-    --c-violet-100: #efe7ff;
-    --c-violet-300: #d3c1ff;
-    --c-violet-500: #8e44ff;
-    --c-violet-700: #6727ff;
-
-    --c-gray-050: #fafafa;
-    --c-gray-100: #f2f4f6;
-    --c-gray-200: #e6e8ec;
-    --c-gray-300: #d0d4db;
-    --c-gray-400: #b0b7c4;
-    --c-gray-600: #626f86;
-    --c-gray-800: #394257;
-
-    --rad-s: 12px;
-    --rad-m: 18px;
-    --rad-l: 24px;
-
-    --shadow-s: 0 3px 6px rgba(0, 0, 0, 0.08);
-    --shadow-m: 0 6px 18px rgba(0, 0, 0, 0.12);
-    --shadow-l: 0 16px 36px rgba(0, 0, 0, 0.18);
-
-    --ease: cubic-bezier(0.25, 0.8, 0.25, 1);
-
-    --gauge-bg: #d9dbe0;
-    --gauge-fill: linear-gradient(90deg, var(--c-blue-500), var(--c-violet-500));
+    --age-blue: #3fa8ff;
+    --age-violet: #8e44ff;
+    --age-bar-bg: #d9dbe0;
+    --age-bar-fill: linear-gradient(90deg, var(--age-blue), var(--age-violet));
+    --age-bg: #ffffff;
+    --age-overlay: rgba(0, 0, 0, 0.48);
+    --age-shadow: 0 16px 36px rgba(0, 0, 0, 0.18);
+    --rad: 24px;
 }
 
 html, body {
@@ -39,12 +18,8 @@ html, body {
     padding: 0;
     font-family: 'Poppins', sans-serif;
     background: #fff;
-    color: var(--c-gray-800);
+    color: #333;
     -webkit-font-smoothing: antialiased;
-}
-
-* {
-    box-sizing: border-box;
 }
 
 .overlay-blur {
@@ -54,21 +29,21 @@ html, body {
     align-items: center;
     justify-content: center;
     backdrop-filter: blur(6px) brightness(0.92);
-    background: rgba(0, 0, 0, 0.48);
+    background: var(--age-overlay);
     z-index: 2000;
 }
 
-.result-modal {
+.result-modal.age-modal {
     position: relative;
     width: 92%;
     max-width: 440px;
-    background: #fff;
-    border-radius: var(--rad-l);
+    background: var(--age-bg);
+    border-radius: var(--rad);
     padding: 7rem 2rem 2.5rem;
     text-align: center;
-    box-shadow: var(--shadow-l);
+    box-shadow: var(--age-shadow);
     isolation: isolate;
-    animation: modalEnter 0.35s var(--ease);
+    animation: modalEnter 0.35s ease;
 }
 
 @keyframes modalEnter {
@@ -82,32 +57,6 @@ html, body {
     }
 }
 
-.result-modal::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: conic-gradient(from 0deg, var(--c-blue-500), var(--c-violet-500), var(--c-blue-500));
-    filter: blur(28px);
-    opacity: 0.22;
-    animation: spin 16s linear infinite;
-    z-index: -2;
-}
-
-@keyframes spin {
-    to {
-        transform: rotate(1turn);
-    }
-}
-
-.result-modal::after {
-    content: "";
-    position: absolute;
-    inset: 2px;
-    background: #fff;
-    border-radius: inherit;
-    z-index: -1;
-}
-
 .modal-photo-circle {
     position: absolute;
     top: -70px;
@@ -118,22 +67,20 @@ html, body {
     border-radius: 50%;
     object-fit: cover;
     border: 4px solid #fff;
-    box-shadow: var(--shadow-s);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.08);
 }
 
 .age-head {
-    margin: 0.4rem 0 0;
+    margin-top: 0.4rem;
     font-family: 'Fugaz One', cursive;
     font-size: 2.2rem;
     line-height: 1.25;
 }
 
 .ai-gradient {
-    background: linear-gradient(120deg, var(--c-blue-500), var(--c-violet-500));
+    background: var(--age-bar-fill);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    display: inline-block;
-    letter-spacing: 0.5px;
 }
 
 .age-number {
@@ -141,7 +88,7 @@ html, body {
     font-weight: 900;
     margin-top: 0.15rem;
     display: inline-block;
-    background: linear-gradient(90deg, var(--c-blue-700), var(--c-violet-700));
+    background: linear-gradient(90deg, var(--age-blue), var(--age-violet));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: numFlash 0.4s infinite alternate;
@@ -159,27 +106,15 @@ html, body {
 }
 
 @keyframes popIn {
-    0% {
-        transform: scale(1);
-    }
-    40% {
-        transform: scale(1.35);
-    }
-    70% {
-        transform: scale(0.9);
-    }
-    100% {
-        transform: scale(1);
-    }
+    0% { transform: scale(1); }
+    40% { transform: scale(1.35); }
+    70% { transform: scale(0.9); }
+    100% { transform: scale(1); }
 }
 
 @keyframes neonGlow {
-    0% {
-        text-shadow: 0 0 8px rgba(80, 120, 255, 0.75);
-    }
-    100% {
-        text-shadow: 0 0 18px rgba(120, 160, 255, 0.95);
-    }
+    0% { text-shadow: 0 0 8px rgba(80, 120, 255, 0.75); }
+    100% { text-shadow: 0 0 18px rgba(120, 160, 255, 0.95); }
 }
 
 .age-bar-wrapper {
@@ -194,7 +129,7 @@ html, body {
     width: 100%;
     height: 18px;
     border-radius: 99px;
-    background: var(--gauge-bg);
+    background: var(--age-bar-bg);
     overflow: hidden;
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.08);
 }
@@ -202,9 +137,9 @@ html, body {
 .age-bar-fill {
     height: 100%;
     width: 0%;
-    background: var(--gauge-fill);
+    background: var(--age-bar-fill);
     border-radius: inherit;
-    transition: width 0.15s var(--ease);
+    transition: width 0.15s ease;
 }
 
 .age-labels {
@@ -220,16 +155,14 @@ html, body {
     flex: 0 0 auto;
     width: 24px;
     text-align: center;
-    background: linear-gradient(90deg, var(--c-blue-500), var(--c-violet-500));
+    background: var(--age-bar-fill);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: lblBlink 0.45s infinite alternate;
 }
 
 @keyframes lblBlink {
-    to {
-        opacity: 0.4;
-    }
+    to { opacity: 0.4; }
 }
 
 .desc-box {
@@ -248,23 +181,9 @@ html, body {
     animation: slideFade 0.6s ease-out;
 }
 
-.desc-box strong {
-    color: #6f2dbd;
-    font-weight: 800;
-    background: linear-gradient(90deg, #ff6aa2, #8e44ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
 @keyframes slideFade {
-    from {
-        opacity: 0;
-        transform: translateY(18px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .keyword-tags {
@@ -303,24 +222,44 @@ html, body {
     border-radius: 16px;
     color: #fff;
     cursor: pointer;
-    transition: transform 0.18s var(--ease), box-shadow 0.18s var(--ease);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 
 .btn-retry {
     background: linear-gradient(135deg, #ff658a, #ff4f81);
 }
 
-.btn-save {
-    background: linear-gradient(135deg, #3fa8ff, #7badff);
+.btn-kakao {
+    background: #fee500;
+    color: #181600;
+    font-weight: 800;
 }
 
 .modal-buttons button:hover {
     transform: translateY(-3px);
-    box-shadow: var(--shadow-m);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.modal-close-button {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    background: transparent;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 10;
+    line-height: 1;
+    color: #888;
+    transition: color 0.2s ease-in-out;
+}
+
+.modal-close-button:hover {
+    color: #111;
 }
 
 @media (max-width: 768px) {
-    .result-modal {
+    .result-modal.age-modal {
         max-width: 360px;
         padding-top: 6rem;
     }
@@ -355,26 +294,4 @@ html, body {
     .modal-buttons button {
         width: 100%;
     }
-}
-
-.u-hidden {
-    display: none !important;
-}
-/* 모달 닫기 버튼 */
-.modal-close-button {
-    position: absolute;
-    top: 1.2rem;
-    right: 1.2rem;
-    background: transparent;
-    border: none;
-    font-size: 1.8rem;
-    cursor: pointer;
-    z-index: 10;
-    line-height: 1;
-    color: #888;
-    transition: color 0.2s ease-in-out;
-}
-
-.modal-close-button:hover {
-    color: #111;
 }
