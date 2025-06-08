@@ -152,6 +152,44 @@ button,
     transform: scale(1.03);
 }
 
+/* ✅ PC 광고 기본 표시 */
+.ad-pc-banner {
+    display: block;
+    text-align: center;
+    margin: 2rem auto 4rem;
+}
+
+/* ✅ 모바일 띠배너 기본 숨김 */
+.ad-mobile-fixed {
+    display: none;
+}
+
+/* ✅ 모바일 전용 띠배너 고정 표시 */
+@media (max-width: 768px) {
+    .ad-pc-banner {
+        display: none !important;
+    }
+
+    .ad-mobile-fixed {
+        display: block;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 50px;
+        z-index: 9999;
+        background: white;
+        box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+        padding-bottom: 60px; /* 띠배너 공간 확보 */
+    }
+}
+
+
+
+
 
 /* 6. Upload Box */
 .upload-box {

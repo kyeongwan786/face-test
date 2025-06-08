@@ -6,11 +6,7 @@ import GenderSelector from "../components/GenderSelector";
 import LoadingSpinner from "../components/LoadingSpinner";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 import { Link } from "react-router-dom";
-
 import { Helmet } from "react-helmet";
-
-
-
 
 export default function MBTIByFace() {
     const { t } = useTranslation(["mbti", "common"]);
@@ -104,6 +100,7 @@ export default function MBTIByFace() {
                 <meta property="og:url" content="https://facealchemy.site/mbti" />
                 <meta property="og:type" content="website" />
             </Helmet>
+
             <div className="language-switcher-wrapper"><LanguageSwitcher /></div>
 
             <div className="container">
@@ -201,6 +198,23 @@ export default function MBTIByFace() {
                     </div>
                 </div>
             )}
+
+            {/* ✅ 광고 구역 */}
+            <div className="ad-pc-banner">
+                <ins className="kakao_ad_area"
+                     style={{ display: "block", width: "300px", height: "250px", margin: "2rem auto" }}
+                     data-ad-unit="DAN-2VAMRfWJcabygl9x"
+                     data-ad-width="300"
+                     data-ad-height="250"></ins>
+            </div>
+
+            <div className="ad-mobile-fixed">
+                <ins className="kakao_ad_area"
+                     style={{ display: "block", width: "100%", height: "50px" }}
+                     data-ad-unit="DAN-vq03WNxmpMBMVvd5"
+                     data-ad-width="320"
+                     data-ad-height="50"></ins>
+            </div>
         </div>
     );
 }

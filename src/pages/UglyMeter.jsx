@@ -309,8 +309,29 @@ export default function UglyMeter() {
                     </div>
                 </div>
             )}
+
+
+
+
             <div className="explore-tests-section">
                 <ExploreAllTests />
+            </div>
+            {/* ✅ PC 광고 (중앙 고정 박스) */}
+            <div className="ad-pc-banner">
+                <ins className="kakao_ad_area"
+                     style={{ display: "block", width: "300px", height: "250px", margin: "0 auto" }}
+                     data-ad-unit="DAN-2VAMRfWJcabygl9x"
+                     data-ad-width="300"
+                     data-ad-height="250"></ins>
+            </div>
+
+            {/* ✅ 모바일 띠배너 (하단 고정) */}
+            <div className="ad-mobile-fixed">
+                <ins className="kakao_ad_area"
+                     style={{ display: "block", width: "100%", height: "50px" }}
+                     data-ad-unit="DAN-vq03WNxmpMBMVvd5"
+                     data-ad-width="320"
+                     data-ad-height="50"></ins>
             </div>
         </div>
     );
