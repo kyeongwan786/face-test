@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">AI 얼굴 실험실</string>
+    <string name="title_activity_main">AI 얼굴 실험실</string>
+    <string name="package_name">com.facefun.lab</string>
+    <string name="custom_url_scheme">com.facefun.lab</string>
+</resources>

@@ -23,6 +23,14 @@ export default function MBTIByFace() {
     const videoRef = useRef(null);
     const videoWrapperRef = useRef(null);
 
+    // ✅ 광고 스크립트 삽입 (한 번만)
+    useEffect(() => {
+        const script = document.createElement("script");
+        script.src = "//t1.daumcdn.net/kas/static/ba.min.js";
+        script.async = true;
+        document.body.appendChild(script);
+    }, []);
+
     useEffect(() => {
         if (useWebcam) {
             navigator.mediaDevices.getUserMedia({ video: true })
@@ -199,7 +207,7 @@ export default function MBTIByFace() {
                 </div>
             )}
 
-            {/* ✅ 광고 구역 */}
+            {/* ✅ 광고: PC용 */}
             <div className="ad-pc-banner">
                 <ins className="kakao_ad_area"
                      style={{ display: "block", width: "300px", height: "250px", margin: "2rem auto" }}
@@ -208,6 +216,7 @@ export default function MBTIByFace() {
                      data-ad-height="250"></ins>
             </div>
 
+            {/* ✅ 광고: 모바일 띠배너 */}
             <div className="ad-mobile-fixed">
                 <ins className="kakao_ad_area"
                      style={{ display: "block", width: "100%", height: "50px" }}

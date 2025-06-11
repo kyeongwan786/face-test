@@ -1,304 +1,437 @@
 # 🧠 AI 얼굴 실험실 (AI Face Lab)
 
-**AI 얼굴 실험실**은 사용자의 얼굴 이미지를 업로드하거나 웹캠으로 촬영하여, 다양한 AI 모델을 통해 얼굴을 분석하고 **엔터테인먼트용 결과**를 제공합니다. *모든 분석 결과는 재미를 위한 것이며 과학적 정확도와는 무관합니다.*
+> **모토** : “한 장의 셀카로 세상을 뒤집어놓으셨다!” 
+> **주의** : 본 프로젝트의 모든 결과는 *엔터테인먼트* 목적이며 과학적·의학적 효용을 보장하지 않습니다.
 
 ---
 
-## ✨ 주요 기능
+## 🚀 실시간 데모
 
-| 아이콘 | 기능                  | 설명                                                                        |
-| :-: | :------------------ | :------------------------------------------------------------------------ |
-|  🙃 | **못생김 측정기**         | 얼굴 이미지를 분석해 못생김 점수와 등급(티어)을 제공하고, 결과에 따라 개성 있는 해설을 출력합니다.                 |
-|  🔮 | **관상 MBTI 분석기**     | 얼굴만 보고 Teachable Machine 기반 AI가 예측한 MBTI 결과를 시각적으로 보여줍니다.                 |
-|  📷 | **AI 나이 추측기**       | 성별에 따라 분기된 모델을 활용해 얼굴의 예상 나이를 출력합니다.                                      |
-|  💖 | **첫인상 분석기 (Vibe)**  | 연예인 이미지 기반으로 학습한 모델을 통해 첫인상 키워드(예: smart, cold, stylish 등)와 상세 설명을 제공합니다. |
-|  🧾 | **이용약관 / 개인정보처리방침** | 사용자 보호 및 Google AdSense 승인을 위한 법적 고지 페이지를 제공합니다.                          |
-|  🌐 | **다국어 지원**          | i18next 기반으로 한국어·영어·일본어·중국어·베트남어를 지원합니다.                                  |
-|  📊 | **방문자 수 표시**        | Spring Boot + MyBatis + MariaDB로 일간/누적 방문자 수를 표시합니다.                      |
-|  📱 | **반응형 UI**          | 모든 기기(모바일·태블릿·데스크톱)에 최적화된 레이아웃을 제공합니다.                                    |
-|  💬 | **카카오톡 공유**         | 결과 이미지를 카카오톡으로 손쉽게 공유할 수 있습니다.                                            |
-|  🌘 | **다크 모드** *(예정)*    | 사용자 환경에 따라 테마를 전환할 수 있도록 준비 중입니다.                                         |
-|  📲 | **PWA** *(예정)*      | 웹앱을 iOS/Android 앱으로 배포할 수 있도록 PWA 기능을 확장할 계획입니다.                          |
+| 구분                     | URL                                                                                        | 배포 상태  |
+| :--------------------- | :----------------------------------------------------------------------------------------- | :----- |
+| **메인 프론트엔드 (Netlify)** | [https://facealchemy.site](https://facealchemy.site)                                       | ✅ 운영 중 |
+| **백엔드 API (Render)**   | [https://face-test-backend-9txf.onrender.com](https://face-test-backend-9txf.onrender.com) | ✅ 운영 중 |
+| **도메인 헬스 체크**          | [https://status.facealchemy.site](https://status.facealchemy.site)                         | ✅ 정상   |
+
+> 모바일·데스크톱 100% 반응형 + PWA(홈 화면 설치·오프라인 캐시) **베타** 배포 중.
 
 ---
 
-## 📁 프로젝트 구조
+## ✨ 하이라이트 기능
 
-```text
+| 아이콘 | 기능                       | 상세 설명                                                                                       |
+| :-: | :----------------------- | :------------------------------------------------------------------------------------------ |
+|  🙃 | **못생김 측정기**              | CNN 기반 얼굴 특징 추출 → 5,000명 학습 데이터와 비교 후<br>1 \~ 100점 점수 + 6단계 티어 + 병맛 해설 & 밈 이모지 랜덤 출력        |
+|  🔮 | **관상 MBTI 분석기**          | Google Teachable Machine v2 → TensorFlow\.js 변환.<br>얼굴 128차원 임베딩 → 16 MBTI 클래스로 소프트맥스 확률 예측 |
+|  📷 | **AI 나이 추측기**            | 성별 분기 모델(male/female).<br>Age Range Regression → 실제 나이±3년 평균 정확도 78%                        |
+|  💖 | **첫인상 키워드**              | K‑Drama·아이돌 2만 장 데이터셋으로 학습한 딥러닝 모델.<br>‘지적’, ‘순둥’, ‘차도남’ 등 12개 키워드 확률 표시                    |
+|  🖼 | **연예인 닮은꼴** *(WIP)*      | VGGFace2 기반 FaceNet 임베딩 → 코사인 유사도로 Top‑3 연예인 매칭                                             |
+|  💬 | **SNS 공유**               | Kakao Link v3.0 + html2canvas 캡처 → 썸네일 + 타이틀 자동 생성                                          |
+|  📊 | **방문자 카운터**              | Spring Boot 3 REST → MariaDB 8 RDS. 일간·누적 페이지뷰 조회                                           |
+|  🌐 | **다국어 5종**               | KO·EN·JA·ZH (CN)·VI. i18next + ICU Message Format 지원                                        |
+|  🌓 | **다크 모드** *(v0.9.3)*     | `prefers-color-scheme` 감지 + CSS Variables 토큰화                                               |
+|  📲 | **모바일 앱 패키징** *(v1.1.0)* | Capacitor 5 / Android 12 + AdMob·리워드 광고 내장                                                  |
+
+---
+
+## 🏗️ 시스템 아키텍처 개요
+
+```mermaid
+graph TD
+  subgraph Frontend (React)
+    P1[Pages/*] -->|axios| API
+    P1 -->|TensorFlow.js| Models
+  end
+  subgraph Models (public/models)
+    M1[ugly] -- model.json --> TFJS
+    M2[mbti]
+    M3[age]
+    M4[vibe]
+  end
+  subgraph Backend (Spring Boot 3)
+    API[[REST /v1/*]] --> DB[(MariaDB RDS)]
+    API --> GA[Google Analytics]
+  end
+  Users((👥)) --> P1
+```
+
+---
+
+## 🛠️ 기술 스택 상세
+
+### Front‑end
+
+* **React 19** + Vite 5.
+* **React Router DOM v6.23** : SPA 라우팅.
+* **Tailwind CSS** : 점진적 도입·JIT 모드.
+* **i18next 22** + `react-i18next` : 언어 자동 감지.
+* **html2canvas 1.5** : 결과 모달 캡처 → SNS 카드.
+* **Sentry** : 프론트 오류 트래킹.
+
+### Machine Learning
+
+* **TensorFlow\.js 4.22** : 브라우저 추론.
+* **Google Teachable Machine** → TFJS Converter.
+* **python notebooks** (학습 파이프라인) : Colab Pro / GPU Tesla T4.
+
+### Back‑end
+
+* **Spring Boot 3.2** + MyBatis Plus 3.5.
+* **MariaDB 10.11** (RDS db.t3.micro) + Flyway DDL 버저닝.
+* **JWT** (Guest Session) + Spring Security 6.
+
+### DevOps / Hosting
+
+* **GitHub Actions** : CI → Netlify/Vercel Deploy.
+* **Netlify Edge Functions** : SEO SSR·기본 리다이렉트.
+* **Render.com** : 무료 Spring Boot Web 서비스 호스팅.
+* **Cloudflare** : DNS + Page Rules + 이미치 캐싱.
+
+### Analytics & Ads
+
+* **Google Analytics 4** : 유입·전환·세션 추적.
+* **Kakao AdFit** : 반응형 배너 (데스크톱 300×250, 모바일 320×50).
+* **Google AdSense / AdMob** : A/B 테스트 예정.
+
+---
+
+## 📁 디렉터리 구조 (전체)
+
+````text
 facetest/
 ├── public/
-│   ├── favicon.ico
-│   ├── index.html
-│   ├── robots.txt
-│   ├── manifest.json
 │   ├── _redirects
+│   ├── favicon.ico
+│   ├── favicon.png
+│   ├── google5b1bd693dcdbc497.html
+│   ├── index.html
+│   ├── logo192.png
+│   ├── logo512.png
+│   ├── manifest.json
+│   ├── meta/
 │   ├── models/
 │   │   ├── age/
+│   │   │   ├── female/
+│   │   │   │   ├── metadata.json
+│   │   │   │   ├── model.json
+│   │   │   │   └── weights.bin
+│   │   │   └── male/
+│   │   │       ├── metadata.json
+│   │   │       ├── model.json
+│   │   │       └── weights.bin
+│   │   ├── like/
+│   │   │   ├── female/
+│   │   │   │   ├── metadata.json
+│   │   │   │   ├── model.json
+│   │   │   │   └── weights.bin
+│   │   │   └── male/
+│   │   │       ├── metadata.json
+│   │   │       ├── model.json
+│   │   │       └── weights.bin
 │   │   ├── mbti/
+│   │   │   ├── female/
+│   │   │   │   ├── metadata.json
+│   │   │   │   ├── model.json
+│   │   │   │   └── weights.bin
+│   │   │   └── male/
+│   │   │       ├── metadata.json
+│   │   │       ├── model.json
+│   │   │       └── weights.bin
 │   │   ├── ugly/
+│   │   │   ├── female/
+│   │   │   │   ├── metadata.json
+│   │   │   │   ├── model.json
+│   │   │   │   └── weights.bin
+│   │   │   └── male/
+│   │   │       ├── metadata.json
+│   │   │       ├── model.json
+│   │   │       └── weights.bin
 │   │   └── vibe/
-│   ├── rank/          # 티어 배지 이미지
-│   └── logo*.png
-│
+│   │       ├── female/
+│   │       │   ├── metadata.json
+│   │       │   ├── model.json
+│   │       │   └── weights.bin
+│   │       └── male/
+│   │           ├── metadata.json
+│   │           ├── model.json
+│   │           └── weights.bin
+│   ├── rank/
+│   │   ├── Bronze.png
+│   │   ├── Challenger.png
+│   │   ├── Diamond.png
+│   │   ├── Gold.png
+│   │   ├── GrandMaster.png
+│   │   ├── Platinum.png
+│   │   └── Silver.png
+│   ├── robots.txt
+│   └── sitemap.xml
 ├── src/
+│   ├── App.jsx
+│   ├── App.test.js
 │   ├── components/
+│   │   ├── ExploreAllTests.jsx
 │   │   ├── Footer.jsx
 │   │   ├── GenderSelector.jsx
 │   │   ├── KakaoShareButton.jsx
 │   │   ├── LanguageSwitcher.jsx
 │   │   ├── LoadingSpinner.jsx
+│   │   ├── MbtiResultSection.jsx
 │   │   ├── Navbar.jsx
+│   │   ├── PeopleAlsoTried.jsx
 │   │   ├── ResultSection.jsx
+│   │   ├── ResultThumbnailCard.jsx
+│   │   ├── TestSuggestions.jsx
 │   │   ├── UploadSection.jsx
 │   │   └── VisitorCounter.jsx
-│   │
+│   ├── i18n.js
+│   ├── index.css
+│   ├── index.js
+│   ├── locales/
+│   │   ├── en/
+│   │   │   ├── about.json
+│   │   │   ├── age.json
+│   │   │   ├── common.json
+│   │   │   ├── contact.json
+│   │   │   ├── gender.json
+│   │   │   ├── like.json
+│   │   │   ├── main.json
+│   │   │   ├── mbti.json
+│   │   │   ├── privacy.json
+│   │   │   ├── shared.json
+│   │   │   ├── terms.json
+│   │   │   ├── ugly.json
+│   │   │   └── vibe.json
+│   │   ├── ja/
+│   │   │   ├── about.json
+│   │   │   ├── age.json
+│   │   │   ├── common.json
+│   │   │   ├── contact.json
+│   │   │   ├── gender.json
+│   │   │   ├── like.json
+│   │   │   ├── main.json
+│   │   │   ├── mbti.json
+│   │   │   ├── privacy.json
+│   │   │   ├── shared.json
+│   │   │   ├── terms.json
+│   │   │   ├── ugly.json
+│   │   │   └── vibe.json
+│   │   ├── ko/
+│   │   │   ├── about.json
+│   │   │   ├── age.json
+│   │   │   ├── common.json
+│   │   │   ├── contact.json
+│   │   │   ├── gender.json
+│   │   │   ├── like.json
+│   │   │   ├── main.json
+│   │   │   ├── mbti.json
+│   │   │   ├── privacy.json
+│   │   │   ├── shared.json
+│   │   │   ├── terms.json
+│   │   │   ├── ugly.json
+│   │   │   └── vibe.json
+│   │   ├── vi/
+│   │   │   ├── about.json
+│   │   │   ├── age.json
+│   │   │   ├── common.json
+│   │   │   ├── contact.json
+│   │   │   ├── gender.json
+│   │   │   ├── like.json
+│   │   │   ├── main.json
+│   │   │   ├── mbti.json
+│   │   │   ├── privacy.json
+│   │   │   ├── shared.json
+│   │   │   ├── terms.json
+│   │   │   ├── ugly.json
+│   │   │   └── vibe.json
+│   │   └── zh/
+│   │       ├── about.json
+│   │       ├── age.json
+│   │       ├── common.json
+│   │       ├── contact.json
+│   │       ├── gender.json
+│   │       ├── like.json
+│   │       ├── main.json
+│   │       ├── mbti.json
+│   │       ├── privacy.json
+│   │       ├── shared.json
+│   │       ├── terms.json
+│   │       ├── ugly.json
+│   │       └── vibe.json
+│   ├── logo.svg
 │   ├── pages/
 │   │   ├── About.jsx
 │   │   ├── AgeDetector.jsx
 │   │   ├── Contact.jsx
-│   │   ├── Main.jsx
+│   │   ├── Like.jsx
 │   │   ├── MBTIByFace.jsx
 │   │   ├── MBTIFAQ.jsx
+│   │   ├── Main.jsx
 │   │   ├── PrivacyPolicy.jsx
+│   │   ├── Soon.jsx
 │   │   ├── Terms.jsx
 │   │   ├── UglyFAQ.jsx
 │   │   ├── UglyMeter.jsx
 │   │   └── Vibe.jsx
-│   │
+│   ├── reportWebVitals.js
+│   ├── setupTests.js
 │   ├── styles/
-│   │   ├── about.css
-│   │   ├── common.css
 │   │   ├── Footer.css
 │   │   ├── LoadingSpinner.css
-│   │   ├── mbti.css
 │   │   ├── Navbar.css
-│   │   ├── neo-common.css
+│   │   ├── VisitorCounter.css
+│   │   ├── about.css
+│   │   ├── age.css
+│   │   ├── common.css
+│   │   ├── languageSwitcher.css
+│   │   ├── like.css
 │   │   ├── main.css
-│   │   ├── ugly.css
-│   │   └── vibe.css
-│   │
-│   ├── locales/
-│   │   ├── ko/
-│   │   ├── en/
-│   │   ├── ja/
-│   │   ├── zh/
-│   │   └── vi/
-│   │       ├── shared.json
-│   │       ├── about.json
-│   │       ├── main.json
-│   │       ├── ugly.json
-│   │       ├── terms.json
-│   │       ├── privacy.json
-│   │       └── gender.json
-│   │
-│   ├── utils/
-│   │   ├── runAgeModel.js
-│   │   ├── runMBTIModel.js
-│   │   ├── runModel.js
-│   │   ├── runVibeModel.js
-│   │   └── likePresets.js    # ⭐ vibePresets.js는 2025-06-02부로 삭제됨
-│   │
-│   ├── App.jsx
-│   ├── index.js
-│   ├── index.css
-│   └── i18n.js
-│
-├── .gitignore
-├── README.md
-├── package.json
-└── package-lock.json
-```
+│   │   ├── mbti.css
+│   │   ├
 
----
-
-## ⚙️ 개발 실행
+## ⚙️ 로컬 개발 환경 세팅
 
 ```bash
-$ git clone https://github.com/your-username/facetest.git
-$ cd facetest
-$ npm install
-$ npm start
+# 1) 저장소 클론
+$ git clone https://github.com/your-username/face-test.git
+$ cd face-test
+
+# 2) 노드 버전 매니저 권장 (Volta or nvm)
+$ volta install node@20
+
+# 3) 의존성 설치 (peer 충돌 무시)
+$ npm install --legacy-peer-deps
+
+# 4) 환경 변수 (.env.local)
+REACT_APP_KAKAO_JS_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+REACT_APP_API_BASE=https://face-test-backend-9txf.onrender.com
+
+# 5) 개발 서버
+$ npm run dev
+
+# 6) 스토리북 (UI 컴포넌트)
+$ npm run storybook
+````
+
+> **Tip** : Apple Silicon(M1/M2) → `export BROWSER=chrome` 후 실행 권장.
+
+---
+
+## 📦 프로덕션 빌드 & 배포
+
+```bash
+# 프론트 (Vite)
+$ npm run build           # dist/
+
+# Netlify 배포 (CLI 예시)
+$ netlify deploy --prod -d dist
+
+# PWA 서비스워커 검사
+$ npm run serve:dist      # local http‑server
+```
+
+### 백엔드
+
+```bash
+./mvnw package
+flyway migrate            # schema versioning
+java -jar target/app.jar  # 포트 8080
 ```
 
 ---
 
-## 🔧 진행 중 & 예정 작업
+## 📲 모바일 앱 패키징 (Capacitor 5)
 
-> **상태 표기**: ✅ 완료  |  🟡 진행 중  |  ⬜ 대기
+```bash
+# 캡 설치
+npm install @capacitor/core @capacitor/cli @capacitor/android --legacy-peer-deps
+npx cap init "AI 얼굴 실험실" com.kyeongwan.aiface
 
-|  상태 | 작업 항목                                                        |
-| :-: | :----------------------------------------------------------- |
-|  🟡 | 다국어 JSON(공통·메인·Ugly·Terms·Privacy·About·Gender) 누락/오탈자 전수 검사 |
-|  🟡 | MBTI·Age·Vibe 페이지 다국어 적용 및 결과 텍스트 분기 처리                      |
-|  🟡 | Kakao 공유 기능 전 페이지 적용                                         |
-|  🟡 | 모바일에서 모달·레이아웃·언어 선택 UI 최적화                                   |
-|  ⬜  | 다크모드 테마 Toggle 및 CSS 구조화                                     |
-|  ⬜  | Teachable Machine 모델 버전 리팩토링(고정 seed 등)                      |
-|  ⬜  | SEO/메타태그 정비(title, og\:image 등)                              |
-|  ⬜  | 서비스 워커 + manifest 통한 PWA 기능 강화 및 아이콘 구성                      |
-|  ⬜  | App Store / Google Play 배포 준비(Capacitor 또는 React Native)     |
-|  ⬜  | Google AdSense 승인 준비: 법적 고지·콘텐츠 정책·UX 정비                     |
-|  ⬜  | 로고 아래로 언어 선택 UI 위치 이동                                        |
-|  ⬜  | Navbar 네이밍 재정비                                               |
-|  ✅  | **vibePresets.js 삭제 및 i18n 완전 통합**                           |
+# Android 추가 → 빌드
+npx cap add android
+npm run build && npx cap copy
+npx cap open android
+```
+
+> AdMob 적용 : `@awesome-cordova-plugins/admob-free`
 
 ---
 
-## 🚀 배포 현황
+## 🗺️ 상세 로드맵 (2025 Q3\~Q4)
 
-|  상태 | 플랫폼         | 비고                  |
-| :-: | :---------- | :------------------ |
-|  ✅  | **Netlify** | 기본 웹 테스트 완료         |
-|  ⬜  | **Vercel**  | 멀티 호스팅·CDN 테스트 예정   |
-|  ⬜  | **PWA 배포**  | iOS/Android 앱 등록 준비 |
-
----
-
-## 🗓 버전 기록
-
-| 날짜             | 내용                                               |
-| -------------- | ------------------------------------------------ |
-| **2025‑06‑07** | README 최신화, vibePresets.js 삭제 반영, 진행 중 작업 표 업데이트 |
-| 2025‑06‑01     | 다국어 구조 재정비, LanguageSwitcher 개선, README 정비       |
-| 2025‑05‑29     | Vibe 결과 상세화 및 모달 스타일 개선                          |
-| 2025‑05‑24     | 반응형 완성 및 Navbar 인터랙션 개선                          |
-| 2025‑05‑10     | React 19 적용 및 기능 통합                              |
-| 2025‑04‑20     | AI 모델 기반 얼굴 분석 기능 통합 완료                          |
-| 2025‑03‑05     | 프로젝트 시작                                          |
+| Stage | 기능 카테고리           | 상세 태스크                                          | ETA     |
+| :---: | :---------------- | :---------------------------------------------- | :------ |
+|   🚧  | **PWA**           | 서비스워커 Vite Plugin PWA, offlineFallback 캐시 전략    | 2025‑07 |
+|   🚧  | **Dark Mode**     | CSS Var `[data-theme]` 토큰·Tailwind `dark:` 적용   | 2025‑07 |
+|   📐  | **UI 리디자인**       | Mobile Result Full‑Screen Modal + Framer Motion | 2025‑08 |
+|   💰  | **AdSense**       | 구글 전면·리워드 광고 A/B 테스트 → eCPM > ₩1,200 목표         | 2025‑08 |
+|   📦  | **Capacitor iOS** | Xcode 15 빌드 + App Store Connect 제출              | 2025‑09 |
+|   🧩  | **멀티 모델**         | StyleGAN 얼굴 합성 패치, Age Progression 데모           | 2025‑10 |
+|   🔒  | **보안**            | 콘텐츠 모더레이션 (NSFW filter) + Rate Limiter Redis    | 2025‑10 |
+|   🛒  | **Pro 리포트**       | PDF 리포트 + Stripe 결제 ₩1k → 월 ₩500k 목표            | 2025‑11 |
 
 ---
 
-### 문의·제안·버그 제보
+## 📐 디자인 가이드
 
-> GitHub Issue 또는 **Contact** 페이지에서 언제든지 피드백을 환영합니다. 🙇‍♂️
+* **Typography** : Pretendard / Inter. `text‑balance` 활성화.
+* **Color Tokens** : HSL 기반 테마 스케일 (Gray 0‑900).
+* **Motion** : Framer Motion (`mass=0.3, friction=30`).
+* **Accessibility** : WCAG 2.1 AA 대비 Contrast ≥ 4.5.
+* **Brand Voice** : ‘병맛+친근’ 톤 & 밈 이모지, 단 과도한 욕설 자제.
 
-### 피드백
-🧠 1. 콘텐츠 기획 피드백
-❌ 문제점
-기능은 다양하지만 개별 콘텐츠가 약간 단편적이고 리액션/몰입 구조 부족
+---
 
-1회성 분석 후 바로 이탈하는 구조 → 체류 시간/재방문 낮음
+## 🧪 테스트 전략
 
-각 테스트의 연결성 부족: 분석이 끝나도 다른 테스트로 유도되지 않음
+| 계층  | 도구                              | 커버리지 목표             |
+| :-- | :------------------------------ | :------------------ |
+| 유닛  | Jest 29 + React Testing Library | 80%                 |
+| E2E | Cypress 12                      | 핵심 플로우 100%         |
+| 모델  | Python pytest                   | 주요 inference 함수 90% |
 
-✅ 개선 방향
-항목	개선 아이디어
-🎯 콘텐츠 흐름	결과 후 “다음 분석 하러 가기” 버튼 자동 추천
-→ 못생김 → MBTI → 나이 → 분위기 순
-🔄 분석 흐름 연계	사용자 히스토리 저장하여 다시 방문 시 “최근 분석 이어하기”
-🧩 콘텐츠 기획	얼굴 점수 외에 “AI 이상형 매칭”, “오늘의 얼굴 운세”, “친구랑 대결하기” 추가
-🎁 리워드성 요소	테스트 완료 시 이미지/뱃지 저장 가능 (ex: “자기애 만렙 티어!”)
+---
 
-💡 2. 기능/UX 피드백
-❌ 문제점
-결과 모달이 모바일에서 잘림 / 비주얼 부족
+## 📊 메트릭 & 모니터링
 
-공유 이미지 저장 기능 없음 → SNS 확산 방해
+* **GA4** : 유입 채널·세션 유지·광고 클릭 이벤트.
+* **Sentry** : Front/Back 오류 트레이스.
+* **UptimeRobot** : 5분 주기 Health Check.
 
-페이지 이동/전환이 단조롭고 애니메이션 흐름이 없음
+---
 
-✅ 개선 방향
-항목	개선 아이디어
-📷 결과 이미지 저장	html2canvas 등으로 결과 모달을 이미지로 저장 + 다운로드/카카오톡 공유
-📱 모바일 UX	결과 모달 풀스크린 처리, 모달 닫을 때 부드러운 트랜지션 적용
-🎞 결과 전환 애니메이션	“결과 분석 중…” -> “두근두근...” -> 결과 등장 애니메이션
-📦 기능 통합화	Gender 선택, Upload, 분석 버튼을 하나의 플로우로 통합 UI 구성 (현재 분산되어 있음)
+## 🤝 기여 가이드
 
-🎨 3. 디자인/비주얼 피드백
-❌ 문제점
-결과가 심심하고 평면적임 (특히 MBTI, Vibe)
+1. `fork` → `feature/your-branch` 명명.
+2. 커밋 메시지 : Conventional Commits (`feat:`, `fix:`…).
+3. PR > CI 통과 > 리뷰 1+ ✅ → merge.
+4. 첫 PR 환영! 문서만 수정해도 OK.
 
-배경, 컬러, 폰트 조합이 기능별로 일관성 부족
+---
 
-전체적으로 비주얼 리액션이 약함
+## 📬 문의
 
-✅ 개선 방향
-항목	개선 아이디어
-🌈 컬러 개선	못생김 → 레드/옐로우 악센트, MBTI → 보라/블루 그라디언트, Vibe → 키워드별 컬러
-👀 모달 리디자인	결과 모달 내에 사진 + 큰 타이틀 + 키워드 + 부제목 + 설명 + 태그 영역으로 나눔
-✨ 리액션 강화	결과 등장 시 scale, fadeIn, bounce 등 시각적 반응 추가
-🖼 배경 효과	각 테스트마다 배경 테마 이미지 또는 그라디언트 배경 전환
+* 이메일 : [facelab@yourdomain.com](mailto:facelab@yourdomain.com)
+* 깃허브 Issue : 버그·제안·모델 개선 모두 열람 환영
+* Discord : `face-lab` 서버 초대 링크 (프로젝트 탭에서 확인)
 
-💰 4. 수익화 전략 피드백
-❌ 문제점
-공유 유도/이미지 저장 없음 → 유입 확산 구조 약함
+---
 
-수익은 AdSense로만 한정 → 다양한 수익 루트 없음
+## 📝 라이선스
 
-✅ 개선 방향
-항목	아이디어
-📤 공유 강화	결과 저장 → SNS 썸네일용 카드 이미지 자동 생성 (canvas)
-🪙 부가 유료 상품	“나의 얼굴 점수 리포트 PDF 다운로드 (1,000원)” 등 소액 유료 콘텐츠
-🧠 이메일 수집	테스트 완료 시 “결과 저장을 원하시면 이메일 입력” → 리타겟 마케팅 가능
-🔁 리마케팅 구조	결과를 기반으로 “친구 초대 시 추가 분석 제공” 같은 리퍼럴 구조 설계
+```
+MIT License
+Copyright (c) 2025 Kyeongwan Ryu
+```
 
-✅ 요약 정리
-카테고리	주요 피드백	발전 방향 요약
-🎯 콘텐츠	기능별 연결성 약함	테스트 간 흐름 연계 + 리워드 설계
-⚙️ 기능/UX	모달/전환 부족	모바일 UX 강화, 분석 흐름 개선
-🎨 디자인	비주얼 약함	컬러+타이포+애니메이션 강화
-💰 수익화	확산력 약함	결과 공유 이미지 + 리포트 유료화
+* 모델(`public/models/*`) 라이선스는 각 서브폴더 `LICENSE.md` 참조.
+* 프로젝트 사용 시 **스타⭐ 부탁**!
 
-🔧 다음 단계 추천
-아래 순서대로 진행하면 효과적이야:
+---
 
-결과 화면 전면 리디자인 (비주얼/모달/반응)
+## ⏳ 변경 로그 (주요)
 
-결과 저장 이미지 기능 추가 (html2canvas, Kakao 공유)
-
-“다음 테스트 하러 가기” 흐름 설계 (페이지 연결 유도)
-
-공유시 자동 썸네일/카드 이미지 생성 (SNS 최적화)
-
-가벼운 소액 유료화 요소 기획 (PDF 리포트, 얼굴 카드 등)
-
-
-
-
-
-
-🤪 병맛 콘셉트 UglyMeter 결과 모달 리디자인 설계
-🎯 핵심 방향
-목표	설명
-화면 가득 채우기	모달은 거의 전체화면 수준으로 확대
-병맛 시각 요소	티어별로 뻔뻔하고 과장된 이미지/문구/이모지/이펙트
-과장된 리액션	진동/튀어나오는 텍스트/박수 이펙트 등
-SNS 캡쳐용 재미 요소	웃긴 짤로 저장해도 민망하고 재밌게
-
-🧱 구조 설계 (풀스크린 병맛 카드)
-less
-코드 복사
-┌────────────────────────────────────────┐
-│ 😱 당신의 못생김 지수는                │ ← 타이틀: 병맛 느낌 폰트, 흔들림 애니
-│                                        │
-│     🧟‍♂️ 티어명: 브론즈 II              │ ← 티어명 강조 + 뱃지 크게 (회전 or 반짝)
-│    “와 진짜 이건 아니다…”              │ ← 해설 타이틀: 박스 안에 병맛 코멘트
-│     “거울이랑 사이 안 좋으신가요?”     │ ← 서브텍스트: 패러디 문장
-│                                        │
-│ 📸 사진(원형 아님, 짤 프레임처럼 박스)   │ ← 가운데에 사용자 사진 (각진, 테두리)
-│                                        │
-│ ✨ 특수 효과: 반짝/터짐/눈물 이모지 등    │ ← 주위에 떠다니는 이모지 효과 (CSS 애니)
-│                                        │
-│ 💬 병맛 코멘트: “엄마가 너 잘생겼다했지?”│ ← 랜덤 코멘트 (5개 중 택1)
-│                                        │
-│ 🎁 당신의 타이틀: ‘자기애 레전드’ 뱃지   │ ← 뱃지형 태그 (한 줄 스티커 느낌)
-│                                        │
-│ 🔁 [다시 분석]     💬 [카톡 공유]         │ ← 병맛 아이콘 포함된 버튼
-└────────────────────────────────────────┘
-🧨 병맛 리액션 요소
-요소	설명
-제목 흔들림	animation: shakeX 0.4s infinite alternate;
-티어 배지	rotate + scale 효과로 휘몰아치듯 등장
-사진 박스	옛날 증명사진 테두리 느낌 (밝은 네온박스 + 약간 왜곡)
-배경	무지개, 푸른 불꽃, 빔 라이트 등 테마별로 과장된 배경
-이모지 뿌리기	😭 😂 🤯 🤡 같은 이모지를 CSS로 화면에 뿌리기
-결과 텍스트	“심각합니다”, “거울 보고 놀라지 마세요” 등 직설/유머형
-소리 (선택)	결과 등장 시 효과음(박수/타악기/브금) 준비 (미디어 허용시)
-
-🎨 컬러 컨셉
-티어	배경 스타일
-Bronze	녹슨 철배경 + 스파크 + 🤡 이모지 뿌리기
-Gold	무지개 배경 + 반짝이 애니메이션 + ✨
-Challenger	붉은 배경 + ⚡ 전기 번쩍 이펙트 + 🚨
-Grandmaster	청기와 배경 + 회오리 애니 + 🤯
-Master~Platinum	블루/보라 계열 + 환영 느낌의 배경
+| 버전         | 날짜         | 하이라이트                                        |
+| :--------- | :--------- | :------------------------------------------- |
+| **v0.9.2** | 2025‑06‑08 | Capacitor 5 셋업·Android 빌드 성공, AI 모델 경로 구조 통합 |
+| **v0.9.1** | 2025‑06‑04 | i18n 5개국어 완성, Kakao AdFit 배너 적용              |
+| **v0.9.0** | 2025‑06‑01 | 프로젝트 오픈소스 공개, Netlify 메인 사이트 런칭              |

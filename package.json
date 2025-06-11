@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@capacitor/android": "^7.3.0",
     "@teachablemachine/image": "^0.8.5",
     "@tensorflow/tfjs": "^4.22.0",
     "@testing-library/dom": "^10.4.0",
@@ -50,5 +51,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^7.3.0"
   }
 }
