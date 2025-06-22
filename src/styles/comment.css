@@ -1,128 +1,251 @@
-/* comment.css - 모바일 반응형 + 고급 스타일 */
-
+/* 반응형 댓글 섹션 스타일 */
 .comment-section {
-    margin-top: 2rem;
-    font-family: 'Pretendard', sans-serif;
-    max-width: 720px;
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 800px;
+    margin: 2rem auto;
     padding: 1rem;
+    background: #fdfdfd;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    font-family: 'Pretendard', sans-serif;
 }
 
 .comment-section h3 {
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    color: #333;
 }
 
-.comment-section .input {
+.comment-section input[type="text"],
+.comment-section input[type="password"],
+.comment-section textarea {
     width: 100%;
-    padding: 0.75rem 1rem;
-    border: 1px solid #d1d5db;
-    border-radius: 0.5rem;
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 0.6rem;
     font-size: 1rem;
-    background-color: #fff;
-    transition: border-color 0.2s;
+    background: #fff;
+    transition: border 0.2s;
 }
 
-.comment-section .input:focus {
+.comment-section input:focus,
+.comment-section textarea:focus {
+    border-color: #007aff;
     outline: none;
-    border-color: #2563eb;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
-}
-
-.comment-section textarea.input {
-    min-height: 100px;
-    resize: vertical;
 }
 
 .comment-section button {
+    background: #007aff;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
     cursor: pointer;
-    transition: all 0.2s ease;
-    font-weight: 600;
+    transition: background 0.2s ease;
+    margin-right: 0.5rem;
 }
 
 .comment-section button:hover {
-    opacity: 0.9;
+    background: #005fcc;
 }
 
-.comment-section .comment-form {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
+.comment-section ul {
+    list-style: none;
+    padding: 0;
     margin-top: 1.5rem;
-    background-color: #f9fafb;
+}
+
+.comment-section li {
     padding: 1rem;
-    border-radius: 0.75rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-}
-
-.comment-section .comment-item {
-    background-color: #ffffffcc;
-    border: 1px solid #e5e7eb;
-    border-radius: 0.75rem;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
-}
-
-.comment-section .comment-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.5rem;
-}
-
-.comment-section .comment-body {
-    margin-bottom: 0.25rem;
-    white-space: pre-wrap;
-    word-break: break-word;
-    line-height: 1.5;
-}
-
-.comment-section .comment-actions {
-    display: flex;
-    gap: 0.5rem;
-    font-size: 0.875rem;
-    margin-top: 0.25rem;
-}
-
-.comment-section .btn-submit {
-    background-color: #2563eb;
-    color: white;
-    padding: 0.6rem 1.25rem;
+    border-bottom: 1px solid #eee;
+    background: #fafafa;
     border-radius: 0.5rem;
+    margin-bottom: 0.8rem;
+    position: relative;
+}
+
+.comment-section li strong {
+    display: block;
     font-size: 1rem;
-    border: none;
+    margin-bottom: 0.5rem;
+    color: #444;
 }
 
-.comment-section .btn-submit:hover {
-    background-color: #1d4ed8;
+.comment-section li p {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+    white-space: pre-wrap;
 }
 
-.comment-section .text-muted {
-    font-size: 0.75rem;
-    color: #6b7280;
+.comment-section li textarea {
+    margin-top: 0.5rem;
+}
+
+.comment-section li button {
+    margin-top: 0.5rem;
+}
+
+.comment-section .error {
+    color: #e74c3c;
+    font-weight: 500;
+    margin-top: 1rem;
+    text-align: center;
 }
 
 /* 반응형 */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     .comment-section {
-        padding: 0.75rem;
+        padding: 1rem 0.8rem;
     }
-    .comment-section .comment-form {
-        padding: 0.75rem;
+    .comment-section h3 {
+        font-size: 1.3rem;
     }
-    .comment-section .btn-submit {
+    .comment-section input,
+    .comment-section textarea {
         font-size: 0.95rem;
-        padding: 0.6rem 1rem;
+    }
+    .comment-section button {
+        font-size: 0.95rem;
+        padding: 0.5rem 1rem;
+    }
+    .comment-section li {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .comment-section {
+        border-radius: 0.6rem;
     }
     .comment-section h3 {
         font-size: 1.1rem;
     }
-    .comment-section .input {
-        font-size: 0.95rem;
-        padding: 0.6rem 0.9rem;
+    .comment-section button {
+        width: 100%;
+        margin-bottom: 0.4rem;
+    }
+}
+
+/* 애니메이션 효과 */
+.comment-section li {
+    animation: fadeInUp 0.3s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        transform: translateY(10px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* 스크롤 감지용 고정 헤더 스타일 (예시용) */
+.comment-section.sticky {
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 10;
+    border-bottom: 1px solid #eee;
+}
+
+/* 임시 로딩 상태 스타일 */
+.comment-section.loading::after {
+    content: '로딩 중...';
+    display: block;
+    text-align: center;
+    color: #aaa;
+    margin-top: 1rem;
+}
+
+/* 비어 있을 때 메시지 */
+.comment-section .empty-message {
+    color: #777;
+    font-size: 0.95rem;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* 댓글 내부 버튼 정렬 */
+.comment-section li .actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+/* 모바일에선 버튼 세로 정렬 */
+@media (max-width: 480px) {
+    .comment-section li .actions {
+        flex-direction: column;
+    }
+}
+
+/* 반응형 placeholder 색상 조절 */
+.comment-section input::placeholder,
+.comment-section textarea::placeholder {
+    color: #bbb;
+}
+
+/* 입력창 focus 효과 개선 */
+.comment-section input:focus,
+.comment-section textarea:focus {
+    border-color: #007aff;
+    box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.2);
+}
+
+/* 폼 하단 버튼 그룹 */
+.comment-section .form-buttons {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 480px) {
+    .comment-section .form-buttons {
+        flex-direction: column;
+    }
+}
+
+/* 반응형 디테일 추가 */
+.comment-section textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* 댓글 시간 표시 (옵션용 클래스) */
+.comment-section .comment-time {
+    font-size: 0.8rem;
+    color: #aaa;
+    margin-top: 0.3rem;
+}
+
+/* 댓글 영역 배경색 반응형 조절 */
+@media (prefers-color-scheme: dark) {
+    .comment-section {
+        background: #1c1c1c;
+        color: #ddd;
+    }
+    .comment-section input,
+    .comment-section textarea {
+        background: #2a2a2a;
+        color: #fff;
+        border-color: #444;
+    }
+    .comment-section input::placeholder,
+    .comment-section textarea::placeholder {
+        color: #777;
+    }
+    .comment-section button {
+        background: #3399ff;
+    }
+    .comment-section li {
+        background: #2a2a2a;
+        border-color: #444;
     }
 }
