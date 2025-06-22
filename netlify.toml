@@ -1,6 +1,6 @@
 [build.environment]
 NODE_VERSION = "16"
-NPM_FLAGS = "--legacy-peer-deps" # 혹시라도 Netlify가 강제로 쓸 경우 대비
+NPM_FLAGS = "--legacy-peer-deps"
 
 [build]
 command = "bash build.sh"
@@ -9,5 +9,6 @@ publish = "build"
 [functions]
 node_bundler = "esbuild"
 
-[build.processing]
-skip_install = true
+# ❌ 아래 줄 삭제하거나 주석 처리해야 정상 동작함
+# [build.processing]
+# skip_install = true
