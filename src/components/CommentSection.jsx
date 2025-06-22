@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 
 const CommentSection = ({ postId }) => {
@@ -8,7 +8,8 @@ const CommentSection = ({ postId }) => {
     const [editForm, setEditForm] = useState({ password: '', content: '' });
     const [error, setError] = useState(null);
 
-    const fetchComments = async () => {
+    // ✅ useCallback으로 감싸서 useEffect 의존성 배열 문제 해결
+    const fetchComments = useCallback(async () => {
         if (!postId) {
             setError('postId가 전달되지 않았습니다.');
             return;
@@ -22,11 +23,11 @@ const CommentSection = ({ postId }) => {
             console.error(err);
             setError('댓글을 불러오지 못했습니다.');
         }
-    };
+    }, [postId]);
 
     useEffect(() => {
         fetchComments();
-    }, [postId]);
+    }, [fetchComments]); // ✅ 의존성 배열 OK
 
     const handleInputChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
@@ -115,10 +116,10 @@ const CommentSection = ({ postId }) => {
                         <strong>{c.nickname}</strong> <br />
                         {editId === c.id ? (
                             <>
-                                <textarea
-                                    value={editForm.content}
-                                    onChange={(e) => setEditForm({ ...editForm, content: e.target.value })}
-                                />
+                <textarea
+                    value={editForm.content}
+                    onChange={(e) => setEditForm({ ...editForm, content: e.target.value })}
+                />
                                 <input
                                     type="password"
                                     placeholder="비밀번호"
