@@ -8,6 +8,9 @@ import LanguageSwitcher from "../components/LanguageSwitcher";
 import "../styles/common.css";
 import "../styles/vibe.css";
 
+import CommentSection from "../components/CommentSection";
+
+
 import { Helmet } from "react-helmet";
 
 <Helmet>
@@ -302,6 +305,9 @@ export default function Vibe() {
                     </div>
                 </div>
             )}
+            <CommentSection postId={1003} />
+
+
 
             {/* PC용 광고 */}
             <div className="ad-pc-banner">

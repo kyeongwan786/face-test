@@ -7,6 +7,8 @@ import "../styles/common.css";
 import "../styles/like.css";
 
 import { Helmet } from "react-helmet";
+import CommentSection from "../components/CommentSection";
+
 
 
 
@@ -262,6 +264,8 @@ export default function Like() {
                     </div>
                 </div>
             )}
+            <CommentSection postId={1002} />
+
 
             {/* PC 광고 */}
             <div className="ad-pc-banner">

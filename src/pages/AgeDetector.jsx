@@ -12,6 +12,9 @@ import { runAgeEstimation } from "../utils/runAgeModel";
 
 import { Helmet } from "react-helmet";
 
+import CommentSection from "../components/CommentSection";
+
+
 
 
 
@@ -245,6 +248,8 @@ export default function AgeDetector() {
                     </div>
                 )}
             </div>
+            <CommentSection postId={1000} />
+
 
             {/* PC용 AdFit 배너 */}
             <div className="ad-pc-banner">

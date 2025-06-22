@@ -35,7 +35,6 @@ const CommentSection = ({ postId }) => {
 
     const handleSubmit = async () => {
         if (!form.nickname || !form.password || !form.content) return alert('모든 칸을 입력하세요');
-        if (!postId) return alert('postId가 없습니다.');
 
         await axios.post('/api/comments', { ...form, postId });
         setForm({ nickname: '', password: '', content: '' });

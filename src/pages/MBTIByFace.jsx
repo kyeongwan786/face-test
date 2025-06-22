@@ -7,6 +7,8 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import CommentSection from "../components/CommentSection";
+
 
 export default function MBTIByFace() {
     const { t } = useTranslation(["mbti", "common"]);
@@ -206,6 +208,9 @@ export default function MBTIByFace() {
                     </div>
                 </div>
             )}
+            <CommentSection postId={1001} />
+
+
 
             {/* ✅ 광고: PC용 */}
             <div className="ad-pc-banner">
