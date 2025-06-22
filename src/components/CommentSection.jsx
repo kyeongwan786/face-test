@@ -10,7 +10,6 @@ const CommentSection = ({ postId }) => {
     const [editForm, setEditForm] = useState({ password: '', content: '' });
     const [error, setError] = useState(null);
 
-    // ✅ useCallback으로 감싸서 useEffect 의존성 배열 문제 해결
     const fetchComments = useCallback(async () => {
         if (!postId) {
             setError('postId가 전달되지 않았습니다.');
@@ -29,7 +28,7 @@ const CommentSection = ({ postId }) => {
 
     useEffect(() => {
         fetchComments();
-    }, [fetchComments]); // ✅ 의존성 배열 OK
+    }, [fetchComments]);
 
     const handleInputChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
@@ -82,7 +81,7 @@ const CommentSection = ({ postId }) => {
         <div className="comment-section" style={{ marginTop: '2rem' }}>
             <h3>댓글</h3>
 
-            {/* 작성 폼 */}
+
             <div style={{ marginBottom: '1em' }}>
                 <input
                     type="text"
@@ -107,7 +106,7 @@ const CommentSection = ({ postId }) => {
                 <button onClick={handleSubmit}>작성</button>
             </div>
 
-            {/* 댓글 리스트 */}
+
             {error && <div style={{ color: 'red' }}>{error}</div>}
 
             <ul>

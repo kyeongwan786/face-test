@@ -313,7 +313,6 @@ export default function UglyMeter() {
                     </div>
                 </div>
             )}
-            // 못생김 측정기 페이지 (uglymeter)
             <CommentSection postId={999} />
 
 
