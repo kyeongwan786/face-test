@@ -40,7 +40,16 @@ export default function VisitorCounter() {
         fetchCount();
     }, []);
 
-    if (todayCount === null || totalCount === null) return null;
+    if (todayCount === null || totalCount === null) {
+        return (
+            <div className="visitor-count-wrapper">
+                <div className="visitor-box loading">
+                    <div className="count-label">👁️ 방문자 수 불러오는 중...</div>
+                </div>
+            </div>
+        );
+    }
+
 
     return (
         <div className="visitor-count-wrapper">
