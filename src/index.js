@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import "./i18n";
 import "./styles/about.css";
+import './api/axios';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

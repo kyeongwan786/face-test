@@ -12,24 +12,35 @@ const CommentSection = ({ postId }) => {
     const fetchComments = useCallback(async () => {
         try {
             const res = await axios.get(`/api/comments/${postId}`);
-            setComments(Array.isArray(res.data) ? res.data : []);
+            if (Array.isArray(res.data)) {
+                setComments(res.data);
+            } else {
+                setComments([]);
+                console.error('응답 데이터가 배열이 아님:', res.data);
+            }
         } catch (err) {
+            console.error(err);
             setError('댓글을 불러오지 못했습니다.');
         }
     }, [postId]);
 
     useEffect(() => {
-        if (postId) fetchComments();
-        else setError('postId가 전달되지 않았습니다.');
+        if (postId) {
+            fetchComments();
+        } else {
+            setError('postId가 전달되지 않았습니다.');
+        }
     }, [fetchComments, postId]);
 
     const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
+        setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     };
 
     const handleSubmit = async () => {
-        if (!form.nickname || !form.password || !form.content) {
-            return alert('모든 항목을 입력하세요.');
+        const { nickname, password, content } = form;
+        if (!nickname || !password || !content) {
+            alert('모든 항목을 입력하세요.');
+            return;
         }
 
         try {
@@ -37,7 +48,8 @@ const CommentSection = ({ postId }) => {
             setForm({ nickname: '', password: '', content: '' });
             fetchComments();
         } catch (err) {
-            setError('댓글 데이터 형식이 올바르지 않습니다.');
+            console.error(err);
+            setError('댓글 등록 실패: 형식이 올바르지 않거나 서버 오류입니다.');
         }
     };
 
@@ -49,7 +61,10 @@ const CommentSection = ({ postId }) => {
     const confirmEdit = async () => {
         try {
             const res = await axios.put(`/api/comments/${editId}`, null, {
-                params: { password: editForm.password, content: editForm.content }
+                params: {
+                    password: editForm.password,
+                    content: editForm.content,
+                },
             });
             if (res.data) {
                 setEditId(null);
@@ -57,7 +72,8 @@ const CommentSection = ({ postId }) => {
             } else {
                 alert('비밀번호가 틀렸습니다.');
             }
-        } catch {
+        } catch (err) {
+            console.error(err);
             alert('수정 실패');
         }
     };
@@ -70,9 +86,13 @@ const CommentSection = ({ postId }) => {
             const res = await axios.delete(`/api/comments/${id}`, {
                 params: { password },
             });
-            if (res.data) fetchComments();
-            else alert('비밀번호가 틀렸습니다.');
-        } catch {
+            if (res.data) {
+                fetchComments();
+            } else {
+                alert('비밀번호가 틀렸습니다.');
+            }
+        } catch (err) {
+            console.error(err);
             alert('삭제 실패');
         }
     };
@@ -115,16 +135,12 @@ const CommentSection = ({ postId }) => {
                             <>
                 <textarea
                     value={editForm.content}
-                    onChange={(e) =>
-                        setEditForm({ ...editForm, content: e.target.value })
-                    }
+                    onChange={(e) => setEditForm({ ...editForm, content: e.target.value })}
                 />
                                 <input
                                     type="password"
                                     value={editForm.password}
-                                    onChange={(e) =>
-                                        setEditForm({ ...editForm, password: e.target.value })
-                                    }
+                                    onChange={(e) => setEditForm({ ...editForm, password: e.target.value })}
                                     placeholder="비밀번호"
                                 />
                                 <div className="btn-group">
