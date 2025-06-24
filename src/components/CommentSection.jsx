@@ -66,11 +66,11 @@ const CommentSection = ({ postId }) => {
                     content: editForm.content,
                 },
             });
-            if (res.data) {
+            if (res.data?.result === 'SUCCESS') {
                 setEditId(null);
                 fetchComments();
             } else {
-                alert('비밀번호가 틀렸습니다.');
+                alert(res.data?.message || '비밀번호가 틀렸습니다.');
             }
         } catch (err) {
             console.error(err);
@@ -86,10 +86,10 @@ const CommentSection = ({ postId }) => {
             const res = await axios.delete(`/api/comments/${id}`, {
                 params: { password },
             });
-            if (res.data) {
+            if (res.data?.result === 'SUCCESS') {
                 fetchComments();
             } else {
-                alert('비밀번호가 틀렸습니다.');
+                alert(res.data?.message || '비밀번호가 틀렸습니다.');
             }
         } catch (err) {
             console.error(err);
@@ -102,27 +102,29 @@ const CommentSection = ({ postId }) => {
             <h3>댓글</h3>
 
             <div className="comment-form">
-                <input
-                    type="text"
-                    name="nickname"
-                    value={form.nickname}
-                    onChange={handleChange}
-                    placeholder="닉네임"
-                />
-                <input
-                    type="password"
-                    name="password"
-                    value={form.password}
-                    onChange={handleChange}
-                    placeholder="비밀번호"
-                />
+                <div className="comment-form-top">
+                    <input
+                        type="text"
+                        name="nickname"
+                        value={form.nickname}
+                        onChange={handleChange}
+                        placeholder="닉네임"
+                    />
+                    <input
+                        type="password"
+                        name="password"
+                        value={form.password}
+                        onChange={handleChange}
+                        placeholder="비밀번호"
+                    />
+                    <button onClick={handleSubmit}>작성</button>
+                </div>
                 <textarea
                     name="content"
                     value={form.content}
                     onChange={handleChange}
                     placeholder="댓글을 입력하세요"
                 />
-                <button onClick={handleSubmit}>작성</button>
                 {error && <div className="error">{error}</div>}
             </div>
 
@@ -133,10 +135,10 @@ const CommentSection = ({ postId }) => {
                         <strong>{c.nickname}</strong>
                         {editId === c.id ? (
                             <>
-                <textarea
-                    value={editForm.content}
-                    onChange={(e) => setEditForm({ ...editForm, content: e.target.value })}
-                />
+                                <textarea
+                                    value={editForm.content}
+                                    onChange={(e) => setEditForm({ ...editForm, content: e.target.value })}
+                                />
                                 <input
                                     type="password"
                                     value={editForm.password}

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "../styles/VisitorCounter.css";
 
-const API_URL = "https://face-test-backend-9txf.onrender.com";
+// ✅ 백엔드 주소 업데이트
+const API_URL = "https://face-test-backend-1-u318.onrender.com";
 
 export default function VisitorCounter() {
     const [todayCount, setTodayCount] = useState(null);
@@ -12,24 +13,28 @@ export default function VisitorCounter() {
 
         const fetchCount = async () => {
             try {
-                const path = visited ? "api/visitor/count" : "api/visitor/increase";
-                const res = await fetch(`${API_URL}/${path}`, {
-                    method: visited ? "GET" : "POST"
-                });
-
-                if (!res.ok) {
-                    throw new Error(`API 요청 실패: ${res.status}`);
-                }
-
-                const data = await res.json();
-                console.log("✅ 방문자 수 응답:", data);
-
-                setTodayCount(data.today ?? 0);
-                setTotalCount(data.total ?? 0);
-
+                // 방문자 기록 or 조회
                 if (!visited) {
+                    const res = await fetch(`${API_URL}/api/visitor/record`, { method: "POST" });
+                    if (!res.ok) throw new Error(`API 요청 실패: ${res.status}`);
                     sessionStorage.setItem("hasVisited", "true");
                 }
+
+                // 오늘 방문 수
+                const todayRes = await fetch(`${API_URL}/api/visitor/today`);
+                const totalRes = await fetch(`${API_URL}/api/visitor/total`);
+
+                if (!todayRes.ok || !totalRes.ok) {
+                    throw new Error("방문자 수 조회 실패");
+                }
+
+                const todayData = await todayRes.json();
+                const totalData = await totalRes.json();
+
+                console.log("✅ 방문자 수 응답:", { todayData, totalData });
+
+                setTodayCount(todayData.count ?? 0);
+                setTotalCount(totalData.count ?? 0);
             } catch (err) {
                 console.error("❌ 방문자 수 처리 실패:", err);
                 setTodayCount(0);
@@ -49,7 +54,6 @@ export default function VisitorCounter() {
             </div>
         );
     }
-
 
     return (
         <div className="visitor-count-wrapper">
