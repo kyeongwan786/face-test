@@ -13,7 +13,7 @@ const CommentSection = ({ postId }) => {
         try {
             const res = await axios.get(`/api/comments/${postId}`);
             if (Array.isArray(res.data)) {
-                setComments(res.data);
+                setComments(res.data.comments);
             } else {
                 setComments([]);
                 console.error('응답 데이터가 배열이 아님:', res.data);
