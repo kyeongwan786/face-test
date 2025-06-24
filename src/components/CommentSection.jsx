@@ -12,7 +12,7 @@ const CommentSection = ({ postId }) => {
     const fetchComments = useCallback(async () => {
         try {
             const res = await axios.get(`/api/comments/${postId}`);
-            if (Array.isArray(res.data)) {
+            if (Array.isArray(res.data.comments)) {
                 setComments(res.data.comments);
             } else {
                 setComments([]);
